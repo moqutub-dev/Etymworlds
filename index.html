@@ -4204,15 +4204,15 @@ const SwipeDial = ({ chunks, completedRoots, accentColor, worldColor, onSwipeCom
   // ── Dynamic geometry: scale dial to fit 4–8 nodes without crowding ──────
   const nodeCount     = chunks.length;
   // Dial container stays fixed; radius and node size shrink as count grows
-  const DIAL_SIZE     = 378;
+  const DIAL_SIZE     = 435;
   const CENTER        = DIAL_SIZE / 2;
   // DIAL_R: 96px for 4 nodes → 88px for 8 nodes (linear interpolation)
-  const DIAL_R        = Math.round(140 - (nodeCount - 4) * 2.6);
+  const DIAL_R        = Math.round(161 - (nodeCount - 4) * 3.0);
   // Nodes shrink slightly: 54×38 at 4 nodes → 44×32 at 8 nodes
-  const NODE_W        = Math.max(63, Math.round(78 - (nodeCount - 4) * 3.3));
-  const NODE_H        = Math.max(46, Math.round(55 - (nodeCount - 4) * 2.0));
+  const NODE_W        = Math.max(72, Math.round(90 - (nodeCount - 4) * 3.8));
+  const NODE_H        = Math.max(53, Math.round(63 - (nodeCount - 4) * 2.3));
   // Hit radius also scales with node size
-  const HIT_THRESHOLD = Math.max(35, Math.round(44 - (nodeCount - 4) * 2.0));
+  const HIT_THRESHOLD = Math.max(40, Math.round(51 - (nodeCount - 4) * 2.3));
   // Stroke widths thin out at 6+ nodes to reduce visual clutter
   const STROKE_CORE   = nodeCount >= 6 ? 2   : 3;
   const STROKE_GLOW   = nodeCount >= 6 ? 10  : 14;
@@ -4354,7 +4354,7 @@ const SwipeDial = ({ chunks, completedRoots, accentColor, worldColor, onSwipeCom
       </svg>
 
       <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",pointerEvents:"none"}}>
-        <div style={{color:"rgba(255,255,255,0.15)",fontSize:"9px",letterSpacing:"0.5px",textAlign:"center",maxWidth:"80px",lineHeight:1.5}}>
+        <div style={{color:"rgba(255,255,255,0.15)",fontSize:"13.5px",letterSpacing:"0.75px",textAlign:"center",maxWidth:"120px",lineHeight:1.5}}>
           {selectedIdxs.length > 0 ? selectedIdxs.map(i => chunks[i].chunk).join(" + ") : meaning}
         </div>
       </div>
@@ -4383,7 +4383,7 @@ const SwipeDial = ({ chunks, completedRoots, accentColor, worldColor, onSwipeCom
                 ? `1px dashed ${accentColor}60`
                 : "1px solid rgba(255,255,255,0.18)",
             color: isCompleted ? accentColor : isSelected ? "#fff" : "rgba(255,255,255,0.88)",
-            fontSize:"13px", fontWeight:"700", letterSpacing:"0.5px",
+            fontSize:"20px", fontWeight:"700", letterSpacing:"0.75px",
             display:"flex", alignItems:"center", justifyContent:"center",
             boxShadow: isSelected ? `0 0 18px ${accentColor}70` : isCompleted ? `0 0 12px ${accentColor}44` : "none",
             transform: isSelected ? "scale(1.12)" : "scale(1)",
@@ -4392,8 +4392,8 @@ const SwipeDial = ({ chunks, completedRoots, accentColor, worldColor, onSwipeCom
           }}>
             {isCompleted ? "✓" : item.chunk}
             {isSelected && !isCompleted && (
-              <span style={{position:"absolute",top:-7,right:-7,width:16,height:16,borderRadius:"50%",
-                background:accentColor,color:"#000",fontSize:"9px",fontWeight:"800",
+              <span style={{position:"absolute",top:-7,right:-7,width:24,height:24,borderRadius:"50%",
+                background:accentColor,color:"#000",fontSize:"13px",fontWeight:"800",
                 display:"flex",alignItems:"center",justifyContent:"center",
                 boxShadow:`0 0 6px ${accentColor}`}}>{orderNum}</span>
             )}
