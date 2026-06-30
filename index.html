@@ -78,7 +78,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["lem","on","can","dy","al","ge","bra"],
+        chunks: ["lem","on","e","lix","ir","al","ge","bra"],
         traps: [],
         clue: "Silk Road treasures: sour, sweet, and mathematical",
         words: [
@@ -86,10 +86,10 @@ const WORLDS = [
             clue:"A sour Persian citrus",
             hint:"A yellow fruit used to add tartness",
             fact:"From Arabic 'laymūn', borrowed from Persian 'līmūn'. The sour fruit crossed continents before brightening your tea." },
-          { word:"CANDY",   roots:["can","dy"],
-            clue:"Crystallised sugar chunks",
-            hint:"A sweet confection made from sugar",
-            fact:"'Qandi' came from Sanskrit 'khanda' meaning sugar chunks — sweetness that traveled the Silk Road to your pantry." },
+          { word:"ELIXIR",  roots:["e","lix","ir"],
+            clue:"The philosopher's stone in liquid form",
+            hint:"A magical or medicinal potion believed to cure all ills",
+            fact:"Arabic 'al-iksir', from Greek 'xerion' (a drying powder). Alchemists sought it as the substance that could transform base metal into gold." },
           { word:"ALGEBRA", roots:["al","ge","bra"],
             clue:"The reunion of broken parts",
             hint:"A branch of mathematics using symbols to represent numbers",
@@ -569,7 +569,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["og","ham","run","ic","ber","serk","av","alon"],
+        chunks: ["og","ham","run","ic","tar","tan","av","alon"],
         traps: [],
         clue: "Marks, warriors, and the isle of the ever-young",
         words: [
@@ -581,10 +581,10 @@ const WORLDS = [
             clue:"Of secret mystery marks",
             hint:"Relating to the ancient alphabet used by Germanic and Norse peoples",
             fact:"'Rún' in Old Irish meant a secret, mystery, or whisper. Runes were not just letters — each was a poem and a magical force." },
-          { word:"BERSERK", roots:["ber","serk"],
-            clue:"The bear-shirt warrior",
-            hint:"Out of control with rage; originally Norse warriors who fought in a trance",
-            fact:"Old Norse 'ber' (bear) + 'serkr' (shirt/coat). Berserkers fought wearing bear skins, entering a battle-trance thought to be Odin's gift." },
+          { word:"TARTAN",  roots:["tar","tan"],
+            clue:"The woven pattern of clan and kin",
+            hint:"A patterned woollen cloth, woven in a crisscross of coloured stripes",
+            fact:"Scottish Gaelic 'tarsainn' (across, crosswise). Each clan's tartan pattern became a woven signature of identity, worn long before it was ever standardised by law." },
           { word:"AVALON",  roots:["av","alon"],
             clue:"The isle of apple-trees",
             hint:"The mythical island paradise from Arthurian legend where the dying king is taken",
@@ -5372,6 +5372,8 @@ function EtymRoot() {
   const [leapTarget,  setLeapTarget]  = useState(() => 2 + Math.floor(Math.random()*3)); // 2-4
   const [leapCount,   setLeapCount]   = useState(0);   // consecutive levels completed this run
   const [wormhole,    setWormhole]    = useState(false); // true while the transition plays
+  const [wormholeTarget, setWormholeTarget] = useState(null); // the WORLDS entry being jumped to
+  const [seenIntros, setSeenIntros] = useState([]); // world ids whose title screen has already played once
   const timerRef = useRef(null);
 
   const world = WORLDS[worldIdx];
@@ -5527,16 +5529,27 @@ function EtymRoot() {
 
   // ── Wormhole transition: jump to a new world after the leap target is hit ──
   const triggerWormhole = (nextWorld) => {
+    setWormholeTarget(nextWorld);
     setWormhole(true);
-    // Placeholder timing — full swirl visual + audio crossfade added next pass
     setTimeout(() => {
       const nextIdx = WORLDS.findIndex(w => w.id === nextWorld.id);
       setWorldIdx(nextIdx);
       setLevelIdx(0);
       setWormhole(false);
+      setWormholeTarget(null);
+      // A wormhole leap shows the destination's title screen only the very
+      // first time the player ever lands there. Once seen — whether via an
+      // earlier wormhole or a direct home-menu visit — leaps skip straight
+      // into gameplay. Home-menu selection always shows it regardless.
       const hasIntro = !!(nextWorld.intro || nextWorld.historicalSummary);
-      setScreen(hasIntro ? "worldIntro" : "game");
-    }, 2400);
+      const alreadySeen = seenIntros.includes(nextWorld.id);
+      if (hasIntro && !alreadySeen) {
+        setSeenIntros(prev => prev.includes(nextWorld.id) ? prev : [...prev, nextWorld.id]);
+        setScreen("worldIntro");
+      } else {
+        setScreen("game");
+      }
+    }, 2600);
   };
 
   const handleNext = () => {
@@ -5606,9 +5619,16 @@ function EtymRoot() {
     // A fresh manual selection from the menu starts a new leap run
     setLeapCount(0);
     setLeapTarget(2 + Math.floor(Math.random()*3));
-    // Show intro screen only if the world has intro data and it's a fresh start (lIdx===0)
-    const hasIntro = !!(WORLDS[wIdx]?.intro || WORLDS[wIdx]?.historicalSummary);
-    setScreen(hasIntro && lIdx === 0 ? "worldIntro" : "game");
+    // Deliberate selection from the home menu ALWAYS shows the title screen,
+    // regardless of whether it has been seen before via a wormhole leap.
+    const selectedWorld = WORLDS[wIdx];
+    const hasIntro = !!(selectedWorld?.intro || selectedWorld?.historicalSummary);
+    if (hasIntro && lIdx === 0) {
+      setSeenIntros(prev => prev.includes(selectedWorld.id) ? prev : [...prev, selectedWorld.id]);
+      setScreen("worldIntro");
+    } else {
+      setScreen("game");
+    }
   };
 
   const timerPct   = timeLeft / 60;
@@ -5631,17 +5651,96 @@ function EtymRoot() {
   }
 
   if (wormhole) {
+    const dest = wormholeTarget;
+    const c1 = dest?.color || "#9F7AEA";
+    const c2 = dest?.accentColor || "#FBB6CE";
     return (
       <div style={{
         position:"fixed", inset:0, zIndex:200,
-        background:"radial-gradient(circle,#1a0a3e 0%,#000 100%)",
+        background:"#000",
         display:"flex", alignItems:"center", justifyContent:"center",
         flexDirection:"column",
+        overflow:"hidden",
       }}>
-        <div style={{fontSize:"48px",marginBottom:"16px"}}>🌀</div>
-        <div style={{color:"#a78bfa",fontSize:"14px",letterSpacing:"3px",fontFamily:"Georgia,serif"}}>
-          QUANTUM LEAP
+        {/* Tunnel of concentric rotating rings, scaling and converging toward centre */}
+        <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
+          {Array.from({length:14}).map((_,i)=>(
+            <div key={i} style={{
+              position:"absolute",
+              width:`${40+i*60}px`, height:`${40+i*60}px`,
+              borderRadius:"50%",
+              border:`2px solid ${i%2===0?c1:c2}`,
+              opacity: 0.5 - i*0.03,
+              animation:`wormholeSpin${i%2===0?"CW":"CCW"} ${1.4+i*0.12}s linear infinite, wormholePulse 1.8s ease-in-out infinite`,
+              animationDelay:`${i*0.04}s`,
+              boxShadow:`0 0 ${14+i*2}px ${i%2===0?c1:c2}`,
+            }}/>
+          ))}
         </div>
+        {/* Streaking particles flying past, suggesting forward motion through the tunnel */}
+        {Array.from({length:24}).map((_,i)=>{
+          const angle = (i/24)*360;
+          return (
+            <div key={`p${i}`} style={{
+              position:"absolute", left:"50%", top:"50%",
+              width:"3px", height:"3px", borderRadius:"50%",
+              background: i%3===0?c2:"#fff",
+              transform:`rotate(${angle}deg)`,
+              transformOrigin:"0 0",
+              animation:`wormholeStreak ${0.7+(i%5)*0.15}s linear infinite`,
+              animationDelay:`${(i%6)*0.1}s`,
+              opacity:0.85,
+            }}/>
+          );
+        })}
+        {/* Central glow that intensifies as the transition resolves */}
+        <div style={{
+          position:"absolute", width:"90px", height:"90px", borderRadius:"50%",
+          background:`radial-gradient(circle, ${c2} 0%, ${c1} 45%, transparent 75%)`,
+          animation:"wormholeCoreGlow 2.6s ease-in-out forwards",
+          filter:"blur(2px)",
+        }}/>
+        {/* World emoji at the very centre, the destination revealing itself */}
+        <div style={{position:"relative", zIndex:2, fontSize:"32px", animation:"wormholeEmojiIn 2.6s ease forwards"}}>
+          {dest?.emoji || "🌀"}
+        </div>
+        {/* Label */}
+        <div style={{
+          position:"relative", zIndex:2, marginTop:"100px",
+          color:c2, fontSize:"11px", letterSpacing:"4px",
+          fontFamily:"Georgia,serif", textTransform:"uppercase",
+          animation:"wormholeTextFade 2.6s ease forwards",
+        }}>
+          Quantum Leap{dest ? ` → ${dest.name}` : ""}
+        </div>
+
+        <style>{`
+          @keyframes wormholeSpinCW  { from{transform:rotate(0deg) scale(1);} to{transform:rotate(360deg) scale(0.15);} }
+          @keyframes wormholeSpinCCW{ from{transform:rotate(0deg) scale(1);} to{transform:rotate(-360deg) scale(0.15);} }
+          @keyframes wormholePulse  { 0%,100%{opacity:0.5;} 50%{opacity:0.9;} }
+          @keyframes wormholeStreak {
+            0%   { transform:rotate(var(--a,0deg)) translateX(0px);   opacity:0; }
+            10%  { opacity:1; }
+            100% { transform:rotate(var(--a,0deg)) translateX(260px); opacity:0; }
+          }
+          @keyframes wormholeCoreGlow {
+            0%   { opacity:0.2; transform:scale(0.6); }
+            50%  { opacity:0.9; transform:scale(1.3); }
+            100% { opacity:0.4; transform:scale(2.2); }
+          }
+          @keyframes wormholeEmojiIn {
+            0%   { opacity:0; transform:scale(0.3); }
+            30%  { opacity:1; transform:scale(1.1); }
+            70%  { opacity:1; transform:scale(1); }
+            100% { opacity:0; transform:scale(1.8); }
+          }
+          @keyframes wormholeTextFade {
+            0%   { opacity:0; }
+            20%  { opacity:1; }
+            85%  { opacity:1; }
+            100% { opacity:0; }
+          }
+        `}</style>
       </div>
     );
   }
