@@ -5563,6 +5563,11 @@ function EtymRoot() {
   // Beat 2 (0.4s): one clean radial flash in the destination's colour — every
   //                bit of world/level swapping happens at the instant of peak light
   // Beat 3 (0.9s): the flash settles away as the new world's music fades in
+    // ── Quantum Leap transition: the current world dissolves into the next ─────
+  // Phase 1 (0.55s): outgoing tiles begin breaking apart + drifting, accent
+  //                  veil rises, music fades out — the world losing cohesion
+  // Phase 2 (~1.0s): DOM swap happens immediately, incoming tiles reconstitute
+  //                  on their own staggered settle, new music fades in
   const triggerWormhole = (nextWorld) => {
     console.log("Quantum Leap → " + nextWorld.id);
     setWormholeTarget(nextWorld);
@@ -5570,13 +5575,11 @@ function EtymRoot() {
     setLeapPhase(1);
 
     const outgoingEl = gameAudioRef.current || document.getElementById("intro-audio-" + world.id);
-    fadeAudio(outgoingEl, 0, 650);
+    fadeAudio(outgoingEl, 0, 550);
 
-    // Beat 1 → Beat 2 (700ms)
+    // Phase 1 → Phase 2 (550ms) — the outgoing tiles have begun dissolving;
+    // swap the world now so the incoming tiles reconstitute the correct art
     setTimeout(() => {
-      setLeapPhase(2);
-
-      // ── All world/level swapping happens at the instant of the flash ───────
       const nextIdx = WORLDS.findIndex(w => w.id === nextWorld.id);
       setWorldIdx(nextIdx);
       setLevelIdx(0);
@@ -5590,27 +5593,24 @@ function EtymRoot() {
         setScreen("game");
       }
 
-      // Begin fading in the new world's music right as the flash peaks
+      setLeapPhase(2);
+
       const incomingEl = document.getElementById("intro-audio-" + nextWorld.id)
                         || document.getElementById("game-audio-" + nextWorld.id);
       if (incomingEl) {
         incomingEl.volume = 0;
         incomingEl.play().catch(() => {});
-        fadeAudio(incomingEl, 0.45, 900);
+        fadeAudio(incomingEl, 0.45, 850);
       }
 
-      // Beat 2 → Beat 3 (400ms)
+      // Phase 2 fully resolves — tiles have settled, clear the overlay (1050ms,
+      // covers the longest staggered tile: 0.25 + 0.45 delay + 0.75 transition)
       setTimeout(() => {
-        setLeapPhase(3);
-
-        // Beat 3 complete — fully clear the transition (900ms)
-        setTimeout(() => {
-          setWormhole(false);
-          setWormholeTarget(null);
-          setLeapPhase(0);
-        }, 900);
-      }, 400);
-    }, 700);
+        setWormhole(false);
+        setWormholeTarget(null);
+        setLeapPhase(0);
+      }, 1050);
+    }, 550);
   };
 
   const handleNext = () => {
@@ -5712,79 +5712,97 @@ function EtymRoot() {
 
   if (wormhole) {
     const dest = wormholeTarget;
-    const flashColor = dest?.accentColor || "#fff";
-    const washColor  = dest?.color || "#6B46C1";
-    // Single continuous arc across the whole sequence, driven by leapPhase:
-    // 1 = darken + soften current scene (0.7s)
-    // 2 = the flash itself, peak brightness, DOM swap happens here (0.4s)
-    // 3 = warm colour wash settles in as new scene is revealed (0.9s)
-    const dimming   = leapPhase === 1;
-    const flashing  = leapPhase === 2;
-    const settling  = leapPhase === 3;
+    const fromImg = world?.bgImageUrl || "";
+    const toImg   = dest?.bgImageUrl || "";
+    const accent  = dest?.accentColor || "#fff";
+    // Two beats only:
+    // 1 = dissolving — the current world's tiles fade out + drift, the
+    //     destination's tiles fade in + settle, fully overlapping
+    // 2 = resolved — dissolve fully complete, tiles gone, real screen underneath
+    const dissolving = leapPhase === 1 || leapPhase === 2;
+    const cols = 12, rows = 9; // 108 tiles — fine enough to read as dissolving, light enough to stay smooth
+
+    // Precompute each tile's stagger + drift once per leap (stable across re-renders
+    // within the same wormhole instance since wormholeTarget only changes per-leap)
+    const tiles = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        // Pseudo-random but deterministic per tile index, so it doesn't reshuffle on re-render
+        const seed = (r * cols + c) * 137.5;
+        const rand = (n) => Math.abs(Math.sin(seed + n)) % 1;
+        tiles.push({
+          r, c,
+          delay: rand(1) * 0.45,                       // 0–0.45s stagger
+          driftX: (rand(2) - 0.5) * 30,                 // drift up to ±15px
+          driftY: (rand(3) - 0.5) * 30,
+          rot: (rand(4) - 0.5) * 6,                      // slight tilt up to ±3deg
+        });
+      }
+    }
 
     return (
-      <>
-        {/* The live game beneath dims and softens just before the flash */}
+      <div style={{position:"fixed", inset:0, zIndex:198, overflow:"hidden", pointerEvents:"none"}}>
+        {/* Outgoing tile grid — the CURRENT world's art, breaking apart */}
+        {fromImg && tiles.map((t,i) => (
+          <div key={`out${i}`} style={{
+            position:"absolute",
+            left:`${(t.c/cols)*100}%`, top:`${(t.r/rows)*100}%`,
+            width:`${100/cols}%`, height:`${100/rows}%`,
+            backgroundImage:`url(${fromImg})`,
+            backgroundSize:`${cols*100}% ${rows*100}%`,
+            backgroundPosition:`${(t.c/(cols-1))*100}% ${(t.r/(rows-1))*100}%`,
+            opacity: dissolving ? 0 : 0,
+            transform: dissolving
+              ? `translate(${t.driftX}px,${t.driftY}px) rotate(${t.rot}deg) scale(0.94)`
+              : "translate(0,0) rotate(0) scale(1)",
+            transition: `opacity 0.55s ease-in ${t.delay}s, transform 0.7s cubic-bezier(0.4,0,0.6,1) ${t.delay}s`,
+          }}/>
+        ))}
+
+        {/* Incoming tile grid — the DESTINATION world's art, reconstituting */}
+        {toImg && tiles.map((t,i) => (
+          <div key={`in${i}`} style={{
+            position:"absolute",
+            left:`${(t.c/cols)*100}%`, top:`${(t.r/rows)*100}%`,
+            width:`${100/cols}%`, height:`${100/rows}%`,
+            backgroundImage:`url(${toImg})`,
+            backgroundSize:`${cols*100}% ${rows*100}%`,
+            backgroundPosition:`${(t.c/(cols-1))*100}% ${(t.r/(rows-1))*100}%`,
+            opacity: leapPhase === 2 ? 1 : 0,
+            transform: leapPhase === 2
+              ? "translate(0,0) rotate(0) scale(1)"
+              : `translate(${-t.driftX}px,${-t.driftY}px) rotate(${-t.rot}deg) scale(1.05)`,
+            transition: `opacity 0.6s ease-out ${0.25+t.delay}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.25+t.delay}s`,
+          }}/>
+        ))}
+
+        {/* A whisper-thin veil of the destination's accent colour, present only
+            at the densest moment of the dissolve, to unify the two breaking
+            images into a single coherent in-between moment rather than two
+            unrelated photos overlapping */}
         <div style={{
-          position:"fixed", inset:0, zIndex:198,
-          background:"#000",
-          opacity: dimming ? 0.92 : flashing ? 1 : settling ? 0 : 0,
-          transition: dimming
-            ? "opacity 0.7s cubic-bezier(0.4,0,1,1)"
-            : settling
-            ? "opacity 0.9s cubic-bezier(0.16,1,0.3,1)"
-            : "none",
+          position:"absolute", inset:0,
+          background: accent,
+          opacity: leapPhase === 1 ? 0.16 : 0,
+          transition: "opacity 0.5s ease",
         }}/>
 
-        {/* The flash — one clean radial bloom of light in the destination's colour */}
+        {/* Destination name, appearing softly once the new tiles are mostly settled */}
         <div style={{
-          position:"fixed", inset:0, zIndex:199,
-          background: `radial-gradient(circle at 50% 50%, #fff 0%, ${flashColor} 28%, ${washColor} 60%, #000 100%)`,
-          opacity: flashing ? 1 : settling ? 0 : 0,
-          transition: flashing
-            ? "opacity 0.18s ease-out"
-            : settling
-            ? "opacity 0.85s cubic-bezier(0.16,1,0.3,1)"
-            : "none",
-          pointerEvents:"none",
-        }}/>
-
-        {/* A thin ring of light expanding outward from centre at the instant of the flash */}
-        <div style={{
-          position:"fixed", left:"50%", top:"50%", zIndex:200,
-          width: flashing ? "10px" : settling ? "2200px" : "0px",
-          height: flashing ? "10px" : settling ? "2200px" : "0px",
-          marginLeft: flashing ? "-5px" : settling ? "-1100px" : "0px",
-          marginTop: flashing ? "-5px" : settling ? "-1100px" : "0px",
-          borderRadius:"50%",
-          border: `1px solid ${flashColor}`,
-          opacity: flashing ? 0.95 : settling ? 0 : 0,
-          boxShadow: flashing ? `0 0 40px 10px ${flashColor}` : "none",
-          transition: flashing
-            ? "width 0.16s ease-out, height 0.16s ease-out, margin-left 0.16s ease-out, margin-top 0.16s ease-out"
-            : settling
-            ? "width 1.1s cubic-bezier(0.16,1,0.3,1), height 1.1s cubic-bezier(0.16,1,0.3,1), margin-left 1.1s cubic-bezier(0.16,1,0.3,1), margin-top 1.1s cubic-bezier(0.16,1,0.3,1), opacity 1.1s ease-out"
-            : "none",
-          pointerEvents:"none",
-        }}/>
-
-        {/* Destination name — appears only in the last beat, once, quietly */}
-        <div style={{
-          position:"fixed", left:0, right:0, top:"50%", zIndex:201,
-          transform:"translateY(-50%)",
-          textAlign:"center", pointerEvents:"none",
-          opacity: settling ? 1 : 0,
-          transition: "opacity 0.5s ease 0.25s",
+          position:"absolute", left:0, right:0, bottom:"14%",
+          textAlign:"center",
+          opacity: leapPhase === 2 ? 1 : 0,
+          transition: "opacity 0.6s ease 0.5s",
         }}>
           <div style={{
             fontFamily:"Georgia,serif", fontSize:"11px", letterSpacing:"6px",
             color:"#fff", textTransform:"uppercase",
-            textShadow:`0 0 18px ${flashColor}`,
+            textShadow:`0 0 16px ${accent}, 0 2px 8px rgba(0,0,0,0.8)`,
           }}>
             {dest?.emoji}&nbsp;&nbsp;{dest?.name}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
