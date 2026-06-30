@@ -2731,10 +2731,11 @@ const WorldIntroScreen = ({ world, onBegin, onBack }) => {
       backgroundSize: "cover",
       backgroundPosition: "center center",
     }}>
-      {/* Dark overlay — translucent so the illustration shows through */}
+      {/* Dark gradient overlay for text readability — matches game screen treatment */}
       <div style={{
         position: "absolute", inset: 0,
-        backgroundColor: "rgba(10, 8, 20, 0.55)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.78) 100%)",
+        pointerEvents: "none",
       }}/>
 
       {/* Back button — top-left, above frosted layer */}
@@ -3705,54 +3706,112 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
 
 // ─── Language Tree ─────────────────────────────────────────────────────────────
 const LanguageTree = ({ completedWorlds, unlockedWords, onClose }) => {
-  const wc = { arabic:"#e8b86d", greek:"#8ab4f8", spanish:"#f6d860", celtic:"#7de89a", norman_french:"#e87ab8", anglo_saxon:"#e8c87a" };
+  // Branch geometry: 6 branches radiating from the trunk top, evenly fanned
+  // Angles run from upper-left to upper-right across the canopy
+  const BRANCHES = [
+    { id:"arabic",        angle:-78, length:128, leafSide:-1 },
+    { id:"greek",         angle:-46, length:140, leafSide:-1 },
+    { id:"celtic",        angle:-14, length:118, leafSide: 1 },
+    { id:"anglo_saxon",   angle: 18, length:118, leafSide:-1 },
+    { id:"norman_french", angle: 50, length:140, leafSide: 1 },
+    { id:"spanish",       angle: 82, length:128, leafSide: 1 },
+  ];
+  const TRUNK_TOP = { x:160, y:300 };
+
+  const polar = (cx, cy, angleDeg, dist) => {
+    const rad = (angleDeg - 90) * Math.PI / 180;
+    return { x: cx + Math.cos(rad) * dist, y: cy + Math.sin(rad) * dist };
+  };
+
   return (
     <div style={{position:"fixed",inset:0,background:"linear-gradient(180deg,#0a1a0a,#0d2410)",zIndex:100,display:"flex",flexDirection:"column",alignItems:"center",fontFamily:"Georgia,serif",overflowY:"auto"}}>
-      <div style={{padding:"24px 20px 8px",textAlign:"center"}}>
+      <div style={{padding:"24px 20px 4px",textAlign:"center"}}>
         <div style={{color:"#8de87a",fontSize:"11px",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"6px"}}>Your Collection</div>
         <div style={{color:"#fff",fontSize:"24px",fontWeight:"700"}}>Language Tree</div>
+        <div style={{color:"rgba(255,255,255,0.4)",fontSize:"12px",marginTop:"4px"}}>
+          {Object.values(unlockedWords).flat().length} words rooted across {completedWorlds.length} of {WORLDS.length} languages
+        </div>
       </div>
-      <svg viewBox="0 0 320 420" style={{width:"min(320px,90vw)",marginTop:"10px"}}>
-        <rect x="148" y="340" width="24" height="80" rx="8" fill="#5a3a1a"/>
-        <rect x="152" y="280" width="16" height="80" rx="6" fill="#6a4a2a"/>
-        {WORLDS.map((w,i) => {
-          const done = completedWorlds.includes(w.id);
-          const col = done ? wc[w.id] : "#2a2a2a";
-          const words = unlockedWords[w.id]||[];
-          if(i===0) return <g key={w.id}>
-            <path d="M155 300 Q100 270 70 240" stroke={col} strokeWidth="12" fill="none" strokeLinecap="round"/>
-            {done&&<><circle cx="52" cy="228" r="22" fill={col} opacity="0.25"/><text x="52" y="232" textAnchor="middle" fill={col} fontSize="20">{w.emoji}</text></>}
-            {words.slice(0,4).map((wd,wi)=><g key={wi}><circle cx={20+wi*18} cy={210-wi*10} r="10" fill={col} opacity="0.8"/><text x={20+wi*18} y={213-wi*10} textAnchor="middle" fill="#000" fontSize="6" fontWeight="700">{wd.slice(0,4)}</text></g>)}
-          </g>;
-          if(i===1) return <g key={w.id}>
-            <path d="M165 290 Q220 260 250 230" stroke={col} strokeWidth="12" fill="none" strokeLinecap="round"/>
-            {done&&<><circle cx="268" cy="218" r="22" fill={col} opacity="0.25"/><text x="268" y="222" textAnchor="middle" fill={col} fontSize="20">{w.emoji}</text></>}
-            {words.slice(0,4).map((wd,wi)=><g key={wi}><circle cx={262+wi*14} cy={202-wi*10} r="10" fill={col} opacity="0.8"/><text x={262+wi*14} y={205-wi*10} textAnchor="middle" fill="#000" fontSize="6" fontWeight="700">{wd.slice(0,4)}</text></g>)}
-          </g>;
-          return <g key={w.id}>
-            <path d="M158 270 Q140 220 130 180" stroke={col} strokeWidth="10" fill="none" strokeLinecap="round"/>
-            {done&&<><circle cx="122" cy="164" r="20" fill={col} opacity="0.25"/><text x="122" y="168" textAnchor="middle" fill={col} fontSize="18">{w.emoji}</text></>}
-            {words.slice(0,3).map((wd,wi)=><g key={wi}><circle cx={82+wi*20} cy={150-wi*8} r="10" fill={col} opacity="0.8"/><text x={82+wi*20} y={153-wi*8} textAnchor="middle" fill="#000" fontSize="6" fontWeight="700">{wd.slice(0,4)}</text></g>)}
-          </g>;
+
+      <svg viewBox="0 0 320 320" style={{width:"min(360px,94vw)",marginTop:"6px"}}>
+        {/* ── Trunk ── */}
+        <rect x="148" y="300" width="24" height="20" rx="4" fill="#5a3a1a"/>
+        <path d="M152 300 Q150 260 158 220 Q162 200 160 180" stroke="#6a4a2a" strokeWidth="14" fill="none" strokeLinecap="round"/>
+        <path d="M152 300 Q150 260 158 220 Q162 200 160 180" stroke="#7a5a3a" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.5"/>
+
+        {/* ── Six branches, one per world ── */}
+        {BRANCHES.map(b => {
+          const world = WORLDS.find(w => w.id === b.id);
+          if (!world) return null;
+          const done  = completedWorlds.includes(world.id);
+          const col   = done ? world.accentColor : "#2a2a2a";
+          const words = unlockedWords[world.id] || [];
+          const tip   = polar(TRUNK_TOP.x, TRUNK_TOP.y, b.angle, b.length);
+          // Control point for a gentle curve outward
+          const ctrl  = polar(TRUNK_TOP.x, TRUNK_TOP.y, b.angle, b.length * 0.55);
+          const ctrlOffset = polar(ctrl.x, ctrl.y, b.angle + (b.leafSide * 18), 10);
+
+          return (
+            <g key={world.id}>
+              {/* Branch limb */}
+              <path
+                d={`M${TRUNK_TOP.x} ${TRUNK_TOP.y} Q${ctrlOffset.x} ${ctrlOffset.y} ${tip.x} ${tip.y}`}
+                stroke={col} strokeWidth={done ? 9 : 6} fill="none" strokeLinecap="round"
+                opacity={done ? 0.95 : 0.4}
+              />
+              {/* World emoji badge at branch tip */}
+              <circle cx={tip.x} cy={tip.y} r={done ? 16 : 12} fill={col} opacity={done ? 0.28 : 0.12}/>
+              <text x={tip.x} y={tip.y+5} textAnchor="middle" fontSize={done ? 16 : 12} opacity={done ? 1 : 0.4}>
+                {world.emoji}
+              </text>
+
+              {/* Leaf-words sprouting along the branch, fanning outward from the tip */}
+              {done && words.slice(0, 7).map((wd, wi) => {
+                const leafDist  = 24 + wi * 17;
+                const leafAngle = b.angle + b.leafSide * (14 + wi * 9);
+                const leafPos   = polar(tip.x, tip.y, leafAngle, leafDist);
+                const label     = wd.length > 9 ? wd.slice(0,8) + "…" : wd;
+                return (
+                  <g key={wi} opacity={0.95}>
+                    <circle cx={leafPos.x} cy={leafPos.y} r="3" fill={col}/>
+                    <text
+                      x={leafPos.x + (b.leafSide * 5)} y={leafPos.y + 2.5}
+                      textAnchor={b.leafSide > 0 ? "start" : "end"}
+                      fill={col} fontSize="7" fontWeight="700" fontFamily="Georgia,serif"
+                    >{label}</text>
+                  </g>
+                );
+              })}
+              {done && words.length > 7 && (
+                <text
+                  x={polar(tip.x, tip.y, b.angle + b.leafSide*(14+7*9), 24+7*17).x + (b.leafSide*5)}
+                  y={polar(tip.x, tip.y, b.angle + b.leafSide*(14+7*9), 24+7*17).y + 2.5}
+                  textAnchor={b.leafSide > 0 ? "start" : "end"}
+                  fill={col} fontSize="6.5" opacity="0.6"
+                >+{words.length-7} more</text>
+              )}
+            </g>
+          );
         })}
-        <circle cx="160" cy="265" r="40" fill="#1a4a1a" opacity="0.6"/>
-        <circle cx="140" cy="250" r="30" fill="#2a5a2a" opacity="0.5"/>
-        <circle cx="180" cy="252" r="32" fill="#1a5a1a" opacity="0.5"/>
-        <circle cx="160" cy="235" r="28" fill="#3a7a3a" opacity="0.6"/>
-        <text x="160" y="260" textAnchor="middle" fill="#8de87a" fontSize="22">🌳</text>
+
+        {/* ── Canopy glow behind the trunk top, ties branches together visually ── */}
+        <circle cx="160" cy="190" r="34" fill="#2a5a2a" opacity="0.18"/>
+        <text x="160" y="196" textAnchor="middle" fill="#8de87a" fontSize="20" opacity="0.5">🌳</text>
       </svg>
-      <div style={{padding:"0 20px 30px",width:"100%",maxWidth:"380px"}}>
+
+      {/* ── World cards below the tree, full word lists ── */}
+      <div style={{padding:"4px 20px 30px",width:"100%",maxWidth:"380px"}}>
         {WORLDS.map(w=>{
           const done=completedWorlds.includes(w.id);
           const words=unlockedWords[w.id]||[];
-          return <div key={w.id} style={{background:done?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${done?wc[w.id]+"50":"#ffffff15"}`,borderRadius:"12px",padding:"14px 16px",marginBottom:"10px"}}>
+          return <div key={w.id} style={{background:done?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${done?w.accentColor+"50":"#ffffff15"}`,borderRadius:"12px",padding:"14px 16px",marginBottom:"10px"}}>
             <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:done&&words.length?"10px":0}}>
               <span style={{fontSize:"20px"}}>{w.emoji}</span>
-              <div><div style={{color:done?wc[w.id]:"#555",fontSize:"13px",fontWeight:"700"}}>{w.name}</div><div style={{color:"#666",fontSize:"11px"}}>{done?`${words.length} words unlocked`:"Not yet explored"}</div></div>
-              {done&&<span style={{marginLeft:"auto",color:wc[w.id],fontSize:"18px"}}>✓</span>}
+              <div><div style={{color:done?w.accentColor:"#555",fontSize:"13px",fontWeight:"700"}}>{w.name}</div><div style={{color:"#666",fontSize:"11px"}}>{done?`${words.length} words unlocked`:"Not yet explored"}</div></div>
+              {done&&<span style={{marginLeft:"auto",color:w.accentColor,fontSize:"18px"}}>✓</span>}
             </div>
             {done&&words.length>0&&<div style={{display:"flex",flexWrap:"wrap",gap:"6px"}}>
-              {words.map((wd,i)=><span key={i} style={{background:`${wc[w.id]}20`,border:`1px solid ${wc[w.id]}50`,color:wc[w.id],borderRadius:"20px",padding:"3px 10px",fontSize:"11px",fontWeight:"600"}}>{wd}</span>)}
+              {words.map((wd,i)=><span key={i} style={{background:`${w.accentColor}20`,border:`1px solid ${w.accentColor}50`,color:w.accentColor,borderRadius:"20px",padding:"3px 10px",fontSize:"11px",fontWeight:"600"}}>{wd}</span>)}
             </div>}
           </div>;
         })}
@@ -3762,7 +3821,6 @@ const LanguageTree = ({ completedWorlds, unlockedWords, onClose }) => {
   );
 };
 
-// ─── Word Chip Popover ─────────────────────────────────────────────────────────
 const WordChipPopover = ({ word, worldColor, accentColor, goldLeaves, defRevealed, sylRevealed, onDefinitionHint, onSyllableHint, onClose }) => {
   const canAffordDef = goldLeaves >= 50;
   const canAffordSyl = goldLeaves >= 100;
@@ -4636,34 +4694,31 @@ function EtymRoot() {
               </linearGradient>
             </defs>
             <rect x="0" y="0" width="340" height="92" rx="16" fill="url(#scriptBandBg)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
-            {/* Six script samples, one per world, evenly spaced */}
+            {/* Five script samples, one per remaining world, evenly spaced */}
             {/* Arabic — 'qahwa' (coffee root) in Arabic script */}
-            <text x="30" y="40" textAnchor="middle" fill="#e8b86d" fontSize="22" fontFamily="serif" opacity="0.92">قهوة</text>
-            <text x="30" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">ARABIC</text>
+            <text x="38" y="40" textAnchor="middle" fill="#e8b86d" fontSize="22" fontFamily="serif" opacity="0.92">قهوة</text>
+            <text x="38" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">ARABIC</text>
             {/* Greek — 'logos' (word/study root) in Greek script */}
-            <text x="92" y="38" textAnchor="middle" fill="#81E6D9" fontSize="20" fontFamily="serif" opacity="0.92">λόγος</text>
-            <text x="92" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">GREEK</text>
+            <text x="108" y="38" textAnchor="middle" fill="#81E6D9" fontSize="20" fontFamily="serif" opacity="0.92">λόγος</text>
+            <text x="108" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">GREEK</text>
             {/* Celtic — Ogham strokes spelling a short root, stylised */}
-            <g transform="translate(154,30)" opacity="0.92">
+            <g transform="translate(170,30)" opacity="0.92">
               <line x1="0" y1="-12" x2="0" y2="14" stroke="#BEE3F8" strokeWidth="2"/>
               <line x1="-5" y1="-9" x2="0" y2="-9" stroke="#BEE3F8" strokeWidth="2"/>
               <line x1="-5" y1="-3" x2="0" y2="-3" stroke="#BEE3F8" strokeWidth="2"/>
               <line x1="0" y1="3" x2="5" y2="3" stroke="#BEE3F8" strokeWidth="2"/>
               <line x1="0" y1="9" x2="5" y2="9" stroke="#BEE3F8" strokeWidth="2"/>
             </g>
-            <text x="154" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">CELTIC</text>
+            <text x="170" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">CELTIC</text>
             {/* Anglo-Saxon — Old English / Futhorc-style lettering for a root word */}
-            <text x="216" y="38" textAnchor="middle" fill="#E2E8F0" fontSize="17" fontFamily="serif" opacity="0.92" style={{fontStyle:"italic"}}>ᚹᚢᚱᛞ</text>
-            <text x="216" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">ANGLO-SAXON</text>
+            <text x="240" y="38" textAnchor="middle" fill="#E2E8F0" fontSize="17" fontFamily="serif" opacity="0.92" style={{fontStyle:"italic"}}>ᚹᚢᚱᛞ</text>
+            <text x="240" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">ANGLO-SAXON</text>
             {/* Norman French — 'chevalier' fragment in elegant script */}
-            <text x="278" y="38" textAnchor="middle" fill="#FBB6CE" fontSize="15" fontFamily="Georgia,serif" fontStyle="italic" opacity="0.92">chevalier</text>
-            <text x="278" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">FRENCH</text>
-            {/* Spanish — 'fiesta' in bold script */}
-            <text x="310" y="38" textAnchor="middle" fill="#FEEBC8" fontSize="14" fontFamily="Georgia,serif" fontStyle="italic" opacity="0.92">fiesta</text>
-            <text x="310" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">SPANISH</text>
+            <text x="305" y="38" textAnchor="middle" fill="#FBB6CE" fontSize="15" fontFamily="Georgia,serif" fontStyle="italic" opacity="0.92">chevalier</text>
+            <text x="305" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8" letterSpacing="0.5" fontFamily="Georgia,serif">FRENCH</text>
             {/* Subtle connecting line beneath, like a thread of language history */}
             <line x1="14" y1="70" x2="326" y2="70" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="2,3"/>
-            <text x="170" y="84" textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize="8.5" letterSpacing="1.5" fontFamily="Georgia,serif">SIX LANGUAGES · ONE ENGLISH TONGUE</text>
+            <text x="170" y="84" textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize="8.5" letterSpacing="1.5" fontFamily="Georgia,serif">FIVE LANGUAGES · ONE ENGLISH TONGUE</text>
           </svg>
         </div>
         {score>0&&<div style={{background:"rgba(141,232,122,0.1)",border:"1px solid #8de87a30",borderRadius:"12px",padding:"10px 20px",marginBottom:"20px",color:"#8de87a",fontSize:"13px"}}>⭐ Your Score: <strong>{score}</strong></div>}
