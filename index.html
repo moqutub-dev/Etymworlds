@@ -6013,14 +6013,10 @@ function EtymRoot() {
       setWorldIdx(nextIdx);
       setLevelIdx(0);
 
-      const hasIntro = !!(nextWorld.intro || nextWorld.historicalSummary);
-      const alreadySeen = seenIntros.includes(nextWorld.id);
-      if (hasIntro && !alreadySeen) {
-        setSeenIntros(prev => prev.includes(nextWorld.id) ? prev : [...prev, nextWorld.id]);
-        setScreen("worldIntro");
-      } else {
-        setScreen("game");
-      }
+      // Wormhole leaps always drop straight into gameplay — title screens are
+      // reserved exclusively for deliberate world selection from the home menu.
+      setSeenIntros(prev => prev.includes(nextWorld.id) ? prev : [...prev, nextWorld.id]);
+      setScreen("game");
 
       setLeapPhase(2);
 
