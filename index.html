@@ -7,7 +7,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; background: #0a0f1a; }
-    #root { height: 100%; }
+    #root { height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     ::-webkit-scrollbar { display: none; }
   </style>
 </head>
@@ -208,9 +208,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mat","tress","haz","ard","a","mal","gam","sher","bet","spin","ach"],
+        chunks: ["mat","tress","haz","ard","sher","bet"],
         traps: [],
-        clue: "Potions, pillows, and the gambler's dice",
+        clue: "Pillows, dice, and the gambler's chance",
         words: [
           { word:"MATTRESS", roots:["mat","tress"],
             clue:"A thing thrown down to lie upon",
@@ -220,14 +220,21 @@ const WORLDS = [
             clue:"A dice game — then any dangerous chance",
             hint:"A danger or risk; something risky",
             fact:"Arabic 'az-zahr' (the dice). The game of hazard was played with dice by Crusaders who learned it from Arabs. The word shifted from the game itself to any dangerous gamble." },
-          { word:"AMALGAM",  roots:["a","mal","gam"],
-            clue:"A mixture of mercury with another metal",
-            hint:"A mixture or blend of different elements",
-            fact:"Arabic 'al-malgham' (a soft mass), used by alchemists for mercury alloys. Now the word means any combination of unlike things." },
           { word:"SHERBET",  roots:["sher","bet"],
             clue:"A chilled sweet drink from Persia",
             hint:"A fizzy sweet powder; or a cold fruit drink in the Middle East",
             fact:"Arabic 'sharbāt' (a drink), from 'shariba' (to drink). The same root gives syrup and shrub. Ottoman sherbet was a chilled fruit drink — ice was a luxury imported from mountain tops." },
+        ],
+      },
+      {
+        chunks: ["a","mal","gam","spin","ach"],
+        traps: [],
+        clue: "Potions of the alchemist and physician",
+        words: [
+          { word:"AMALGAM",  roots:["a","mal","gam"],
+            clue:"A mixture of mercury with another metal",
+            hint:"A mixture or blend of different elements",
+            fact:"Arabic 'al-malgham' (a soft mass), used by alchemists for mercury alloys. Now the word means any combination of unlike things." },
           { word:"SPINACH",  roots:["spin","ach"],
             clue:"A leafy green beloved by Arab physicians",
             hint:"A dark green leafy vegetable",
@@ -378,14 +385,29 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["auto","bio","biblio","graph","y","psy","chol","o","gy","neu","ro","log"],
+        chunks: ["auto","graph","bio","y","biblio"],
         traps: [],
-        clue: "Self, mind, and the science of the nervous system",
+        clue: "A self-writing — and the writing of others",
         words: [
+          { word:"AUTOGRAPH",     roots:["auto","graph"],
+            clue:"A self-writing — one's own hand",
+            hint:"A celebrity's own handwritten signature",
+            fact:"Greek 'autós' (self) + 'gráphō' (write). Before photography, the autograph of a famous person was proof of genuine contact — as valued then as a selfie is today." },
           { word:"AUTOBIOGRAPHY", roots:["auto","bio","graph","y"],
             clue:"A life written by itself",
             hint:"An account of a person's life written by that person",
             fact:"Greek 'autós' (self) + 'bíos' (life) + 'gráphō' (write). Coined in English in 1809. It's a perfect three-part Greek compound — a life-writing by oneself." },
+          { word:"BIBLIOGRAPHY",  roots:["biblio","graph","y"],
+            clue:"A written list of books",
+            hint:"A list of sources referenced in a scholarly work",
+            fact:"Greek 'biblíon' (book — originally a papyrus scroll) + 'gráphō' (write). The Library of Alexandria was the world's first attempt at a universal bibliography." },
+        ],
+      },
+      {
+        chunks: ["psy","chol","o","gy","neu","ro","log","y"],
+        traps: [],
+        clue: "The mind and the nerves — the science of the self",
+        words: [
           { word:"PSYCHOLOGY",    roots:["psy","chol","o","gy"],
             clue:"The study of the soul — then the mind",
             hint:"The scientific study of the human mind and its functions",
@@ -394,14 +416,6 @@ const WORLDS = [
             clue:"The study of the nerves",
             hint:"The branch of medicine dealing with disorders of the nervous system",
             fact:"Greek 'neuron' (sinew, nerve) + 'lógos' (study). The Greeks observed that damage to different nerves caused different losses — the beginning of mapped anatomy." },
-          { word:"AUTOGRAPH",     roots:["auto","graph"],
-            clue:"A self-writing — one's own hand",
-            hint:"A celebrity's own handwritten signature",
-            fact:"Greek 'autós' (self) + 'gráphō' (write). Before photography, the autograph of a famous person was proof of genuine contact — as valued then as a selfie is today." },
-          { word:"BIBLIOGRAPHY",  roots:["biblio","graph","y"],
-            clue:"A written list of books",
-            hint:"A list of sources referenced in a scholarly work",
-            fact:"Greek 'biblíon' (book — originally a papyrus scroll) + 'gráphō' (write). The Library of Alexandria was the world's first attempt at a universal bibliography." },
         ],
       },
       {
@@ -519,7 +533,7 @@ const WORLDS = [
     },
     levels: [
       {
-        chunks: ["ban","shee","slo","gan","whis","key","sham","rock","cor","gi"],
+        chunks: ["ban","shee","slo","gan","whis","key"],
         traps: [],
         clue: "Spirits, battle-cries, and the water of life",
         words: [
@@ -529,19 +543,26 @@ const WORLDS = [
             fact:"Phonetically anglicised from Old Irish 'ben síde', which literally translates to 'woman of the fairy mound'." },
           { word:"SLOGAN",    roots:["slo","gan"],
             clue:"A short and striking phrase used in advertising",
-            hint:"Nike's 'Just Do It' is an example",
+            hint:"A memorable catchphrase used in marketing or political campaigns",
             fact:"Originally from Scottish Gaelic 'sluagh-ghairm', meaning a Highland clan's battle cry!" },
           { word:"WHISKEY",   roots:["whis","key"],
             clue:"A spirit distilled from malted grain",
             hint:"A popular amber-coloured spirit",
             fact:"Derived from the Gaelic 'uisce beatha', which beautifully translates to 'the water of life'." },
+        ],
+      },
+      {
+        chunks: ["sham","rock","cor","gi"],
+        traps: [],
+        clue: "A clover emblem and a dwarf-dog",
+        words: [
           { word:"SHAMROCK",  roots:["sham","rock"],
             clue:"A low-growing clover-like plant with three-lobed leaves",
             hint:"The national emblem of Ireland",
             fact:"From the Irish 'seamróg', which simply means 'young clover'." },
           { word:"CORGI",     roots:["cor","gi"],
             clue:"A small dog of a breed with short legs and a fox-like head",
-            hint:"Queen Elizabeth II's favourite breed of dog",
+            hint:"A beloved royal breed of Welsh herding dog",
             fact:"A Welsh word combining 'cor' (dwarf) and 'ci' (dog). Literally, a dwarf-dog!" },
         ],
       },
@@ -592,9 +613,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["gl","en","cr","ag","cai","rn","men","hir","dol"],
+        chunks: ["gl","en","cr","ag","cai","rn"],
         traps: [],
-        clue: "The carved landscape of the Celtic world",
+        clue: "Valleys, cliffs, and stone-piled landmarks",
         words: [
           { word:"GLEN",    roots:["gl","en"],
             clue:"A narrow mountain valley",
@@ -608,6 +629,13 @@ const WORLDS = [
             clue:"A heap of stones raised as a landmark",
             hint:"A mound of rough stones built as a memorial or landmark",
             fact:"Scottish Gaelic 'càrn' (heap of stones). Cairns were built on hilltops to mark routes and honour the dead — some Scottish cairns are over 5,000 years old and still guide walkers today." },
+        ],
+      },
+      {
+        chunks: ["men","hir","dol"],
+        traps: [],
+        clue: "Standing stones of the ancient megalith builders",
+        words: [
           { word:"MENHIR",  roots:["men","hir"],
             clue:"A tall single standing stone",
             hint:"A tall upright prehistoric standing stone",
@@ -619,9 +647,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cl","an","bar","d","ceil","idh","bro","gue","tor","y"],
+        chunks: ["cl","an","bar","d","ceil","idh"],
         traps: [],
-        clue: "Tribes, poets, gatherings, and outlaws",
+        clue: "Tribes, poets, and the Gaelic gathering",
         words: [
           { word:"CLAN",    roots:["cl","an"],
             clue:"A group of families with one common ancestor",
@@ -635,6 +663,13 @@ const WORLDS = [
             clue:"A Gaelic gathering of music and dance",
             hint:"A traditional Scottish or Irish social gathering with folk music and dancing",
             fact:"Scottish Gaelic 'cèilidh' (a visit, a gathering). What began as neighbourly visiting evolved into the communal dances still celebrated across the world wherever the Scottish and Irish diaspora settled." },
+        ],
+      },
+      {
+        chunks: ["bro","gue","tor","y"],
+        traps: [],
+        clue: "An accent and an outlaw turned politician",
+        words: [
           { word:"BROGUE",  roots:["bro","gue"],
             clue:"A rough shoe — then a strong Irish accent",
             hint:"A strong Irish or Scottish accent; also a heavy outdoor shoe",
@@ -646,9 +681,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["blar","ney","ga","lore","hoo","li","gan","pho","ney","sp","ree"],
+        chunks: ["blar","ney","ga","lore","hoo","li","gan"],
         traps: [],
-        clue: "Folklore, flattery, and the Irish gift for language",
+        clue: "Flattery, abundance, and the streets of Ireland",
         words: [
           { word:"BLARNEY",  roots:["blar","ney"],
             clue:"Coaxing, flattering talk",
@@ -662,6 +697,13 @@ const WORLDS = [
             clue:"A young troublemaker from the Irish streets",
             hint:"A violent young ruffian or troublemaker",
             fact:"Possibly from the Irish surname 'Ó hUallacháin'. A fictional Patrick Hooligan appeared in an 1898 music-hall song about an Irish ruffian. The name became a category." },
+        ],
+      },
+      {
+        chunks: ["pho","ney","sp","ree"],
+        traps: [],
+        clue: "False rings and unrestrained festivity",
+        words: [
           { word:"PHONEY",   roots:["pho","ney"],
             clue:"Fake — from the market for false rings",
             hint:"Not genuine; fake or insincere",
@@ -742,9 +784,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["br","at","ke","en","hub","bub","ki","bosh","bon","nie","re","el","vas","sal","trou","sers","glen","gar","ry"],
+        chunks: ["br","at","ke","en","hub","bub"],
         traps: [],
-        clue: "From the tongue, the ballroom, and the battlefield",
+        clue: "Mischief, mourning, and the chaos of crowds",
         words: [
           { word:"BRAT",     roots:["br","at"],
             clue:"A rough cloak — then a mischievous child",
@@ -758,6 +800,13 @@ const WORLDS = [
             clue:"A chaotic war-cry — then a crowd's noise",
             hint:"A confused noise made by a large crowd of people",
             fact:"From Irish battle-cry 'ababú!' — a war-shout of Gaelic warriors. English soldiers heard it first as a terrifying battle cry; later it generalised to the sound of any noisy, disorganised crowd." },
+        ],
+      },
+      {
+        chunks: ["ki","bosh","bon","nie","re","el"],
+        traps: [],
+        clue: "A final stop, a lovely sight, and a spinning dance",
+        words: [
           { word:"KIBOSH",   roots:["ki","bosh"],
             clue:"The cap of death — to end something for good",
             hint:"To put the kibosh on something means to put a definitive stop to it",
@@ -770,6 +819,13 @@ const WORLDS = [
             clue:"A spinning folk dance of the Celts",
             hint:"A lively Scottish or Irish folk dance for couples spinning in patterns",
             fact:"From Scottish Gaelic/Irish 'rìghil' (a whirling). The reel's figure-of-eight spinning pattern may mimic celestial bodies, suggesting the dance has ancient ritual origins before it became entertainment." },
+        ],
+      },
+      {
+        chunks: ["vas","sal","trou","sers","glen","gar","ry"],
+        traps: [],
+        clue: "Servants, trousers, and a Highland cap",
+        words: [
           { word:"VASSAL",   roots:["vas","sal"],
             clue:"A servant of the Celtic word",
             hint:"A person in a subordinate position; one who holds land from a feudal lord",
@@ -899,7 +955,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["blood","stream","eye","brow","finger","tip","knee","cap","back","bone"],
+        chunks: ["blood","stream","eye","brow","finger","tip"],
         traps: [],
         clue: "The body described in pure Old English",
         words: [
@@ -915,6 +971,13 @@ const WORLDS = [
             clue:"The outermost point of the hand",
             hint:"The very end of a finger",
             fact:"Old English 'finger' + 'typ' (point, end). The word 'tip' originally meant the sharpest point of anything — a spear tip, a fingertip. Both halves are pure Germanic and unchanged in a millennium." },
+        ],
+      },
+      {
+        chunks: ["knee","cap","back","bone"],
+        traps: [],
+        clue: "The kneecap and the spine",
+        words: [
           { word:"KNEECAP",     roots:["knee","cap"],
             clue:"The shield bone at the front of the knee",
             hint:"The flat bone covering the front of the knee joint",
@@ -926,9 +989,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["long","ing","loath","ing","glad","ness","wr","ath","dr","ead"],
+        chunks: ["long","ing","loath","glad","ness"],
         traps: [],
-        clue: "Feelings the Anglo-Saxons built from their own tongue",
+        clue: "Yearning, hatred, and joy in Old English",
         words: [
           { word:"LONGING",     roots:["long","ing"],
             clue:"A deep ache for what is absent",
@@ -942,6 +1005,13 @@ const WORLDS = [
             clue:"The state of being glad",
             hint:"A feeling of pleasure, joy, or happiness",
             fact:"Old English 'glæd' (bright, shining, joyful) + '-ness'. The Anglo-Saxon word for joy was built on brightness — 'glad' originally meant gleaming. Joy was light, and light was joy." },
+        ],
+      },
+      {
+        chunks: ["wr","ath","dr","ead"],
+        traps: [],
+        clue: "Fury and fear in the Old English tongue",
+        words: [
           { word:"WRATH",       roots:["wr","ath"],
             clue:"The fierce burning anger of the Old English",
             hint:"Extreme anger; righteous fury",
@@ -953,9 +1023,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["sheep","dog","black","bird","earth","worm","hedge","hog","fire","fly"],
+        chunks: ["sheep","dog","black","bird","earth","worm"],
         traps: [],
-        clue: "The farmyard and the hedgerow in Old English names",
+        clue: "The farmyard dog, the songbird, and the soil-worker",
         words: [
           { word:"SHEEPDOG",    roots:["sheep","dog"],
             clue:"The dog that shepherds the flock",
@@ -969,6 +1039,13 @@ const WORLDS = [
             clue:"The worm that works the soil",
             hint:"A burrowing worm that aerates the soil",
             fact:"Old English 'eorþe' (earth) + 'wyrm' (serpent, worm, dragon). In Old English 'wyrm' covered everything from earthworms to great serpents — the same word for a garden worm and Beowulf's dragon." },
+        ],
+      },
+      {
+        chunks: ["hedge","hog","fire","fly"],
+        traps: [],
+        clue: "The hedgehog and the firefly",
+        words: [
           { word:"HEDGEHOG",    roots:["hedge","hog"],
             clue:"The prickled creature of the garden hedge",
             hint:"A small nocturnal mammal covered in spines",
@@ -1003,9 +1080,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["sea","far","er","oar","s","man","ship","wright","land","mark","under","tow"],
+        chunks: ["sea","far","er","oar","s","man"],
         traps: [],
-        clue: "The sea-crossers who made England",
+        clue: "The sailors who crossed the North Sea",
         words: [
           { word:"SEAFARER",    roots:["sea","far","er"],
             clue:"One who travels the sea",
@@ -1015,6 +1092,13 @@ const WORLDS = [
             clue:"The man who pulls the oar",
             hint:"A person who rows a boat",
             fact:"Old English 'ār' (oar) + 'man'. The oar is one of humanity's oldest tools — the Anglo-Saxons crossed the North Sea with them. The word has barely changed in 1,500 years of continuous use." },
+        ],
+      },
+      {
+        chunks: ["ship","wright","land","mark","under","tow"],
+        traps: [],
+        clue: "Shipbuilders, landmarks, and the pull of the tide",
+        words: [
           { word:"SHIPWRIGHT",  roots:["ship","wright"],
             clue:"The craftsman who builds ships",
             hint:"A person who builds and repairs ships",
@@ -1030,9 +1114,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["hearth","stone","door","step","win","dow","sill","bed","cham","ber","fire","side"],
+        chunks: ["hearth","stone","door","step","win","dow","sill"],
         traps: [],
-        clue: "The home — the centre of Anglo-Saxon life",
+        clue: "The hearth, the threshold, and the wind-eye",
         words: [
           { word:"HEARTHSTONE",  roots:["hearth","stone"],
             clue:"The stone at the heart of the home",
@@ -1046,6 +1130,13 @@ const WORLDS = [
             clue:"The ledge at the base of the wind-eye",
             hint:"The horizontal ledge at the bottom of a window",
             fact:"Old Norse 'vindauga' (wind-eye) became 'window' in English. The 'sill' is Old English 'syll' (beam, threshold). A window was literally an eye for the wind — one of the most evocative etymologies in the language." },
+        ],
+      },
+      {
+        chunks: ["bed","cham","ber","fire","side"],
+        traps: [],
+        clue: "The bedchamber and the fireside",
+        words: [
           { word:"BEDCHAMBER",  roots:["bed","cham","ber"],
             clue:"The room of sleeping",
             hint:"A bedroom, especially in a large or historic house",
@@ -1057,9 +1148,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["wheel","wright","black","smith","craft","s","man","wood","cut","ter","thatch","work"],
+        chunks: ["wheel","wright","black","smith","craft","s","man"],
         traps: [],
-        clue: "The craftsmen who built and kept Anglo-Saxon England",
+        clue: "The wheelwright, blacksmith, and craftsman",
         words: [
           { word:"WHEELWRIGHT", roots:["wheel","wright"],
             clue:"The maker of wheels",
@@ -1073,6 +1164,13 @@ const WORLDS = [
             clue:"A person of skill and making",
             hint:"A person skilled in a particular craft",
             fact:"Old English 'cræft' (strength, skill, art) + 'man'. In Old English 'cræft' meant skill of any kind — physical strength, mental art, or magical power. A poet and a blacksmith were both equally 'cræftsmen'." },
+        ],
+      },
+      {
+        chunks: ["wood","cut","ter","thatch","work"],
+        traps: [],
+        clue: "The woodcutter and the thatcher",
+        words: [
           { word:"WOODCUTTER",  roots:["wood","cut","ter"],
             clue:"One who fells and shapes the trees",
             hint:"A person who cuts down trees or chops wood",
@@ -1084,9 +1182,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["broth","er","hood","father","hood","kins","folk","wed","lock","wid","ow","hood"],
+        chunks: ["broth","er","hood","father","kins","folk"],
         traps: [],
-        clue: "Kinship — the bonds of Anglo-Saxon society",
+        clue: "Brotherhood, fatherhood, and kinsfolk",
         words: [
           { word:"BROTHERHOOD", roots:["broth","er","hood"],
             clue:"The bond between those born of the same blood",
@@ -1100,6 +1198,13 @@ const WORLDS = [
             clue:"The people of one's own blood",
             hint:"One's family and relations",
             fact:"Old English 'cynn' (kin, family, race) + 'folc' (people, nation). 'Folk' is one of the most resilient Anglo-Saxon words — it survived the Norman Conquest and is still more commonly used than its Latin equivalent 'people'." },
+        ],
+      },
+      {
+        chunks: ["wed","lock","wid","ow","hood"],
+        traps: [],
+        clue: "Wedlock and widowhood",
+        words: [
           { word:"WEDLOCK",     roots:["wed","lock"],
             clue:"The pledge and binding of marriage",
             hint:"The state of being married",
@@ -1134,9 +1239,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["law","break","er","witch","craft","wrong","do","ing","land","lord","out","law"],
+        chunks: ["law","break","er","witch","craft"],
         traps: [],
-        clue: "Law, order, and those who stood against them",
+        clue: "Lawbreakers and witchcraft",
         words: [
           { word:"LAWBREAKER",  roots:["law","break","er"],
             clue:"One who breaks the law",
@@ -1146,6 +1251,13 @@ const WORLDS = [
             clue:"The dark skill of the wise woman",
             hint:"The practice of magic, especially black magic",
             fact:"Old English 'wicce' (witch — a wise woman, a seer) + 'cræft' (skill, art). The original witch was a skilled practitioner of knowledge — only later did the word become wholly pejorative. The Church transformed a skill into a sin." },
+        ],
+      },
+      {
+        chunks: ["wrong","do","ing","land","lord","out","law"],
+        traps: [],
+        clue: "Wrongdoing, landlords, and the outlaw",
+        words: [
           { word:"WRONGDOING",  roots:["wrong","do","ing"],
             clue:"The act of doing what is wrong",
             hint:"Illegal or dishonest behaviour",
@@ -1184,9 +1296,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["god","father","soul","mate","hal","lowed","doom","s","day","bless","ed","ness"],
+        chunks: ["god","father","soul","mate","hal","lowed"],
         traps: [],
-        clue: "Faith, soul, and judgement in Old English",
+        clue: "Godfathers, soulmates, and the hallowed",
         words: [
           { word:"GODFATHER",   roots:["god","father"],
             clue:"A father in faith",
@@ -1200,6 +1312,13 @@ const WORLDS = [
             clue:"Made holy — set apart",
             hint:"Greatly revered and honoured; made holy",
             fact:"Old English 'hālgian' (to make holy) from 'hālig' (holy, whole, healthy). The same root gives 'holy', 'holiday', 'health', and 'whole' — the Anglo-Saxons saw holiness, wholeness, and health as one single concept." },
+        ],
+      },
+      {
+        chunks: ["doom","s","day","bless","ed","ness"],
+        traps: [],
+        clue: "Doomsday and blessedness",
+        words: [
           { word:"DOOMSDAY",    roots:["doom","s","day"],
             clue:"The day of final judgement",
             hint:"The last day of the world; any day of catastrophic judgement",
@@ -1211,9 +1330,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["house","keep","er","sun","burn","ed","storm","cloud","grass","land","hard","work","ing"],
+        chunks: ["house","keep","er","sun","burn","ed"],
         traps: [],
-        clue: "Compounds that shaped everyday English",
+        clue: "The housekeeper and the sunburned",
         words: [
           { word:"HOUSEKEEPER", roots:["house","keep","er"],
             clue:"The keeper of the household",
@@ -1223,6 +1342,13 @@ const WORLDS = [
             clue:"Marked by the fire of the sun",
             hint:"Having skin reddened or tanned by prolonged sun exposure",
             fact:"Old English 'sunne' (sun — feminine, a goddess) + 'bærnan' (to burn). The sun was female in Old English — 'Sunne'. The sunburn was her mark. The feminine sun was eventually replaced by the Latin/French masculine." },
+        ],
+      },
+      {
+        chunks: ["storm","cloud","grass","land","hard","work","ing"],
+        traps: [],
+        clue: "Stormclouds, grassland, and hard work",
+        words: [
           { word:"STORMCLOUD",  roots:["storm","cloud"],
             clue:"The dark mass that brings the tempest",
             hint:"A cloud associated with stormy weather; a sign of impending trouble",
@@ -1261,9 +1387,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["three","fold","fore","know","ledge","over","throw","with","held","under","stand","ing"],
+        chunks: ["three","fold","fore","know","ledge"],
         traps: [],
-        clue: "Numbers, knowledge, and the power of 'over' and 'under'",
+        clue: "Threefold and foreknowledge",
         words: [
           { word:"THREEFOLD",   roots:["three","fold"],
             clue:"Three times as great",
@@ -1273,6 +1399,13 @@ const WORLDS = [
             clue:"Knowledge of things before they happen",
             hint:"Awareness of something before it happens; prescience",
             fact:"Old English 'fore' (before) + 'cnāwan' (to know). The compound is deeply theological in Anglo-Saxon usage — God's foreknowledge was a central question of Boethius, which Alfred the Great himself translated into English." },
+        ],
+      },
+      {
+        chunks: ["over","throw","with","held","under","stand","ing"],
+        traps: [],
+        clue: "Overthrow, withholding, and understanding",
+        words: [
           { word:"OVERTHROW",   roots:["over","throw"],
             clue:"To cast down what stood above",
             hint:"To put an end to by force; to defeat completely",
@@ -1288,9 +1421,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["word","craft","sto","ry","tell","ing","mind","ful","ness","heart","felt","birth","right"],
+        chunks: ["word","craft","sto","ry","tell","ing"],
         traps: [],
-        clue: "Memory, story, and the inner world",
+        clue: "Wordcraft and storytelling",
         words: [
           { word:"WORDCRAFT",   roots:["word","craft"],
             clue:"The skill of making words",
@@ -1300,6 +1433,13 @@ const WORLDS = [
             clue:"The ancient art of the spoken tale",
             hint:"The activity of telling or writing stories",
             fact:"Old English 'stǣr' (history, narrative) + 'tellan' (to count, to narrate). 'Tell' originally meant to count — to 'tell' a story was to count out its events one by one. The Old English scop (bard) was the master of this art." },
+        ],
+      },
+      {
+        chunks: ["mind","ful","ness","heart","felt","birth","right"],
+        traps: [],
+        clue: "Mindfulness, heartfelt, and birthright",
+        words: [
           { word:"MINDFULNESS", roots:["mind","ful","ness"],
             clue:"The quality of keeping the mind present",
             hint:"The practice of conscious awareness of the present moment",
@@ -1315,9 +1455,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["sword","s","man","shield","wall","war","band","blood","shed","battle","ground"],
+        chunks: ["sword","s","man","shield","wall"],
         traps: [],
-        clue: "The warrior world of the Anglo-Saxons",
+        clue: "The swordsman and the shieldwall",
         words: [
           { word:"SWORDSMAN",   roots:["sword","s","man"],
             clue:"The man of the blade",
@@ -1327,6 +1467,13 @@ const WORLDS = [
             clue:"The formation of locked shields",
             hint:"A defensive military formation with overlapping shields",
             fact:"Old English 'scield' (shield) + 'weall' (wall, rampart). The shieldwall was the central tactical formation of Anglo-Saxon warfare — described in the Battle of Maldon poem of 991 AD. It was broken at Hastings in 1066." },
+        ],
+      },
+      {
+        chunks: ["war","band","blood","shed","battle","ground"],
+        traps: [],
+        clue: "Warbands, bloodshed, and the battleground",
+        words: [
           { word:"WARBAND",     roots:["war","band"],
             clue:"The company of warriors bound together",
             hint:"A group of warriors fighting under one leader",
@@ -1342,9 +1489,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["fore","told","whole","some","off","spring","stead","fast","break","through","sun","down","brim","stone"],
+        chunks: ["fore","told","whole","some"],
         traps: [],
-        clue: "The lasting compounds of Old English — still alive today",
+        clue: "Foretold and wholesome",
         words: [
           { word:"FORETOLD",    roots:["fore","told"],
             clue:"Spoken before it happened",
@@ -1354,6 +1501,13 @@ const WORLDS = [
             clue:"Good for the whole person — body and spirit",
             hint:"Conducive to physical or moral well-being; healthy",
             fact:"Old English 'hāl' (whole, healthy, holy) + '-sum' (having that quality). The '-some' suffix is purely Anglo-Saxon — wholesome, awesome, handsome, fearsome. It means 'having that quality in abundance'." },
+        ],
+      },
+      {
+        chunks: ["off","spring","stead","fast","break","through"],
+        traps: [],
+        clue: "Offspring, steadfast, and breakthrough",
+        words: [
           { word:"OFFSPRING",   roots:["off","spring"],
             clue:"What springs off from the parent",
             hint:"A person's children or descendants",
@@ -1366,6 +1520,13 @@ const WORLDS = [
             clue:"Breaking through what stood in the way",
             hint:"A sudden important development; breaking through an obstacle",
             fact:"Old English 'brecan' (to break) + 'þurh' (through). The military metaphor is ancient — a breakthrough in a shieldwall was decisive. The word moved seamlessly into science and technology as English evolved." },
+        ],
+      },
+      {
+        chunks: ["sun","down","brim","stone"],
+        traps: [],
+        clue: "Sundown and brimstone",
+        words: [
           { word:"SUNDOWN",     roots:["sun","down"],
             clue:"The setting of the sun",
             hint:"The time when the sun sets; dusk",
@@ -2246,9 +2407,10 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["chan","ge","chal","lenge","o","bey","com","mand","des","cribe","im","prove","en","sure"],
+              {
+        chunks: ["chan","ge","chal","lenge"],
         traps: [],
-        clue: "Change, challenge, command, obey, and the final French inheritance",
+        clue: "Change and challenge",
         words: [
           { word:"CHANGE", roots:["chan","ge"],
             clue:"The exchange — the becoming different",
@@ -2257,7 +2419,14 @@ const WORLDS = [
           { word:"CHALLENGE", roots:["chal","lenge"],
             clue:"A formal accusation — then a contest",
             hint:"A call to participate in a contest; something demanding",
-            fact:"Old French \'chalenge\' (accusation). To challenge was originally a formal legal accusation. Tournament challenges preserved the legal origin." },
+            fact:"Old French \'chalenge\' (accusation). To challenge was originally a formal legal accusation. Tournament challenges preserved the legal origin." }
+        ],
+      },
+      {
+        chunks: ["o","bey","com","mand"],
+        traps: [],
+        clue: "To obey and to command",
+        words: [
           { word:"OBEY", roots:["o","bey"],
             clue:"To listen toward — to follow a command",
             hint:"To follow the commands or instructions of someone",
@@ -2265,7 +2434,14 @@ const WORLDS = [
           { word:"COMMAND", roots:["com","mand"],
             clue:"To order — to put something in one\'s hands",
             hint:"To give an authoritative order",
-            fact:"Old French \'commander\'. The Norman chain of command — from king to baron to knight — required a precise vocabulary of orders." },
+            fact:"Old French \'commander\'. The Norman chain of command — from king to baron to knight — required a precise vocabulary of orders." }
+        ],
+      },
+      {
+        chunks: ["des","cribe","im","prove","en","sure"],
+        traps: [],
+        clue: "Describe, improve, and ensure",
+        words: [
           { word:"DESCRIBE", roots:["des","cribe"],
             clue:"To write down — to give an account of",
             hint:"To give a detailed account in words of what something is like",
@@ -2325,30 +2501,30 @@ const WORLDS = [
     ],
     levels: [
       {
-        chunks: ["mos","ca","ito","vain","illa"],
+        chunks: ["mos","qui","to","va","nil","la"],
         traps: [],
         clue: "Tiny things from the Spanish-speaking world",
         words: [
-          { word:"MOSQUITO", roots:["mos","ca","ito"],
+          { word:"MOSQUITO", roots:["mos","qui","to"],
             clue:"A little fly",
             hint:"A small biting insect that breeds near water",
             fact:"'Mosca' means fly in Spanish, and '-ito' is a diminutive — so a mosquito is literally just a 'little fly.'" },
-          { word:"VANILLA",  roots:["vain","illa"],
+          { word:"VANILLA",  roots:["va","nil","la"],
             clue:"A little pod",
             hint:"A flavouring extracted from a tropical orchid's seed pod",
             fact:"From 'vainilla', a diminutive of 'vaina' (pod). Spanish explorers named it after the little pod it grows in." },
         ],
       },
       {
-        chunks: ["tor","nar","do","ahu","a","catl"],
+        chunks: ["tor","na","do","a","vo","ca"],
         traps: [],
         clue: "Forces of nature and nature's bounty",
         words: [
-          { word:"TORNADO",  roots:["tor","nar","do"],
+          { word:"TORNADO",  roots:["tor","na","do"],
             clue:"A turning thunderstorm",
             hint:"A violent rotating column of air",
             fact:"From Spanish 'tronada' (thunderstorm) blended with 'tornar' (to turn). The spinning storm that names itself." },
-          { word:"AVOCADO",  roots:["ahu","a","catl"],
+          { word:"AVOCADO",  roots:["a","vo","ca","do"],
             clue:"A fruit named for its shape (Nahuatl)",
             hint:"A green, creamy-fleshed fruit used in guacamole",
             fact:"The Aztec word 'āhuacatl' also meant testicle — Aztecs named the fruit for its shape. Spanish conquistadors politely changed it." },
@@ -2401,9 +2577,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ran","ch","las","so","ro","deo","stam","pede","can","yon"],
+        chunks: ["ran","ch","las","so","ro","deo"],
         traps: [],
-        clue: "The cowboy vocabulary — ranch, lasso, and the rodeo",
+        clue: "Ranch, Lasso, and Rodeo",
         words: [
           { word:"RANCH", roots:["ran","ch"],
             clue:"The large cattle farm of the frontier",
@@ -2416,7 +2592,14 @@ const WORLDS = [
           { word:"RODEO", roots:["ro","deo"],
             clue:"The gathering of cattle — then the sport",
             hint:"A competitive exhibition of cowboy skills",
-            fact:"Spanish \'rodeo\' (a rounding up), from \'rodear\' (to go around). Rodeos began as practical cattle-roundup events on Mexican ranches. The competitive element developed as Anglo and Mexican cowboys showed off their skills side by side." },
+            fact:"Spanish \'rodeo\' (a rounding up), from \'rodear\' (to go around). Rodeos began as practical cattle-roundup events on Mexican ranches. The competitive element developed as Anglo and Mexican cowboys showed off their skills side by side." }
+        ],
+      },
+      {
+        chunks: ["stam","pede","can","yon"],
+        traps: [],
+        clue: "Stampede and Canyon",
+        words: [
           { word:"STAMPEDE", roots:["stam","pede"],
             clue:"The sudden thundering rush of the herd",
             hint:"A sudden panicked rush of a herd of animals or a crowd",
@@ -2451,9 +2634,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["hurri","cane","bar","be","cue","ham","mock","ca","noe","to","bac","co"],
+        chunks: ["hurri","cane","bar","be","cue","ham","mock"],
         traps: [],
-        clue: "Hurricane, barbecue, hammock — the Caribbean gave English these",
+        clue: "Hurricane, Barbecue, and Hammock",
         words: [
           { word:"HURRICANE", roots:["hurri","cane"],
             clue:"The great wind of the Caribbean gods",
@@ -2466,7 +2649,14 @@ const WORLDS = [
           { word:"HAMMOCK", roots:["ham","mock"],
             clue:"The woven sleeping net of the Caribbean",
             hint:"A hanging bed of canvas or rope, suspended between two supports",
-            fact:"Taíno \'hamaca\' (a hanging net for sleeping), via Spanish. Spanish sailors discovered the hammock from Caribbean islanders and immediately adopted it — far better than sleeping on hard ship decks. The Royal Navy used hammocks until 1956." },
+            fact:"Taíno \'hamaca\' (a hanging net for sleeping), via Spanish. Spanish sailors discovered the hammock from Caribbean islanders and immediately adopted it — far better than sleeping on hard ship decks. The Royal Navy used hammocks until 1956." }
+        ],
+      },
+      {
+        chunks: ["ca","noe","to","bac","co"],
+        traps: [],
+        clue: "Canoe and Tobacco",
+        words: [
           { word:"CANOE", roots:["ca","noe"],
             clue:"The hollowed log of the Caribbean",
             hint:"A narrow boat pointed at both ends, propelled by a paddle",
@@ -2478,9 +2668,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["sa","van","na","pam","pas","la","goon","a","dobe","pla","za"],
+        chunks: ["sa","van","na","pam","pas","la","goon"],
         traps: [],
-        clue: "Savanna, lagoon, and the landscape of the New World",
+        clue: "Savanna, Pampas, and Lagoon",
         words: [
           { word:"SAVANNA", roots:["sa","van","na"],
             clue:"The vast flat grasslands of the tropics",
@@ -2493,7 +2683,14 @@ const WORLDS = [
           { word:"LAGOON", roots:["la","goon"],
             clue:"A shallow water body separated from the sea",
             hint:"A stretch of salt water separated from the sea by a sandbank",
-            fact:"Spanish \'laguna\' (lake, pond), from Latin \'lacuna\' (pit, gap). Spanish explorers mapping the Caribbean and Pacific coasts needed a word for the shallow bodies of water inside coral reefs. Their term became universal in cartography." },
+            fact:"Spanish \'laguna\' (lake, pond), from Latin \'lacuna\' (pit, gap). Spanish explorers mapping the Caribbean and Pacific coasts needed a word for the shallow bodies of water inside coral reefs. Their term became universal in cartography." }
+        ],
+      },
+      {
+        chunks: ["a","dobe","pla","za"],
+        traps: [],
+        clue: "Adobe and Plaza",
+        words: [
           { word:"ADOBE", roots:["a","dobe"],
             clue:"The sun-dried brick of the desert",
             hint:"A kind of clay used as a building material; a sun-dried brick",
@@ -2505,9 +2702,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["fies","ta","sies","pa","tio","bo","nan","za","bra","va","do"],
+        chunks: ["fies","ta","sies","pa","tio"],
         traps: [],
-        clue: "Fiesta, siesta, patio — the rhythms of Spanish life",
+        clue: "Fiesta, Siesta, and Patio",
         words: [
           { word:"FIESTA", roots:["fies","ta"],
             clue:"The festival — a day of celebration",
@@ -2520,7 +2717,14 @@ const WORLDS = [
           { word:"PATIO", roots:["pa","tio"],
             clue:"The open courtyard within the house",
             hint:"A paved outdoor area adjoining a house",
-            fact:"Spanish \'patio\' (inner courtyard). The patio was central to Moorish-influenced Spanish architecture — a shaded courtyard open to the sky, designed for the fierce Iberian heat. Spanish colonists brought the design to the Americas." },
+            fact:"Spanish \'patio\' (inner courtyard). The patio was central to Moorish-influenced Spanish architecture — a shaded courtyard open to the sky, designed for the fierce Iberian heat. Spanish colonists brought the design to the Americas." }
+        ],
+      },
+      {
+        chunks: ["bo","nan","za","bra","va","do"],
+        traps: [],
+        clue: "Bonanza and Bravado",
+        words: [
           { word:"BONANZA", roots:["bo","nan","za"],
             clue:"A great vein of ore — then any windfall",
             hint:"A situation giving great happiness, wealth, or luck",
@@ -2555,9 +2759,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["guer","ril","la","ar","ma","da","em","bar","go","flo","til","car"],
+        chunks: ["guer","ril","la","ar","ma","da","em","bar","go"],
         traps: [],
-        clue: "Guerrilla, armada, embargo — Spanish military words that shaped history",
+        clue: "Guerrilla, Armada, and Embargo",
         words: [
           { word:"GUERRILLA", roots:["guer","ril","la"],
             clue:"The little war — fought from the shadows",
@@ -2570,7 +2774,14 @@ const WORLDS = [
           { word:"EMBARGO", roots:["em","bar","go"],
             clue:"The bar placed on trade — a legal blockade",
             hint:"An official ban on trade or commercial activity",
-            fact:"Spanish \'embargo\' (seizure, blockade), from \'embargar\' (to bar). The Spanish crown used embargos to control trade with its American colonies. The word entered English through diplomacy and maritime law in the 17th century." },
+            fact:"Spanish \'embargo\' (seizure, blockade), from \'embargar\' (to bar). The Spanish crown used embargos to control trade with its American colonies. The word entered English through diplomacy and maritime law in the 17th century." }
+        ],
+      },
+      {
+        chunks: ["flo","til","la","car","go"],
+        traps: [],
+        clue: "Flotilla and Cargo",
+        words: [
           { word:"FLOTILLA", roots:["flo","til","la"],
             clue:"A little fleet of ships",
             hint:"A small fleet of ships or boats",
@@ -2582,9 +2793,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["al","li","ga","tor","i","gua","na","ar","ma","dil","lo","con","dor","pir","an","ha"],
+        chunks: ["al","li","ga","tor","i","gua","na","ar","ma","dil","lo"],
         traps: [],
-        clue: "Alligator, iguana, armadillo — creatures of the New World",
+        clue: "Alligator, Iguana, and Armadillo",
         words: [
           { word:"ALLIGATOR", roots:["al","li","ga","tor"],
             clue:"The lizard — el lagarto in Spanish",
@@ -2597,7 +2808,14 @@ const WORLDS = [
           { word:"ARMADILLO", roots:["ar","ma","dil","lo"],
             clue:"The little armoured one of the Americas",
             hint:"A small mammal native to the Americas, with a bony protective shell",
-            fact:"Spanish \'armadillo\' (little armoured one), from \'armado\' (armoured). The Spanish named it perfectly. Spanish diminutives (-illo, -ita) appear frequently in New World animal names: armadillo, mosquito, vanilla." },
+            fact:"Spanish \'armadillo\' (little armoured one), from \'armado\' (armoured). The Spanish named it perfectly. Spanish diminutives (-illo, -ita) appear frequently in New World animal names: armadillo, mosquito, vanilla." }
+        ],
+      },
+      {
+        chunks: ["con","dor","pir","an","ha"],
+        traps: [],
+        clue: "Condor and Piranha",
+        words: [
           { word:"CONDOR", roots:["con","dor"],
             clue:"The great vulture of the Andes",
             hint:"A very large vulture native to the Andes and California",
@@ -2632,9 +2850,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["contra","band","vi","gi","lan","te","des","per","a","do","pron","to","in","com","mun","i","ca"],
+        chunks: ["contra","band","vi","gi","lan","te","des","per","a","do"],
         traps: [],
-        clue: "Contraband, vigilante, desperado — Spanish gives English its outlaws",
+        clue: "Contraband, Vigilante, and Desperado",
         words: [
           { word:"CONTRABAND", roots:["contra","band"],
             clue:"Against the proclamation — illegal goods",
@@ -2647,7 +2865,14 @@ const WORLDS = [
           { word:"DESPERADO", roots:["des","per","a","do"],
             clue:"A reckless criminal of the frontier",
             hint:"A desperate or reckless person, especially an outlaw",
-            fact:"Spanish \'desesperado\' (desperate one), from \'desesperar\' (to despair). The desperado was a figure of the American frontier — an outlaw with nothing to lose. The word entered English through the Texas-Mexico border culture of the 1840s." },
+            fact:"Spanish \'desesperado\' (desperate one), from \'desesperar\' (to despair). The desperado was a figure of the American frontier — an outlaw with nothing to lose. The word entered English through the Texas-Mexico border culture of the 1840s." }
+        ],
+      },
+      {
+        chunks: ["pron","to","in","com","mun","i","ca","do"],
+        traps: [],
+        clue: "Pronto and Incommunicado",
+        words: [
           { word:"PRONTO", roots:["pron","to"],
             clue:"Ready — do it now",
             hint:"Promptly; quickly",
@@ -2657,7 +2882,7 @@ const WORLDS = [
             hint:"Without means of communication; in solitary confinement",
             fact:"Spanish \'incomunicado\', past participle of \'incomunicar\' (to cut off). The word entered English through legal and political contexts — prisoners held incommunicado, hostages cut off from contact. The Spanish colonial justice system gave it to English." }
         ],
-      }
+      },
     ]
   }
 ,
@@ -2704,9 +2929,9 @@ const WORLDS = [
     ],
     levels: [
       {
-        chunks: ["win","dow","sk","y","e","gg","kn","ife","slaugh","ter"],
+        chunks: ["win","dow","sk","y","e","gg"],
         traps: [],
-        clue: "The wind-eye and the open sky — Norse names for everyday things",
+        clue: "Window, Sky, and Egg",
         words: [
           { word:"WINDOW", roots:["win","dow"],
             clue:"The wind\'s own eye",
@@ -2719,7 +2944,14 @@ const WORLDS = [
           { word:"EGG", roots:["e","gg"],
             clue:"What the bird leaves behind",
             hint:"An oval object laid by a bird, reptile, or fish",
-            fact:"Old Norse \'egg\'. The Anglo-Saxons said \'æg\' — so close that the two words eventually fused into one. By the 15th century \'egg\' had completely replaced the native form in most of England." },
+            fact:"Old Norse \'egg\'. The Anglo-Saxons said \'æg\' — so close that the two words eventually fused into one. By the 15th century \'egg\' had completely replaced the native form in most of England." }
+        ],
+      },
+      {
+        chunks: ["kn","ife","slaugh","ter"],
+        traps: [],
+        clue: "Knife and Slaughter",
+        words: [
           { word:"KNIFE", roots:["kn","ife"],
             clue:"The small blade of everyday cutting",
             hint:"A sharp-bladed instrument for cutting",
@@ -2731,9 +2963,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ber","serk","ran","sack","la","w","out","law","hus","band"],
+        chunks: ["ber","serk","ran","sack","la","w"],
         traps: [],
-        clue: "Steel, the longship, and the law of the Danelaw",
+        clue: "Berserk, Ransack, and Law",
         words: [
           { word:"BERSERK", roots:["ber","serk"],
             clue:"Bear-shirted — the warrior who fights without fear",
@@ -2746,7 +2978,14 @@ const WORLDS = [
           { word:"LAW", roots:["la","w"],
             clue:"What is laid down — the Norse foundation of justice",
             hint:"The system of rules a society recognises as binding",
-            fact:"Old Norse \'lög\' — literally \'that which is laid down\'. The Danelaw region of England operated under Norse legal custom for generations; the very word for \'law\' itself outcompeted the native Old English \'æw\'." },
+            fact:"Old Norse \'lög\' — literally \'that which is laid down\'. The Danelaw region of England operated under Norse legal custom for generations; the very word for \'law\' itself outcompeted the native Old English \'æw\'." }
+        ],
+      },
+      {
+        chunks: ["out","law","hus","band"],
+        traps: [],
+        clue: "Outlaw and Husband",
+        words: [
           { word:"OUTLAW", roots:["out","law"],
             clue:"Cast outside the protection of the law",
             hint:"A person who has broken the law, especially one evading capture",
@@ -2758,9 +2997,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["the","y","m","ir","sa","me","bo","th"],
+        chunks: ["the","y","m","ir"],
         traps: [],
-        clue: "They, them, their — the grammar the Vikings rebuilt",
+        clue: "They, Them, and Their",
         words: [
           { word:"THEY", roots:["the","y"],
             clue:"The Norse word that replaced English\'s own pronoun",
@@ -2773,7 +3012,14 @@ const WORLDS = [
           { word:"THEIR", roots:["the","ir"],
             clue:"The possessive Norse gave modern English",
             hint:"Belonging to or associated with the people previously mentioned",
-            fact:"Old Norse \'þeira\'. Pronouns are among the most resistant words in any language to outside influence — for Norse to permanently displace English\'s own pronoun system shows just how deeply the two peoples intermixed." },
+            fact:"Old Norse \'þeira\'. Pronouns are among the most resistant words in any language to outside influence — for Norse to permanently displace English\'s own pronoun system shows just how deeply the two peoples intermixed." }
+        ],
+      },
+      {
+        chunks: ["sa","me","bo","th"],
+        traps: [],
+        clue: "Same and Both",
+        words: [
           { word:"SAME", roots:["sa","me"],
             clue:"Identical — unchanged from one to the next",
             hint:"Identical; not different",
@@ -2785,9 +3031,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ta","ke","ca","ll","di","e","rai","se","wa","nt"],
+        chunks: ["ta","ke","ca","ll","di","e"],
         traps: [],
-        clue: "Everyday verbs the Norse settlers gave English",
+        clue: "Take, Call, and Die",
         words: [
           { word:"TAKE", roots:["ta","ke"],
             clue:"To lay hold of and carry away",
@@ -2800,7 +3046,14 @@ const WORLDS = [
           { word:"DIE", roots:["di","e"],
             clue:"To cease living",
             hint:"To stop living",
-            fact:"Old Norse \'deyja\'. Old English used \'steorfan\' (the ancestor of modern \'starve\') for dying generally. The Norse word took over the universal meaning, and \'starve\' narrowed to mean only death by hunger." },
+            fact:"Old Norse \'deyja\'. Old English used \'steorfan\' (the ancestor of modern \'starve\') for dying generally. The Norse word took over the universal meaning, and \'starve\' narrowed to mean only death by hunger." }
+        ],
+      },
+      {
+        chunks: ["rai","se","wa","nt"],
+        traps: [],
+        clue: "Raise and Want",
+        words: [
           { word:"RAISE", roots:["rai","se"],
             clue:"To lift up or bring into being",
             hint:"To lift to a higher position; to bring up a child",
@@ -2812,9 +3065,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["le","g","sk","in","sc","ale","ba","bir","th"],
+        chunks: ["le","g","sk","in","sc","ale"],
         traps: [],
-        clue: "The body and the physical world",
+        clue: "Leg, Skin, and Scale",
         words: [
           { word:"LEG", roots:["le","g"],
             clue:"The limb that carries you",
@@ -2827,7 +3080,14 @@ const WORLDS = [
           { word:"SCALE", roots:["sc","ale"],
             clue:"The small plate covering a fish",
             hint:"One of the small flat plates protecting the skin of fish and reptiles",
-            fact:"Old Norse \'skalpr\' or related Germanic root meaning a shell or husk. Norse-speaking fishermen settling the English coast left their word for the protective plates of a fish\'s skin." },
+            fact:"Old Norse \'skalpr\' or related Germanic root meaning a shell or husk. Norse-speaking fishermen settling the English coast left their word for the protective plates of a fish\'s skin." }
+        ],
+      },
+      {
+        chunks: ["ba","g","bir","th"],
+        traps: [],
+        clue: "Bag and Birth",
+        words: [
           { word:"BAG", roots:["ba","g"],
             clue:"A flexible container",
             hint:"A flexible container with an opening at the top",
@@ -2839,9 +3099,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["an","ger","a","we","sc","are","i","ll","wr","ong"],
+        chunks: ["an","ger","a","we","sc","are"],
         traps: [],
-        clue: "Anger, fear, and the Norse emotional register",
+        clue: "Anger, Awe, and Scare",
         words: [
           { word:"ANGER", roots:["an","ger"],
             clue:"The fire of Norse fury",
@@ -2854,7 +3114,14 @@ const WORLDS = [
           { word:"SCARE", roots:["sc","are"],
             clue:"To frighten suddenly",
             hint:"To cause sudden fear in someone",
-            fact:"Old Norse \'skirra\' (to frighten, to scare away). The native English equivalent \'afear\' is now archaic, surviving only in \'afraid\' — the Norse verb form won the everyday battle." },
+            fact:"Old Norse \'skirra\' (to frighten, to scare away). The native English equivalent \'afear\' is now archaic, surviving only in \'afraid\' — the Norse verb form won the everyday battle." }
+        ],
+      },
+      {
+        chunks: ["i","ll","wr","ong"],
+        traps: [],
+        clue: "Ill and Wrong",
+        words: [
           { word:"ILL", roots:["i","ll"],
             clue:"Sick — or simply bad",
             hint:"Not in full health; of poor quality or harmful",
@@ -2866,9 +3133,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["fel","low","loo","se","rot","ten","ug","ly","wea","k"],
+        chunks: ["fel","low","loo","se","rot","ten"],
         traps: [],
-        clue: "Trade, craft, and the words of daily exchange",
+        clue: "Fellow, Loose, and Rotten",
         words: [
           { word:"FELLOW", roots:["fel","low"],
             clue:"One who lays down a wager beside you",
@@ -2881,7 +3148,14 @@ const WORLDS = [
           { word:"ROTTEN", roots:["rot","ten"],
             clue:"Decayed and spoiled",
             hint:"Decomposing; in a state of decay",
-            fact:"Old Norse \'rotinn\'. Decay and food-spoilage vocabulary often comes from whichever culture controlled food storage and preservation in a given region — here, clearly the Norse settlers." },
+            fact:"Old Norse \'rotinn\'. Decay and food-spoilage vocabulary often comes from whichever culture controlled food storage and preservation in a given region — here, clearly the Norse settlers." }
+        ],
+      },
+      {
+        chunks: ["ug","ly","wea","k"],
+        traps: [],
+        clue: "Ugly and Weak",
+        words: [
           { word:"UGLY", roots:["ug","ly"],
             clue:"Fearsome to look upon",
             hint:"Unpleasant or repulsive in appearance",
@@ -2893,9 +3167,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["kee","l","scr","ap","gue","st","ste","ak","ba","it"],
+        chunks: ["kee","l","scr","ap","gue","st"],
         traps: [],
-        clue: "Sailing, the sea, and Viking ships",
+        clue: "Keel, Scrap, and Guest",
         words: [
           { word:"KEEL", roots:["kee","l"],
             clue:"The spine of the longship",
@@ -2908,7 +3182,14 @@ const WORLDS = [
           { word:"GUEST", roots:["gue","st"],
             clue:"One welcomed under your roof",
             hint:"A person staying at someone\'s home or as a customer at a hotel",
-            fact:"Old Norse \'gestr\', closely related to Old English \'giest\'. Hospitality customs among the Norse settlers and their Anglo-Saxon neighbours were similar enough that the words for guest blended almost seamlessly." },
+            fact:"Old Norse \'gestr\', closely related to Old English \'giest\'. Hospitality customs among the Norse settlers and their Anglo-Saxon neighbours were similar enough that the words for guest blended almost seamlessly." }
+        ],
+      },
+      {
+        chunks: ["ste","ak","ba","it"],
+        traps: [],
+        clue: "Steak and Bait",
+        words: [
           { word:"STEAK", roots:["ste","ak"],
             clue:"A thick slice of meat for roasting",
             hint:"A thick slice of meat or fish, typically grilled or fried",
@@ -2920,9 +3201,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["win","dow","sill","do","or","ste","ad","ga","p","lof","t"],
+        chunks: ["win","dow","sill","do","or","ste","ad"],
         traps: [],
-        clue: "The household and the Danelaw home",
+        clue: "Windowsill, Door, and Stead",
         words: [
           { word:"WINDOWSILL", roots:["win","dow","sill"],
             clue:"The ledge beneath the wind-eye",
@@ -2935,7 +3216,14 @@ const WORLDS = [
           { word:"STEAD", roots:["ste","ad"],
             clue:"A place or position — the root of \'instead\'",
             hint:"A place or position, as in \'homestead\' or \'instead\'",
-            fact:"Old Norse \'staðr\' blended with the closely related Old English \'stede\'. The word now survives mainly in compounds — homestead, instead, steadfast — quiet fossils of a thousand years of Norse settlement." },
+            fact:"Old Norse \'staðr\' blended with the closely related Old English \'stede\'. The word now survives mainly in compounds — homestead, instead, steadfast — quiet fossils of a thousand years of Norse settlement." }
+        ],
+      },
+      {
+        chunks: ["ga","p","lof","t"],
+        traps: [],
+        clue: "Gap and Loft",
+        words: [
           { word:"GAP", roots:["ga","p"],
             clue:"An empty space or break",
             hint:"A break or space in an object, or in continuity",
@@ -2947,9 +3235,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["thri","ft","ve","roo","t","sk","ill","ke","g"],
+        chunks: ["thri","ft","ve","roo","t"],
         traps: [],
-        clue: "Money, prosperity, and the roots of thrift",
+        clue: "Thrift, Thrive, and Root",
         words: [
           { word:"THRIFT", roots:["thri","ft"],
             clue:"Careful and wise use of money",
@@ -2962,7 +3250,14 @@ const WORLDS = [
           { word:"ROOT", roots:["roo","t"],
             clue:"The part of a plant beneath the soil — and a word\'s origin",
             hint:"The part of a plant that grows underground; the origin or source of something",
-            fact:"Old Norse \'rót\'. Fittingly for a game about etymology, even the word \'root\' — meaning both a plant\'s anchor and a word\'s origin — comes from Old Norse settlers. The game you\'re playing names itself in Viking vocabulary." },
+            fact:"Old Norse \'rót\'. Fittingly for a game about etymology, even the word \'root\' — meaning both a plant\'s anchor and a word\'s origin — comes from Old Norse settlers. The game you\'re playing names itself in Viking vocabulary." }
+        ],
+      },
+      {
+        chunks: ["sk","ill","ke","g"],
+        traps: [],
+        clue: "Skill and Keg",
+        words: [
           { word:"SKILL", roots:["sk","ill"],
             clue:"Trained ability and craft",
             hint:"The ability to do something well, gained through training or experience",
@@ -2974,9 +3269,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["bu","ll","craw","l","scra","tch","rug","ged","dir","t"],
+        chunks: ["bu","ll","craw","l","scra","tch"],
         traps: [],
-        clue: "Norse animals and farm life",
+        clue: "Bull, Crawl, and Scratch",
         words: [
           { word:"BULL", roots:["bu","ll"],
             clue:"The male of cattle",
@@ -2989,7 +3284,14 @@ const WORLDS = [
           { word:"SCRATCH", roots:["scra","tch"],
             clue:"To mark or rub with claws or nails",
             hint:"To mark or wound the surface of something with a sharp object",
-            fact:"Likely blended from Old Norse and Middle English roots related to scraping. The sound of the word itself mimics the action — a small piece of linguistic onomatopoeia inherited from Norse contact." },
+            fact:"Likely blended from Old Norse and Middle English roots related to scraping. The sound of the word itself mimics the action — a small piece of linguistic onomatopoeia inherited from Norse contact." }
+        ],
+      },
+      {
+        chunks: ["rug","ged","dir","t"],
+        traps: [],
+        clue: "Rugged and Dirt",
+        words: [
           { word:"RUGGED", roots:["rug","ged"],
             clue:"Rough and sturdy",
             hint:"Having a rough or uneven surface; strongly built",
@@ -3001,9 +3303,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["doo","m","wei","rd","like","ly","hap","pen","py"],
+        chunks: ["doo","m","wei","rd","like","ly"],
         traps: [],
-        clue: "Fate, doom, and the Norse worldview",
+        clue: "Doom, Weird, and Likely",
         words: [
           { word:"DOOM", roots:["doo","m"],
             clue:"Fate sealed and inescapable",
@@ -3016,7 +3318,14 @@ const WORLDS = [
           { word:"LIKELY", roots:["like","ly"],
             clue:"Probable — having the likeness of truth",
             hint:"Such as well might happen or be true; probable",
-            fact:"Old Norse \'líkligr\', from \'líkr\' (like, similar). Built from the same root that gives us \'like\' and \'alike\' — something likely simply resembles what is true closely enough to expect it." },
+            fact:"Old Norse \'líkligr\', from \'líkr\' (like, similar). Built from the same root that gives us \'like\' and \'alike\' — something likely simply resembles what is true closely enough to expect it." }
+        ],
+      },
+      {
+        chunks: ["hap","pen","py"],
+        traps: [],
+        clue: "Happen and Happy",
+        words: [
           { word:"HAPPEN", roots:["hap","pen"],
             clue:"To occur by chance",
             hint:"To take place; to occur, especially by chance",
@@ -3028,9 +3337,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["gi","ve","ge","t","hi","ri","d","spr","int"],
+        chunks: ["gi","ve","ge","t","hi"],
         traps: [],
-        clue: "Motion, exchange, and everyday contact",
+        clue: "Give, Get, and Hit",
         words: [
           { word:"GIVE", roots:["gi","ve"],
             clue:"To hand over freely",
@@ -3043,7 +3352,14 @@ const WORLDS = [
           { word:"HIT", roots:["hi","t"],
             clue:"To strike with force",
             hint:"To bring one\'s hand or a tool into contact with someone or something forcefully",
-            fact:"Old Norse \'hitta\' (to find, to meet, to hit upon). It originally meant simply \'to come upon\' or \'meet\' — the violent sense of striking developed later as the meaning narrowed toward physical contact." },
+            fact:"Old Norse \'hitta\' (to find, to meet, to hit upon). It originally meant simply \'to come upon\' or \'meet\' — the violent sense of striking developed later as the meaning narrowed toward physical contact." }
+        ],
+      },
+      {
+        chunks: ["ri","d","spr","int"],
+        traps: [],
+        clue: "Rid and Sprint",
+        words: [
           { word:"RID", roots:["ri","d"],
             clue:"To clear away or free from",
             hint:"To make someone or something free of an unwanted person or thing",
@@ -3055,9 +3371,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["fl","at","lo","w","o","dd","ti","ght","ki","d"],
+        chunks: ["fl","at","lo","w","o","dd"],
         traps: [],
-        clue: "Adjectives and small connecting words",
+        clue: "Flat, Low, and Odd",
         words: [
           { word:"FLAT", roots:["fl","at"],
             clue:"Level and smooth, without elevation",
@@ -3070,7 +3386,14 @@ const WORLDS = [
           { word:"ODD", roots:["o","dd"],
             clue:"Unusual — or not divisible by two",
             hint:"Strange or unusual; not divisible by two",
-            fact:"Old Norse \'oddi\' (point, triangle, odd number — literally \'the third point\' that makes a pair uneven). The mathematical and the \'strange\' senses share this single Norse root." },
+            fact:"Old Norse \'oddi\' (point, triangle, odd number — literally \'the third point\' that makes a pair uneven). The mathematical and the \'strange\' senses share this single Norse root." }
+        ],
+      },
+      {
+        chunks: ["ti","ght","ki","d"],
+        traps: [],
+        clue: "Tight and Kid",
+        words: [
           { word:"TIGHT", roots:["ti","ght"],
             clue:"Fixed firmly, allowing no movement",
             hint:"Fixed or fastened firmly; closely fitting",
@@ -3082,9 +3405,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["fj","ord","gey","ser","sa","ga","ru","ne","tro","ll"],
+        chunks: ["fj","ord","gey","ser","sa","ga"],
         traps: [],
-        clue: "Aurora, ice, and the landscape of the sagas",
+        clue: "Fjord, Geyser, and Saga",
         words: [
           { word:"FJORD", roots:["fj","ord"],
             clue:"A long, narrow sea inlet between cliffs",
@@ -3097,7 +3420,14 @@ const WORLDS = [
           { word:"SAGA", roots:["sa","ga"],
             clue:"A long heroic tale of Norse ancestors",
             hint:"A long story of heroic achievement; a medieval Icelandic prose narrative",
-            fact:"Old Norse \'saga\' (story, narrative), from \'segja\' (to say). The great Icelandic sagas — Njál\'s Saga, the Saga of the Volsungs — preserved Norse history and myth in writing. The word now means any long, dramatic story." },
+            fact:"Old Norse \'saga\' (story, narrative), from \'segja\' (to say). The great Icelandic sagas — Njál\'s Saga, the Saga of the Volsungs — preserved Norse history and myth in writing. The word now means any long, dramatic story." }
+        ],
+      },
+      {
+        chunks: ["ru","ne","tro","ll"],
+        traps: [],
+        clue: "Rune and Troll",
+        words: [
           { word:"RUNE", roots:["ru","ne"],
             clue:"A letter of the ancient Norse alphabet",
             hint:"A letter of an ancient Germanic alphabet, associated with magic",
@@ -3109,9 +3439,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ea","rl","thr","all","steers","man","kin","dred","sco","wl"],
+        chunks: ["ea","rl","thr","all","steers","man"],
         traps: [],
-        clue: "Earls, thralls, and Norse social rank",
+        clue: "Earl, Thrall, and Steersman",
         words: [
           { word:"EARL", roots:["ea","rl"],
             clue:"A Norse-influenced noble of high rank",
@@ -3124,7 +3454,14 @@ const WORLDS = [
           { word:"STEERSMAN", roots:["steers","man"],
             clue:"The one who guides the ship",
             hint:"A person who steers a ship or boat",
-            fact:"Old Norse \'stýrimaðr\' — \'stýra\' (to steer) + \'maðr\' (man). The steersman held the most trusted position on a Viking longship, responsible for the safety of the entire crew on dangerous open-sea crossings." },
+            fact:"Old Norse \'stýrimaðr\' — \'stýra\' (to steer) + \'maðr\' (man). The steersman held the most trusted position on a Viking longship, responsible for the safety of the entire crew on dangerous open-sea crossings." }
+        ],
+      },
+      {
+        chunks: ["kin","dred","sco","wl"],
+        traps: [],
+        clue: "Kindred and Scowl",
+        words: [
           { word:"KINDRED", roots:["kin","dred"],
             clue:"Family and shared blood",
             hint:"One\'s family and relations; similar in kind",
@@ -3203,9 +3540,9 @@ const WORLDS = [
     ],
     levels: [
       {
-        chunks: ["sham","poo","pa","ja","ma","cash","mere","ca","li","co","chin","tz"],
+        chunks: ["sham","poo","pa","ja","ma","cash","mere"],
         traps: [],
-        clue: "Fabric and grooming — the textile trade with South Asia",
+        clue: "Shampoo, Pajama, and Cashmere",
         words: [
           { word:"SHAMPOO", roots:["sham","poo"],
             clue:"To knead and massage the scalp",
@@ -3218,7 +3555,14 @@ const WORLDS = [
           { word:"CASHMERE", roots:["cash","mere"],
             clue:"The fine soft wool of the Kashmir goat",
             hint:"Fine soft wool, originally from the Kashmir goat",
-            fact:"Named for the Kashmir region of South Asia, where the soft undercoat of mountain goats was woven into legendary shawls. British traders prized Kashmiri shawls so highly the place-name itself became the word for the fabric." },
+            fact:"Named for the Kashmir region of South Asia, where the soft undercoat of mountain goats was woven into legendary shawls. British traders prized Kashmiri shawls so highly the place-name itself became the word for the fabric." }
+        ],
+      },
+      {
+        chunks: ["ca","li","co","chin","tz"],
+        traps: [],
+        clue: "Calico and Chintz",
+        words: [
           { word:"CALICO", roots:["ca","li","co"],
             clue:"Plain cotton cloth, named for an Indian port",
             hint:"A type of plain-woven cotton fabric",
@@ -3230,9 +3574,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["bun","ga","low","ve","ran","da","pun","dit","doo","lal","ly","dun","rees"],
+        chunks: ["bun","ga","low","ve","ran","da","pun","dit"],
         traps: [],
-        clue: "Architecture and dwelling in colonial India",
+        clue: "Bungalow, Veranda, and Pundit",
         words: [
           { word:"BUNGALOW", roots:["bun","ga","low"],
             clue:"A house in the Bengali style",
@@ -3245,7 +3589,14 @@ const WORLDS = [
           { word:"PUNDIT", roots:["pun","dit"],
             clue:"A learned scholar or expert",
             hint:"A person who is an expert in a particular subject, or who frequently expresses opinions",
-            fact:"Hindi/Sanskrit \'paṇḍit\' (a learned man, a scholar of Sanskrit texts). The British colonial administration employed Indian pundits as legal and religious advisors — the word\'s modern, often sarcastic, media sense (\'TV pundit\') is a long way from its original meaning of genuine deep scholarship." },
+            fact:"Hindi/Sanskrit \'paṇḍit\' (a learned man, a scholar of Sanskrit texts). The British colonial administration employed Indian pundits as legal and religious advisors — the word\'s modern, often sarcastic, media sense (\'TV pundit\') is a long way from its original meaning of genuine deep scholarship." }
+        ],
+      },
+      {
+        chunks: ["doo","lal","ly","dun","ga","rees"],
+        traps: [],
+        clue: "Doolally and Dungarees",
+        words: [
           { word:"DOOLALLY", roots:["doo","lal","ly"],
             clue:"Mentally unstable — from a garrison town\'s name",
             hint:"Informal British slang for crazy or eccentric behaviour",
@@ -3257,9 +3608,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cur","ry","chut","ney","pun","ch","mul","li","ga","taw","ny","ked","ge","ree"],
+        chunks: ["cur","ry","chut","ney","pun","ch"],
         traps: [],
-        clue: "Curry, chutney, and the colonial kitchen",
+        clue: "Curry, Chutney, and Punch",
         words: [
           { word:"CURRY", roots:["cur","ry"],
             clue:"A spiced dish in a sauce",
@@ -3272,7 +3623,14 @@ const WORLDS = [
           { word:"PUNCH", roots:["pun","ch"],
             clue:"A drink mixed from several ingredients",
             hint:"A drink made from a mixture of wine or spirits, fruit juice, and spices",
-            fact:"Hindi \'pā̃c\' (five), from Sanskrit \'pañca\'. The original drink contained exactly five ingredients — spirit, water, lemon, sugar, and spice. British sailors brought the recipe and the name home from India in the 17th century." },
+            fact:"Hindi \'pā̃c\' (five), from Sanskrit \'pañca\'. The original drink contained exactly five ingredients — spirit, water, lemon, sugar, and spice. British sailors brought the recipe and the name home from India in the 17th century." }
+        ],
+      },
+      {
+        chunks: ["mul","li","ga","taw","ny","ked","ge","ree"],
+        traps: [],
+        clue: "Mulligatawny and Kedgeree",
+        words: [
           { word:"MULLIGATAWNY", roots:["mul","li","ga","taw","ny"],
             clue:"A spiced soup of British-Indian invention",
             hint:"A spicy soup of Indian origin, typically containing meat and curry powder",
@@ -3284,9 +3642,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["jun","gle","chee","tah","mon","goose","ban","da","na","ty","coon"],
+        chunks: ["jun","gle","chee","tah","mon","goose"],
         traps: [],
-        clue: "Wildlife and the jungle",
+        clue: "Jungle, Cheetah, and Mongoose",
         words: [
           { word:"JUNGLE", roots:["jun","gle"],
             clue:"Dense, tangled tropical forest",
@@ -3299,7 +3657,14 @@ const WORLDS = [
           { word:"MONGOOSE", roots:["mon","goose"],
             clue:"A small predatory mammal famed for fighting snakes",
             hint:"A small carnivorous mammal noted for its ability to kill venomous snakes",
-            fact:"Marathi/Telugu \'mangūs\'. Famous from Kipling\'s story of Rikki-Tikki-Tavi, the mongoose\'s snake-fighting reputation made it one of the most celebrated animals British colonists encountered in India." },
+            fact:"Marathi/Telugu \'mangūs\'. Famous from Kipling\'s story of Rikki-Tikki-Tavi, the mongoose\'s snake-fighting reputation made it one of the most celebrated animals British colonists encountered in India." }
+        ],
+      },
+      {
+        chunks: ["ban","da","na","ty","coon"],
+        traps: [],
+        clue: "Bandana and Tycoon",
+        words: [
           { word:"BANDANA", roots:["ban","da","na"],
             clue:"A patterned cloth tied around the head or neck",
             hint:"A large patterned handkerchief, typically worn tied around the head or neck",
@@ -3311,9 +3676,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mon","soon","ty","phoon","loo","t","th","ug","a","va","tar"],
+        chunks: ["mon","soon","ty","phoon","loo","t"],
         traps: [],
-        clue: "Climate, the monsoon, and stolen goods",
+        clue: "Monsoon, Typhoon, and Loot",
         words: [
           { word:"MONSOON", roots:["mon","soon"],
             clue:"The seasonal wind bringing heavy rain",
@@ -3326,7 +3691,14 @@ const WORLDS = [
           { word:"LOOT", roots:["loo","t"],
             clue:"Goods seized by force; to plunder",
             hint:"Goods taken illegally, especially after a battle; to steal goods",
-            fact:"Hindi \'lūṭ\' (plunder, stolen goods). British soldiers and administrators in India encountered the word during military campaigns and adopted it wholesale — \'loot\' entered English with essentially no change in either sound or meaning." },
+            fact:"Hindi \'lūṭ\' (plunder, stolen goods). British soldiers and administrators in India encountered the word during military campaigns and adopted it wholesale — \'loot\' entered English with essentially no change in either sound or meaning." }
+        ],
+      },
+      {
+        chunks: ["th","ug","a","va","tar"],
+        traps: [],
+        clue: "Thug and Avatar",
+        words: [
           { word:"THUG", roots:["th","ug"],
             clue:"A violent criminal",
             hint:"A violent criminal, especially one who commits crimes of violence",
@@ -3338,9 +3710,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ca","ste","gu","ru","kar","ma","man","tra","yo","ga"],
+        chunks: ["ca","ste","gu","ru","kar","ma"],
         traps: [],
-        clue: "Social structure and spiritual teachers",
+        clue: "Caste, Guru, and Karma",
         words: [
           { word:"CASTE", roots:["ca","ste"],
             clue:"A hereditary social class",
@@ -3353,7 +3725,14 @@ const WORLDS = [
           { word:"KARMA", roots:["kar","ma"],
             clue:"The cosmic law of cause and effect through one\'s actions",
             hint:"The sum of a person\'s actions, determining their fate in future existences",
-            fact:"Sanskrit \'karma\' (action, deed, fate), from the root \'kṛ\' (to do). A foundational concept in Hindu and Buddhist philosophy, absorbed into English in a much simplified form — closer to casual cosmic justice than the precise theological doctrine it describes in Sanskrit texts." },
+            fact:"Sanskrit \'karma\' (action, deed, fate), from the root \'kṛ\' (to do). A foundational concept in Hindu and Buddhist philosophy, absorbed into English in a much simplified form — closer to casual cosmic justice than the precise theological doctrine it describes in Sanskrit texts." }
+        ],
+      },
+      {
+        chunks: ["man","tra","yo","ga"],
+        traps: [],
+        clue: "Mantra and Yoga",
+        words: [
           { word:"MANTRA", roots:["man","tra"],
             clue:"A sacred sound or phrase repeated in meditation",
             hint:"A word or sound repeated to aid concentration in meditation; a frequently repeated statement",
@@ -3365,9 +3744,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["lac","quer","ban","yan","jug","ger","naut","puk","ka","la","kh"],
+        chunks: ["lac","quer","ban","yan","jug","ger","naut"],
         traps: [],
-        clue: "Lacquer, traders, and an unstoppable force",
+        clue: "Lacquer, Banyan, and Juggernaut",
         words: [
           { word:"LACQUER", roots:["lac","quer"],
             clue:"A glossy protective coating",
@@ -3380,7 +3759,14 @@ const WORLDS = [
           { word:"JUGGERNAUT", roots:["jug","ger","naut"],
             clue:"An unstoppable, overwhelming force",
             hint:"A huge, powerful force or institution that crushes everything in its path",
-            fact:"Sanskrit \'Jagannātha\' (lord of the world), a form of Vishnu. British witnesses to the annual temple cart procession in Puri, Odisha — a massive wheeled vehicle pulled by devotees — coined this dramatic English word from the deity\'s name, sometimes erroneously believing devotees threw themselves beneath the wheels." },
+            fact:"Sanskrit \'Jagannātha\' (lord of the world), a form of Vishnu. British witnesses to the annual temple cart procession in Puri, Odisha — a massive wheeled vehicle pulled by devotees — coined this dramatic English word from the deity\'s name, sometimes erroneously believing devotees threw themselves beneath the wheels." }
+        ],
+      },
+      {
+        chunks: ["puk","ka","la","kh"],
+        traps: [],
+        clue: "Pukka and Lakh",
+        words: [
           { word:"PUKKA", roots:["puk","ka"],
             clue:"Genuine, first-class, properly done",
             hint:"Genuine; of excellent quality; properly done",
@@ -3392,9 +3778,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cro","re","ru","pee","seer","suc","ker","ging","ham","nir","va","na"],
+        chunks: ["cro","re","ru","pee","seer","suc","ker"],
         traps: [],
-        clue: "Numbers, measures, and the rupee",
+        clue: "Crore, Rupee, and Seersucker",
         words: [
           { word:"CRORE", roots:["cro","re"],
             clue:"Ten million",
@@ -3407,7 +3793,14 @@ const WORLDS = [
           { word:"SEERSUCKER", roots:["seer","suc","ker"],
             clue:"A thin puckered cotton fabric",
             hint:"A light, thin fabric with a puckered surface, typically striped",
-            fact:"Persian \'shīr o shakar\' — literally \'milk and sugar\', describing the fabric\'s alternating smooth and bumpy texture, like the contrast between the two substances. Reached English through British trade contact in colonial India." },
+            fact:"Persian \'shīr o shakar\' — literally \'milk and sugar\', describing the fabric\'s alternating smooth and bumpy texture, like the contrast between the two substances. Reached English through British trade contact in colonial India." }
+        ],
+      },
+      {
+        chunks: ["ging","ham","nir","va","na"],
+        traps: [],
+        clue: "Gingham and Nirvana",
+        words: [
           { word:"GINGHAM", roots:["ging","ham"],
             clue:"A lightweight checked or striped cotton cloth",
             hint:"A lightweight plain-woven cotton or cotton-blend fabric, typically in checks or stripes",
@@ -3419,9 +3812,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["man","da","la","chak","ra","co","t","sha","ck","din","ghy"],
+        chunks: ["man","da","la","chak","ra","co","t"],
         traps: [],
-        clue: "Nirvana, mandala, and the wheel of energy",
+        clue: "Mandala, Chakra, and Cot",
         words: [
           { word:"MANDALA", roots:["man","da","la"],
             clue:"A symbolic circular diagram used in meditation",
@@ -3434,7 +3827,14 @@ const WORLDS = [
           { word:"COT", roots:["co","t"],
             clue:"A small bed, often for a child",
             hint:"A small bed with high sides, for a baby or young child",
-            fact:"Hindi \'khāṭ\' (bedstead, couch). British colonists adopted the simple Indian rope-strung bed frame, and the word travelled back to England to describe any small portable bed, eventually narrowing specifically to children\'s beds." },
+            fact:"Hindi \'khāṭ\' (bedstead, couch). British colonists adopted the simple Indian rope-strung bed frame, and the word travelled back to England to describe any small portable bed, eventually narrowing specifically to children\'s beds." }
+        ],
+      },
+      {
+        chunks: ["sha","ck","din","ghy"],
+        traps: [],
+        clue: "Shack and Dinghy",
+        words: [
           { word:"SHACK", roots:["sha","ck"],
             clue:"A roughly built hut or cabin",
             hint:"A small, roughly built hut or cabin",
@@ -3446,9 +3846,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["hi","ma","la","ya","kha","ki","ha","ra","ja","swa","mi"],
+        chunks: ["hi","ma","la","ya","kha","ki","ha","ra","ja"],
         traps: [],
-        clue: "Everyday objects of the colonial household",
+        clue: "Himalaya, Khaki, and Maharaja",
         words: [
           { word:"HIMALAYA", roots:["hi","ma","la","ya"],
             clue:"The abode of snow — the great mountain range",
@@ -3461,7 +3861,14 @@ const WORLDS = [
           { word:"MAHARAJA", roots:["ma","ha","ra","ja"],
             clue:"A great king or ruling prince",
             hint:"A title for an Indian prince or ruler, especially one ruling a major state",
-            fact:"Sanskrit \'mahārāja\' — \'mahā\' (great) + \'rāja\' (king). British colonial administrators worked alongside hundreds of Indian princely states, each ruled by a maharaja who retained internal authority under the broader umbrella of British imperial control." },
+            fact:"Sanskrit \'mahārāja\' — \'mahā\' (great) + \'rāja\' (king). British colonial administrators worked alongside hundreds of Indian princely states, each ruled by a maharaja who retained internal authority under the broader umbrella of British imperial control." }
+        ],
+      },
+      {
+        chunks: ["ra","ja","swa","mi"],
+        traps: [],
+        clue: "Raja and Swami",
+        words: [
           { word:"RAJA", roots:["ra","ja"],
             clue:"An Indian king or prince",
             hint:"An Indian king or prince",
@@ -3473,9 +3880,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ash","ram","dhar","ma","sa","ri","tur","ban","cum","mer","bund"],
+        chunks: ["ash","ram","dhar","ma","sa","ri"],
         traps: [],
-        clue: "The Himalayas and dust-coloured cloth",
+        clue: "Ashram, Dharma, and Sari",
         words: [
           { word:"ASHRAM", roots:["ash","ram"],
             clue:"A spiritual retreat or hermitage",
@@ -3488,7 +3895,14 @@ const WORLDS = [
           { word:"SARI", roots:["sa","ri"],
             clue:"A draped garment worn by South Asian women",
             hint:"A garment consisting of a length of cotton or silk wrapped around the body",
-            fact:"Sanskrit \'śāṭī\' (strip of cloth). One of the oldest continuously worn garments in human history, the sari\'s name entered English largely unchanged as British colonists and travellers described the elegant draped clothing they saw across India." },
+            fact:"Sanskrit \'śāṭī\' (strip of cloth). One of the oldest continuously worn garments in human history, the sari\'s name entered English largely unchanged as British colonists and travellers described the elegant draped clothing they saw across India." }
+        ],
+      },
+      {
+        chunks: ["tur","ban","cum","mer","bund"],
+        traps: [],
+        clue: "Turban and Cummerbund",
+        words: [
           { word:"TURBAN", roots:["tur","ban"],
             clue:"A headdress formed by wrapping cloth around the head",
             hint:"A headdress worn by men in some South Asian and Middle Eastern cultures, formed by wrapping cloth",
@@ -3500,9 +3914,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["jodh","purs","ba","zaar","che","root","ca","ta","ma","ran","con","gee"],
+        chunks: ["jodh","purs","ba","zaar","che","root"],
         traps: [],
-        clue: "Princes, ascetics, and sacred duty",
+        clue: "Jodhpurs, Bazaar, and Cheroot",
         words: [
           { word:"JODHPURS", roots:["jodh","purs"],
             clue:"Riding trousers fitted at the calf",
@@ -3515,7 +3929,14 @@ const WORLDS = [
           { word:"CHEROOT", roots:["che","root"],
             clue:"A cigar with both ends cut flat",
             hint:"A cigar with both ends cut flat rather than tapered",
-            fact:"Tamil \'curuṭṭu\' (rolled up). British colonists in southern India adopted the local cigar-rolling tradition along with its name — distinct from the Spanish-derived \'cigar\' used elsewhere in English." },
+            fact:"Tamil \'curuṭṭu\' (rolled up). British colonists in southern India adopted the local cigar-rolling tradition along with its name — distinct from the Spanish-derived \'cigar\' used elsewhere in English." }
+        ],
+      },
+      {
+        chunks: ["ca","ta","ma","ran","con","gee"],
+        traps: [],
+        clue: "Catamaran and Congee",
+        words: [
           { word:"CATAMARAN", roots:["ca","ta","ma","ran"],
             clue:"A boat with twin parallel hulls",
             hint:"A boat with two parallel hulls",
@@ -3527,9 +3948,9 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pa","ri","ah","tod","dy","ban","di","coot","gun","ny","ju","te"],
+        chunks: ["pa","ri","ah","tod","dy","ban","di","coot"],
         traps: [],
-        clue: "Sari, turban, and South Asian dress",
+        clue: "Pariah, Toddy, and Bandicoot",
         words: [
           { word:"PARIAH", roots:["pa","ri","ah"],
             clue:"An outcast, excluded from society",
@@ -3542,7 +3963,14 @@ const WORLDS = [
           { word:"BANDICOOT", roots:["ban","di","coot"],
             clue:"A large rat-like marsupial or rodent",
             hint:"A large Australian marsupial, or a large Indian rodent resembling a rat",
-            fact:"Telugu \'pandi-kokku\' — \'pandi\' (pig) + \'kokku\' (rat), literally \'pig-rat\'. British naturalists cataloguing Indian wildlife adopted the vivid local name, and it later transferred to an unrelated Australian marsupial that reminded settlers of the original animal." },
+            fact:"Telugu \'pandi-kokku\' — \'pandi\' (pig) + \'kokku\' (rat), literally \'pig-rat\'. British naturalists cataloguing Indian wildlife adopted the vivid local name, and it later transferred to an unrelated Australian marsupial that reminded settlers of the original animal." }
+        ],
+      },
+      {
+        chunks: ["gun","ny","ju","te"],
+        traps: [],
+        clue: "Gunny and Jute",
+        words: [
           { word:"GUNNY", roots:["gun","ny"],
             clue:"Coarse sacking material, or a sack made of it",
             hint:"A coarse heavy fabric, usually made of jute, used chiefly for sacks",
@@ -5121,15 +5549,15 @@ const SwipeDial = ({ chunks, completedRoots, accentColor, worldColor, onSwipeCom
   // ── Dynamic geometry: scale dial to fit 4–8 nodes without crowding ──────
   const nodeCount     = chunks.length;
   // Dial container stays fixed; radius and node size shrink as count grows
-  const DIAL_SIZE     = 435;
+  const DIAL_SIZE     = 413;
   const CENTER        = DIAL_SIZE / 2;
   // DIAL_R: 96px for 4 nodes → 88px for 8 nodes (linear interpolation)
-  const DIAL_R        = Math.round(161 - (nodeCount - 4) * 3.0);
+  const DIAL_R        = Math.round(153 - (nodeCount - 4) * 2.85);
   // Nodes shrink slightly: 54×38 at 4 nodes → 44×32 at 8 nodes
-  const NODE_W        = Math.max(72, Math.round(90 - (nodeCount - 4) * 3.8));
-  const NODE_H        = Math.max(53, Math.round(63 - (nodeCount - 4) * 2.3));
+  const NODE_W        = Math.max(68, Math.round(86 - (nodeCount - 4) * 3.6));
+  const NODE_H        = Math.max(50, Math.round(60 - (nodeCount - 4) * 2.2));
   // Hit radius also scales with node size
-  const HIT_THRESHOLD = Math.max(40, Math.round(51 - (nodeCount - 4) * 2.3));
+  const HIT_THRESHOLD = Math.max(38, Math.round(48 - (nodeCount - 4) * 2.2));
   // Stroke widths thin out at 6+ nodes to reduce visual clutter
   const STROKE_CORE   = nodeCount >= 6 ? 2   : 3;
   const STROKE_GLOW   = nodeCount >= 6 ? 10  : 14;
@@ -5369,7 +5797,7 @@ function EtymRoot() {
   const [activeMilestone, setActiveMilestone] = useState(null);  // milestone to show, or null
 
   // ── Quantum Leap state ────────────────────────────────────────────────────
-  const [leapTarget,  setLeapTarget]  = useState(() => 2 + Math.floor(Math.random()*3)); // 2-4
+  const [leapTarget,  setLeapTarget]  = useState(() => 4 + Math.floor(Math.random()*3)); // 2-4
   const [leapCount,   setLeapCount]   = useState(0);   // consecutive levels completed this run
   const [wormhole,    setWormhole]    = useState(false); // true while the transition plays
   const [wormholeTarget, setWormholeTarget] = useState(null); // the WORLDS entry being jumped to
@@ -5629,7 +6057,7 @@ function EtymRoot() {
       const nextWorld = pickRandomWorld(world.id);
       console.log("Leap target hit — next world:", nextWorld ? nextWorld.id : "NONE AVAILABLE");
       setLeapCount(0);
-      setLeapTarget(2 + Math.floor(Math.random()*3));
+      setLeapTarget(4 + Math.floor(Math.random()*3));
       if (nextWorld) {
         triggerWormhole(nextWorld);
       } else {
@@ -5642,7 +6070,7 @@ function EtymRoot() {
       const nextWorld = pickRandomWorld(world.id);
       console.log("World finished — next world:", nextWorld ? nextWorld.id : "NONE AVAILABLE, showing worldComplete");
       setLeapCount(0);
-      setLeapTarget(2 + Math.floor(Math.random()*3));
+      setLeapTarget(4 + Math.floor(Math.random()*3));
       if (nextWorld) {
         triggerWormhole(nextWorld);
       } else {
@@ -5678,7 +6106,7 @@ function EtymRoot() {
     setLevelIdx(lIdx);
     // A fresh manual selection from the menu starts a new leap run
     setLeapCount(0);
-    setLeapTarget(2 + Math.floor(Math.random()*3));
+    setLeapTarget(4 + Math.floor(Math.random()*3));
     // Deliberate selection from the home menu ALWAYS shows the title screen,
     // regardless of whether it has been seen before via a wormhole leap.
     const selectedWorld = WORLDS[wIdx];
