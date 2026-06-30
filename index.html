@@ -5367,6 +5367,11 @@ function EtymRoot() {
   const [timerActive,     setTimerActive]     = useState(false);
   const [chunks,          setChunks]          = useState([]);
   const [activeMilestone, setActiveMilestone] = useState(null);  // milestone to show, or null
+
+  // ── Quantum Leap state ────────────────────────────────────────────────────
+  const [leapTarget,  setLeapTarget]  = useState(() => 2 + Math.floor(Math.random()*3)); // 2-4
+  const [leapCount,   setLeapCount]   = useState(0);   // consecutive levels completed this run
+  const [wormhole,    setWormhole]    = useState(false); // true while the transition plays
   const timerRef = useRef(null);
 
   const world = WORLDS[worldIdx];
@@ -5520,19 +5525,87 @@ function EtymRoot() {
     setSyllableHints(prev => new Set([...prev, wordStr]));
   }, [goldLeaves]);
 
+  // ── Wormhole transition: jump to a new world after the leap target is hit ──
+  const triggerWormhole = (nextWorld) => {
+    setWormhole(true);
+    // Placeholder timing — full swirl visual + audio crossfade added next pass
+    setTimeout(() => {
+      const nextIdx = WORLDS.findIndex(w => w.id === nextWorld.id);
+      setWorldIdx(nextIdx);
+      setLevelIdx(0);
+      setWormhole(false);
+      const hasIntro = !!(nextWorld.intro || nextWorld.historicalSummary);
+      setScreen(hasIntro ? "worldIntro" : "game");
+    }, 2400);
+  };
+
   const handleNext = () => {
     const isLast = levelIdx >= world.levels.length - 1;
+
+    // Mark world fully complete regardless of leap state
     if (isLast) {
       setCompletedWorlds(prev => prev.includes(world.id) ? prev : [...prev, world.id]);
-      setScreen("worldComplete");
-    } else {
-      setLevelIdx(prev => prev + 1);
     }
+
+    const newLeapCount = leapCount + 1;
+
+    // ── Quantum Leap check: have we hit the random target for this run? ─────
+    if (newLeapCount >= leapTarget && !isLast) {
+      // Trigger the wormhole — jump to a different incomplete world
+      const nextWorld = pickRandomWorld(world.id);
+      setLeapCount(0);
+      setLeapTarget(2 + Math.floor(Math.random()*3));
+      if (nextWorld) {
+        triggerWormhole(nextWorld);
+      } else {
+        // No other worlds left to jump to — just continue this one normally
+        setLevelIdx(prev => prev + 1);
+      }
+      return;
+    }
+
+    if (isLast) {
+      // World finished — if there's still another incomplete world, leap there;
+      // otherwise show the normal world-complete screen
+      const nextWorld = pickRandomWorld(world.id);
+      setLeapCount(0);
+      setLeapTarget(2 + Math.floor(Math.random()*3));
+      if (nextWorld) {
+        triggerWormhole(nextWorld);
+      } else {
+        setScreen("worldComplete");
+      }
+      return;
+    }
+
+    // Normal case — no leap yet, just advance to the next level in this world
+    setLeapCount(newLeapCount);
+    setLevelIdx(prev => prev + 1);
+  };
+
+  // Progress helper: how many words solved vs total for any world
+  const worldProgress = (w) => {
+    const total = w.levels.reduce((sum, lvl) => sum + lvl.words.length, 0);
+    const solved = (unlockedWords[w.id] || []).length;
+    return { solved, total };
+  };
+
+  // Pick a random incomplete world (excludes the one currently being played, if possible)
+  const pickRandomWorld = (excludeId) => {
+    const candidates = WORLDS.filter(w => !completedWorlds.includes(w.id) && w.id !== excludeId);
+    const pool = candidates.length > 0
+      ? candidates
+      : WORLDS.filter(w => !completedWorlds.includes(w.id)); // fall back if only current world left
+    if (pool.length === 0) return null; // all worlds mastered
+    return pool[Math.floor(Math.random() * pool.length)];
   };
 
   const startGame = (wIdx = 0, lIdx = 0) => {
     setWorldIdx(wIdx);
     setLevelIdx(lIdx);
+    // A fresh manual selection from the menu starts a new leap run
+    setLeapCount(0);
+    setLeapTarget(2 + Math.floor(Math.random()*3));
     // Show intro screen only if the world has intro data and it's a fresh start (lIdx===0)
     const hasIntro = !!(WORLDS[wIdx]?.intro || WORLDS[wIdx]?.historicalSummary);
     setScreen(hasIntro && lIdx === 0 ? "worldIntro" : "game");
@@ -5554,6 +5627,22 @@ function EtymRoot() {
           setShowFact(true);
         }}
       />
+    );
+  }
+
+  if (wormhole) {
+    return (
+      <div style={{
+        position:"fixed", inset:0, zIndex:200,
+        background:"radial-gradient(circle,#1a0a3e 0%,#000 100%)",
+        display:"flex", alignItems:"center", justifyContent:"center",
+        flexDirection:"column",
+      }}>
+        <div style={{fontSize:"48px",marginBottom:"16px"}}>🌀</div>
+        <div style={{color:"#a78bfa",fontSize:"14px",letterSpacing:"3px",fontFamily:"Georgia,serif"}}>
+          QUANTUM LEAP
+        </div>
+      </div>
     );
   }
 
@@ -5643,11 +5732,19 @@ function EtymRoot() {
           {WORLDS.map((w,i)=>{
             const done=completedWorlds.includes(w.id);
             const unlocked=true;
+            const {solved,total}=worldProgress(w);
+            const pct=total>0?Math.round((solved/total)*100):0;
             return <button key={w.id} onClick={()=>unlocked&&startGame(i,0)} style={{background:done?`${w.color}22`:unlocked?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${done?w.color+"60":unlocked?"rgba(255,255,255,0.12)":"rgba(255,255,255,0.04)"}`,borderRadius:"16px",padding:"16px 18px",cursor:unlocked?"pointer":"default",display:"flex",alignItems:"center",gap:"14px",width:"100%",textAlign:"left"}}>
               <div style={{width:"44px",height:"44px",borderRadius:"12px",background:`${w.color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"22px",flexShrink:0}}>{unlocked?w.emoji:"🔒"}</div>
               <div style={{flex:1}}>
-                <div style={{color:unlocked?"#fff":"#444",fontSize:"14px",fontWeight:"700",marginBottom:"2px"}}>{w.name}</div>
-                <div style={{color:unlocked?"rgba(255,255,255,0.4)":"#333",fontSize:"11px"}}>{done?`✓ Complete · ${(unlockedWords[w.id]||[]).length} words`:unlocked?`${w.levels.length} levels`:"Complete previous world"}</div>
+                <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"4px"}}>
+                  <div style={{color:unlocked?"#fff":"#444",fontSize:"14px",fontWeight:"700"}}>{w.name}</div>
+                  {done&&<span style={{color:w.color,fontSize:"9px",fontWeight:"800",letterSpacing:"0.5px",background:`${w.color}30`,border:`1px solid ${w.color}60`,borderRadius:"6px",padding:"2px 6px"}}>MASTERED</span>}
+                </div>
+                <div style={{color:unlocked?"rgba(255,255,255,0.4)":"#333",fontSize:"11px",marginBottom:"6px"}}>{solved}/{total} Solved</div>
+                <div style={{width:"100%",height:"5px",borderRadius:"3px",background:"rgba(255,255,255,0.08)",overflow:"hidden"}}>
+                  <div style={{width:`${pct}%`,height:"100%",background:done?w.color:`${w.color}aa`,borderRadius:"3px",transition:"width 0.4s ease"}}/>
+                </div>
               </div>
               {done&&<span style={{color:w.color,fontSize:"18px"}}>✓</span>}
             </button>;
