@@ -5848,24 +5848,49 @@ function EtymRoot() {
     return arr;
   }, []);
 
+  // ── Audio crossfade helper: smoothly ramp an <audio> element's volume ──────
+  const fadeAudio = (el, toVolume, durationMs, onComplete) => {
+    if (!el) { if (onComplete) onComplete(); return; }
+    const fromVolume = el.volume;
+    const steps = 24;
+    const stepMs = durationMs / steps;
+    let i = 0;
+    const tick = () => {
+      i++;
+      const t = i / steps;
+      // Ease in the direction we're heading (exponential-feeling curve)
+      const eased = fromVolume + (toVolume - fromVolume) * (1 - Math.pow(1 - t, 2));
+      el.volume = Math.max(0, Math.min(1, eased));
+      if (i < steps) {
+        setTimeout(tick, stepMs);
+      } else {
+        el.volume = toVolume;
+        if (toVolume === 0) el.pause();
+        if (onComplete) onComplete();
+      }
+    };
+    tick();
+  };
+
   useEffect(() => {
     if (level) {
       setChunks(buildChunks(level, world?.hasFog ?? false));
       setSolvedWords(new Set());
       setPreviewSlots([]);
 
-      // ── Game background music: switch track when world changes ───────────
+      // ── Game background music: switch track when world changes, with a fade ──
       const desiredEl = world?.id ? document.getElementById("game-audio-" + world.id) : null;
       if (gameAudioRef.current !== desiredEl) {
-        // Stop the previous world's track
-        if (gameAudioRef.current) {
-          gameAudioRef.current.pause();
-          gameAudioRef.current.currentTime = 0;
-        }
+        const previousEl = gameAudioRef.current;
         gameAudioRef.current = desiredEl;
         if (desiredEl) {
-          desiredEl.volume = 0.22;
+          desiredEl.volume = 0;
           desiredEl.play().catch((e) => console.warn("game audio:", world.id, e.message));
+          fadeAudio(desiredEl, 0.22, 700);
+        }
+        // Fade out and stop the previous world's track rather than cutting it
+        if (previousEl && previousEl !== desiredEl) {
+          fadeAudio(previousEl, 0, 500);
         }
       }
       setShowFact(false);
@@ -5956,29 +5981,6 @@ function EtymRoot() {
   }, [goldLeaves]);
 
   // ── Wormhole transition: jump to a new world after the leap target is hit ──
-  // ── Audio crossfade helper: smoothly ramp an <audio> element's volume ──────
-  const fadeAudio = (el, toVolume, durationMs, onComplete) => {
-    if (!el) { if (onComplete) onComplete(); return; }
-    const fromVolume = el.volume;
-    const steps = 24;
-    const stepMs = durationMs / steps;
-    let i = 0;
-    const tick = () => {
-      i++;
-      const t = i / steps;
-      // Ease in the direction we're heading (exponential-feeling curve)
-      const eased = fromVolume + (toVolume - fromVolume) * (1 - Math.pow(1 - t, 2));
-      el.volume = Math.max(0, Math.min(1, eased));
-      if (i < steps) {
-        setTimeout(tick, stepMs);
-      } else {
-        el.volume = toVolume;
-        if (toVolume === 0) el.pause();
-        if (onComplete) onComplete();
-      }
-    };
-    tick();
-  };
 
   // ── Quantum Leap transition: Linguistic Horizon Collapse & Glyph Drift ─────
   // Phase 1 (0.8s): container collapses to a line, blur builds, music fades out
