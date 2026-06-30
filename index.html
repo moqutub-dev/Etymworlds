@@ -2800,7 +2800,7 @@ const WorldIntroScreen = ({ world, onBegin, onBack }) => {
 
         {/* Historical summary */}
         <div style={{
-          color: "rgba(255,255,255,0.90)", fontSize: "14px",
+          color: "rgba(255,255,255,0.90)", fontSize: "21px",
           lineHeight: "1.75", marginBottom: "24px",
           textAlign: "left",
         }}>
@@ -2826,7 +2826,7 @@ const WorldIntroScreen = ({ world, onBegin, onBack }) => {
                 flexShrink: 0, marginTop: "1px",
               }}>✦</span>
               <span style={{
-                color: "rgba(255,255,255,0.82)", fontSize: "13px",
+                color: "rgba(255,255,255,0.82)", fontSize: "19.5px",
                 lineHeight: "1.6",
               }}>{fact}</span>
             </div>
@@ -3678,7 +3678,7 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
           </div>
           <div style={{
             color: "rgba(255,255,255,0.82)",
-            fontSize: "13px", lineHeight: "1.65",
+            fontSize: "19.5px", lineHeight: "1.65",
           }}>
             {milestone.trivia}
           </div>
@@ -3861,7 +3861,7 @@ const WordChipPopover = ({ word, worldColor, accentColor, goldLeaves, defReveale
         <div style={{
           background:"rgba(255,255,255,0.04)", border:`1px solid ${accentColor}25`,
           borderRadius:"10px", padding:"10px 14px", marginBottom:"12px",
-          color:"rgba(255,255,255,0.65)", fontSize:"12px", fontStyle:"italic", lineHeight:1.6,
+          color:"rgba(255,255,255,0.65)", fontSize:"18px", fontStyle:"italic", lineHeight:1.6,
           textAlign:"center"
         }}>
           {word.clue}
@@ -4806,7 +4806,7 @@ function EtymRoot() {
         display:"flex",alignItems:"center",gap:"8px",flexShrink:0,
       }}>
         <span style={{fontSize:"13px"}}>🔍</span>
-        <div style={{flex:1,color:"rgba(255,255,255,0.65)",fontSize:"11px",lineHeight:1.4,fontStyle:"italic"}}>
+        <div style={{flex:1,color:"rgba(255,255,255,0.65)",fontSize:"16.5px",lineHeight:1.4,fontStyle:"italic"}}>
           {level?.clue}
         </div>
       </div>
@@ -4843,8 +4843,8 @@ function EtymRoot() {
           <div style={{flex:1,overflowY:"auto",display:"flex",flexDirection:"column",gap:"10px"}}>
             {pendingFacts.map((f,i) => (
               <div key={i}>
-                <div style={{color:"#fff",fontSize:"11px",fontWeight:"700",marginBottom:"3px",letterSpacing:"1px"}}>{f.word}</div>
-                <div style={{color:"rgba(255,255,255,0.75)",fontSize:"11px",lineHeight:1.6}}>{f.fact}</div>
+                <div style={{color:"#fff",fontSize:"16.5px",fontWeight:"700",marginBottom:"3px",letterSpacing:"1px"}}>{f.word}</div>
+                <div style={{color:"rgba(255,255,255,0.75)",fontSize:"16.5px",lineHeight:1.6}}>{f.fact}</div>
               </div>
             ))}
           </div>
