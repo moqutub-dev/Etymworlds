@@ -2731,10 +2731,10 @@ const WorldIntroScreen = ({ world, onBegin, onBack }) => {
       backgroundSize: "cover",
       backgroundPosition: "center center",
     }}>
-      {/* Dark gradient overlay for text readability — matches game screen treatment */}
+      {/* Dark gradient overlay for text readability — extra-strong for title screens */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.78) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.88) 100%)",
         pointerEvents: "none",
       }}/>
 
@@ -4204,15 +4204,15 @@ const SwipeDial = ({ chunks, completedRoots, accentColor, worldColor, onSwipeCom
   // ── Dynamic geometry: scale dial to fit 4–8 nodes without crowding ──────
   const nodeCount     = chunks.length;
   // Dial container stays fixed; radius and node size shrink as count grows
-  const DIAL_SIZE     = 329;
+  const DIAL_SIZE     = 378;
   const CENTER        = DIAL_SIZE / 2;
   // DIAL_R: 96px for 4 nodes → 88px for 8 nodes (linear interpolation)
-  const DIAL_R        = Math.round(122 - (nodeCount - 4) * 2.3);
+  const DIAL_R        = Math.round(140 - (nodeCount - 4) * 2.6);
   // Nodes shrink slightly: 54×38 at 4 nodes → 44×32 at 8 nodes
-  const NODE_W        = Math.max(55, Math.round(68 - (nodeCount - 4) * 2.9));
-  const NODE_H        = Math.max(40, Math.round(48 - (nodeCount - 4) * 1.7));
+  const NODE_W        = Math.max(63, Math.round(78 - (nodeCount - 4) * 3.3));
+  const NODE_H        = Math.max(46, Math.round(55 - (nodeCount - 4) * 2.0));
   // Hit radius also scales with node size
-  const HIT_THRESHOLD = Math.max(30, Math.round(38 - (nodeCount - 4) * 1.7));
+  const HIT_THRESHOLD = Math.max(35, Math.round(44 - (nodeCount - 4) * 2.0));
   // Stroke widths thin out at 6+ nodes to reduce visual clutter
   const STROKE_CORE   = nodeCount >= 6 ? 2   : 3;
   const STROKE_GLOW   = nodeCount >= 6 ? 10  : 14;
