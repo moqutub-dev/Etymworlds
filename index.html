@@ -5558,21 +5558,25 @@ function EtymRoot() {
   // Phase 2 (0.6s): horizon shimmers — ALL DOM/world swapping happens here, hidden
   // Phase 3 (1.0s): glyphs drift across the collapsed horizon, old→new colour
   // Phase 4 (0.8s): line bursts open, blur clears, new world's music fades in
+    // ── Quantum Leap transition: a single premium flash, not a sequence of effects ──
+  // Beat 1 (0.7s): the current scene dims and softens, music fades out
+  // Beat 2 (0.4s): one clean radial flash in the destination's colour — every
+  //                bit of world/level swapping happens at the instant of peak light
+  // Beat 3 (0.9s): the flash settles away as the new world's music fades in
   const triggerWormhole = (nextWorld) => {
     console.log("Quantum Leap → " + nextWorld.id);
     setWormholeTarget(nextWorld);
     setWormhole(true);
     setLeapPhase(1);
 
-    // Fade out whichever audio is currently playing (game track or intro track)
     const outgoingEl = gameAudioRef.current || document.getElementById("intro-audio-" + world.id);
-    fadeAudio(outgoingEl, 0, 750);
+    fadeAudio(outgoingEl, 0, 650);
 
-    // Phase 1 → Phase 2 (800ms)
+    // Beat 1 → Beat 2 (700ms)
     setTimeout(() => {
       setLeapPhase(2);
 
-      // ── All world/level swapping happens here, screen fully collapsed ──────
+      // ── All world/level swapping happens at the instant of the flash ───────
       const nextIdx = WORLDS.findIndex(w => w.id === nextWorld.id);
       setWorldIdx(nextIdx);
       setLevelIdx(0);
@@ -5586,32 +5590,27 @@ function EtymRoot() {
         setScreen("game");
       }
 
-      // Phase 2 → Phase 3 (600ms)
+      // Begin fading in the new world's music right as the flash peaks
+      const incomingEl = document.getElementById("intro-audio-" + nextWorld.id)
+                        || document.getElementById("game-audio-" + nextWorld.id);
+      if (incomingEl) {
+        incomingEl.volume = 0;
+        incomingEl.play().catch(() => {});
+        fadeAudio(incomingEl, 0.45, 900);
+      }
+
+      // Beat 2 → Beat 3 (400ms)
       setTimeout(() => {
         setLeapPhase(3);
 
-        // Phase 3 → Phase 4 (900ms)
+        // Beat 3 complete — fully clear the transition (900ms)
         setTimeout(() => {
-          setLeapPhase(4);
-
-          // Begin fading in the new world's music as the expansion starts
-          const incomingEl = document.getElementById("intro-audio-" + nextWorld.id)
-                            || document.getElementById("game-audio-" + nextWorld.id);
-          if (incomingEl) {
-            incomingEl.volume = 0;
-            incomingEl.play().catch(() => {});
-            fadeAudio(incomingEl, 0.45, 800);
-          }
-
-          // Phase 4 complete — fully clear the transition (800ms)
-          setTimeout(() => {
-            setWormhole(false);
-            setWormholeTarget(null);
-            setLeapPhase(0);
-          }, 700);
+          setWormhole(false);
+          setWormholeTarget(null);
+          setLeapPhase(0);
         }, 900);
-      }, 600);
-    }, 800);
+      }, 400);
+    }, 700);
   };
 
   const handleNext = () => {
@@ -5713,100 +5712,78 @@ function EtymRoot() {
 
   if (wormhole) {
     const dest = wormholeTarget;
-    const c1 = dest?.accentColor || "#9F7AEA";
-    const c2 = dest?.color || "#6B46C1";
-    const collapsed = leapPhase === 1 || leapPhase === 2 || leapPhase === 3;
-    const expanding = leapPhase === 4;
-    const showShimmer = leapPhase === 2 || leapPhase === 3;
-    const showGlyphs  = leapPhase === 3;
+    const flashColor = dest?.accentColor || "#fff";
+    const washColor  = dest?.color || "#6B46C1";
+    // Single continuous arc across the whole sequence, driven by leapPhase:
+    // 1 = darken + soften current scene (0.7s)
+    // 2 = the flash itself, peak brightness, DOM swap happens here (0.4s)
+    // 3 = warm colour wash settles in as new scene is revealed (0.9s)
+    const dimming   = leapPhase === 1;
+    const flashing  = leapPhase === 2;
+    const settling  = leapPhase === 3;
 
     return (
       <>
-        {/* The active game container collapses toward the horizontal axis */}
+        {/* The live game beneath dims and softens just before the flash */}
+        <div style={{
+          position:"fixed", inset:0, zIndex:198,
+          background:"#000",
+          opacity: dimming ? 0.92 : flashing ? 1 : settling ? 0 : 0,
+          transition: dimming
+            ? "opacity 0.7s cubic-bezier(0.4,0,1,1)"
+            : settling
+            ? "opacity 0.9s cubic-bezier(0.16,1,0.3,1)"
+            : "none",
+        }}/>
+
+        {/* The flash — one clean radial bloom of light in the destination's colour */}
         <div style={{
           position:"fixed", inset:0, zIndex:199,
-          transformOrigin:"center center",
-          transform: collapsed ? "scaleY(0.002)" : "scaleY(1)",
-          filter: collapsed ? "blur(18px)" : expanding ? "blur(0px)" : "blur(0px)",
-          transition: collapsed
-            ? "transform 0.8s cubic-bezier(0.7,0,0.84,0), filter 0.8s ease-in"
-            : "transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.8s ease-out",
-          background: world?.bgGradient || "#000",
+          background: `radial-gradient(circle at 50% 50%, #fff 0%, ${flashColor} 28%, ${washColor} 60%, #000 100%)`,
+          opacity: flashing ? 1 : settling ? 0 : 0,
+          transition: flashing
+            ? "opacity 0.18s ease-out"
+            : settling
+            ? "opacity 0.85s cubic-bezier(0.16,1,0.3,1)"
+            : "none",
+          pointerEvents:"none",
         }}/>
 
-        {/* The horizon line — brilliant, thin, glowing in the destination's accent colour */}
+        {/* A thin ring of light expanding outward from centre at the instant of the flash */}
+        <div style={{
+          position:"fixed", left:"50%", top:"50%", zIndex:200,
+          width: flashing ? "10px" : settling ? "2200px" : "0px",
+          height: flashing ? "10px" : settling ? "2200px" : "0px",
+          marginLeft: flashing ? "-5px" : settling ? "-1100px" : "0px",
+          marginTop: flashing ? "-5px" : settling ? "-1100px" : "0px",
+          borderRadius:"50%",
+          border: `1px solid ${flashColor}`,
+          opacity: flashing ? 0.95 : settling ? 0 : 0,
+          boxShadow: flashing ? `0 0 40px 10px ${flashColor}` : "none",
+          transition: flashing
+            ? "width 0.16s ease-out, height 0.16s ease-out, margin-left 0.16s ease-out, margin-top 0.16s ease-out"
+            : settling
+            ? "width 1.1s cubic-bezier(0.16,1,0.3,1), height 1.1s cubic-bezier(0.16,1,0.3,1), margin-left 1.1s cubic-bezier(0.16,1,0.3,1), margin-top 1.1s cubic-bezier(0.16,1,0.3,1), opacity 1.1s ease-out"
+            : "none",
+          pointerEvents:"none",
+        }}/>
+
+        {/* Destination name — appears only in the last beat, once, quietly */}
         <div style={{
           position:"fixed", left:0, right:0, top:"50%", zIndex:201,
-          height: showShimmer ? "2px" : "0px",
           transform:"translateY(-50%)",
-          background: c1,
-          boxShadow: showShimmer
-            ? `0 0 24px 6px ${c1}, 0 0 60px 18px ${c2}, 0 0 120px 30px ${c1}88`
-            : "none",
-          opacity: showShimmer ? 1 : 0,
-          transition:"opacity 0.4s ease, box-shadow 0.4s ease",
-        }}/>
-
-        {/* Glyph drift — tiny letters floating horizontally, fading old colour into new */}
-        {showGlyphs && (
-          <div style={{position:"fixed", inset:0, zIndex:200, overflow:"hidden", pointerEvents:"none"}}>
-            {Array.from({length:32}).map((_,i)=>{
-              const glyphs = "ABGDЕΘΛΣΦΨΩᚠᚢᚦᚨᚱकखगघअआइ";
-              const ch = glyphs[Math.floor(Math.random()*glyphs.length)];
-              const topPct = 35 + Math.random()*30; // cluster near the horizon
-              const fromLeft = Math.random() > 0.5;
-              const delay = Math.random()*0.5;
-              const dur = 1.4 + Math.random()*0.8;
-              const size = 10 + Math.random()*10;
-              return (
-                <span key={i} style={{
-                  position:"absolute", top:`${topPct}%`,
-                  left: fromLeft ? "-5%" : "auto",
-                  right: fromLeft ? "auto" : "-5%",
-                  fontSize:`${size}px`, fontFamily:"Georgia,serif",
-                  color: i % 2 === 0 ? c2 : c1,
-                  opacity:0,
-                  animation:`glyphDrift${fromLeft?"L":"R"} ${dur}s ease-in-out ${delay}s forwards`,
-                }}>{ch}</span>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Destination name, revealed softly during the shimmer/drift */}
-        {showShimmer && (
+          textAlign:"center", pointerEvents:"none",
+          opacity: settling ? 1 : 0,
+          transition: "opacity 0.5s ease 0.25s",
+        }}>
           <div style={{
-            position:"fixed", left:0, right:0, top:"50%", zIndex:202,
-            transform:"translateY(-50%)",
-            textAlign:"center",
-            opacity: leapPhase === 3 ? 1 : 0,
-            transition:"opacity 0.5s ease",
-            pointerEvents:"none",
+            fontFamily:"Georgia,serif", fontSize:"11px", letterSpacing:"6px",
+            color:"#fff", textTransform:"uppercase",
+            textShadow:`0 0 18px ${flashColor}`,
           }}>
-            <div style={{
-              fontFamily:"Georgia,serif", fontSize:"12px", letterSpacing:"5px",
-              color:c1, textTransform:"uppercase", marginTop:"-28px",
-              textShadow:`0 0 14px ${c1}`,
-            }}>
-              {dest?.emoji} {dest?.name}
-            </div>
+            {dest?.emoji}&nbsp;&nbsp;{dest?.name}
           </div>
-        )}
-
-        <style>{`
-          @keyframes glyphDriftL {
-            0%   { opacity:0; transform:translateX(0); }
-            15%  { opacity:0.85; }
-            85%  { opacity:0.85; }
-            100% { opacity:0; transform:translateX(110vw); }
-          }
-          @keyframes glyphDriftR {
-            0%   { opacity:0; transform:translateX(0); }
-            15%  { opacity:0.85; }
-            85%  { opacity:0.85; }
-            100% { opacity:0; transform:translateX(-110vw); }
-          }
-        `}</style>
+        </div>
       </>
     );
   }
