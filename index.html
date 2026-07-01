@@ -7504,11 +7504,17 @@ function EtymRoot() {
   // ── Audio crossfade helper: smoothly ramp an <audio> element's volume ──────
   const fadeAudio = (el, toVolume, durationMs, onComplete) => {
     if (!el) { if (onComplete) onComplete(); return; }
+    // Fade generation token: if a newer fade is requested on this element before
+    // an older one finishes, the older one's ticks detect the mismatch and stop
+    // themselves rather than continuing to write stale volume values — this is
+    // what was causing two tracks to play simultaneously during rapid transitions.
+    const myGen = (el._fadeGen = (el._fadeGen || 0) + 1);
     const fromVolume = el.volume;
     const steps = 24;
     const stepMs = durationMs / steps;
     let i = 0;
     const tick = () => {
+      if (el._fadeGen !== myGen) return; // superseded by a newer fade — stop
       i++;
       const t = i / steps;
       // Ease in the direction we're heading (exponential-feeling curve)
@@ -7532,19 +7538,29 @@ function EtymRoot() {
       setPreviewSlots([]);
 
       // ── Game background music: switch track when world changes, with a fade ──
-      const desiredEl = world?.id ? document.getElementById("game-audio-" + world.id) : null;
-      if (gameAudioRef.current !== desiredEl) {
-        const previousEl = gameAudioRef.current;
+      // Skip this while a wormhole leap is actively transitioning — triggerWormhole
+      // already owns the fade-out/fade-in for that case, and running both here and
+      // there at once was causing two tracks to overlap and play simultaneously.
+      if (!wormhole) {
+        const desiredEl = world?.id ? document.getElementById("game-audio-" + world.id) : null;
+        if (gameAudioRef.current !== desiredEl) {
+          const previousEl = gameAudioRef.current;
+          gameAudioRef.current = desiredEl;
+          if (desiredEl) {
+            desiredEl.volume = 0;
+            desiredEl.play().catch((e) => console.warn("game audio:", world.id, e.message));
+            fadeAudio(desiredEl, 0.22, 700);
+          }
+          // Fade out and stop the previous world's track rather than cutting it
+          if (previousEl && previousEl !== desiredEl) {
+            fadeAudio(previousEl, 0, 500);
+          }
+        }
+      } else {
+        // Still keep gameAudioRef pointed at the right element so future,
+        // non-wormhole level changes have an accurate "previous track" to fade from.
+        const desiredEl = world?.id ? document.getElementById("game-audio-" + world.id) : null;
         gameAudioRef.current = desiredEl;
-        if (desiredEl) {
-          desiredEl.volume = 0;
-          desiredEl.play().catch((e) => console.warn("game audio:", world.id, e.message));
-          fadeAudio(desiredEl, 0.22, 700);
-        }
-        // Fade out and stop the previous world's track rather than cutting it
-        if (previousEl && previousEl !== desiredEl) {
-          fadeAudio(previousEl, 0, 500);
-        }
       }
       setShowFact(false);
       setPendingFacts([]);
@@ -7554,7 +7570,7 @@ function EtymRoot() {
       setShake(false);
       setActiveMilestone(null);
     }
-  }, [worldIdx, levelIdx, level, buildChunks, entrySeq]);
+  }, [worldIdx, levelIdx, level, buildChunks, entrySeq, wormhole]);
 
   useEffect(() => {
     if (screen === "game") setTimerActive(true);
