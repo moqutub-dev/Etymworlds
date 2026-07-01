@@ -121,26 +121,33 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["as","tro","nomy","ad","mir","al","ze","ro","na","dir"],
-        traps: ["nomy","ze"],
+        chunks: ["as","tro","nomy","ad","mir","al","ze","ro"],
+        traps: [],
         clue: "Naval titles, the night sky, and the number that changed everything",
         words: [
-          { word:"ASTRONOMY",  roots:["as","tro","nomy"],
+          { word:"ASTRONOMY", roots:["as","tro","nomy"],
             clue:"The naming and law of the stars",
             hint:"The scientific study of celestial objects and the universe",
             fact:"Via Arabic 'al-nujūm', medieval astronomers preserved and expanded Greek star-lore. The Arabic star-names Aldebaran, Betelgeuse, and Rigel still fill our sky charts." },
-          { word:"ADMIRAL",    roots:["ad","mir","al"],
+          { word:"ADMIRAL", roots:["ad","mir","al"],
             clue:"Commander of the sea (amir al-bahr)",
             hint:"The highest rank of naval officer",
             fact:"From Arabic 'amīr-al-baḥr' (commander of the sea). Crusader-era Italian merchants borrowed 'ammiraglio' — the 'al' article fused to the title." },
-          { word:"ZERO",       roots:["ze","ro"],
+          { word:"ZERO", roots:["ze","ro"],
             clue:"The void — sifr in Arabic",
             hint:"The number representing nothing; the concept that enabled all modern mathematics",
-            fact:"From Arabic 'ṣifr' (empty, void). Al-Khwarizmi introduced it to Europe. Without zero there are no computers, no calculus, no modern science." },
-          { word:"NADIR",      roots:["na","dir"],
+            fact:"From Arabic 'ṣifr' (empty, void). Al-Khwarizmi introduced it to Europe. Without zero there are no computers, no calculus, no modern science." }
+        ],
+      },
+      {
+        chunks: ["na","dir"],
+        traps: [],
+        clue: "Naval titles, the night sky, and the number that changed everything",
+        words: [
+          { word:"NADIR", roots:["na","dir"],
             clue:"The point directly beneath your feet",
             hint:"The lowest point of something; the opposite of zenith",
-            fact:"Arabic 'naẓīr' (opposite). Medieval astronomers used it for the celestial point beneath an observer. English borrowed it and turned it into a metaphor for rock bottom." },
+            fact:"Arabic 'naẓīr' (opposite). Medieval astronomers used it for the celestial point beneath an observer. English borrowed it and turned it into a metaphor for rock bottom." }
         ],
       },
       {
@@ -209,7 +216,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["al","go","rithm","ci","pher","ze","nith","al","cove"],
+        chunks: ["al","go","rithm","ci","pher","ze","nith"],
         traps: [],
         clue: "Mathematics, codes, and the highest point of the sky",
         words: [
@@ -217,18 +224,25 @@ const WORLDS = [
             clue:"A step-by-step method — named for a scholar",
             hint:"A set of rules or steps to solve a problem, used especially in computing",
             fact:"A Latinisation of 'al-Khwārizmī' — the 9th-century scholar whose name also gave us 'algebra'. His treatise on Hindu-Arabic numerals introduced the decimal system to Europe." },
-          { word:"CIPHER",    roots:["ci","pher"],
+          { word:"CIPHER", roots:["ci","pher"],
             clue:"A zero — then a secret code",
             hint:"A secret or disguised way of writing; an encoded message",
             fact:"Arabic 'ṣifr' (zero, empty) — the same root as 'zero'. Because coded messages used numerical substitutions, 'cipher' drifted from 'the zero symbol' to 'secret code'." },
-          { word:"ZENITH",    roots:["ze","nith"],
+          { word:"ZENITH", roots:["ze","nith"],
             clue:"The point directly above your head in the heavens",
             hint:"The highest point in the sky; the peak of something",
-            fact:"Corrupted from Arabic 'samt al-raʾs' (direction of the head). Medieval scribes misread 'samt' as 'senit' then 'zenith'. It entered English astronomy as the opposite of nadir." },
-          { word:"ALCOVE",    roots:["al","cove"],
+            fact:"Corrupted from Arabic 'samt al-raʾs' (direction of the head). Medieval scribes misread 'samt' as 'senit' then 'zenith'. It entered English astronomy as the opposite of nadir." }
+        ],
+      },
+      {
+        chunks: ["al","cove"],
+        traps: [],
+        clue: "Mathematics, codes, and the highest point of the sky",
+        words: [
+          { word:"ALCOVE", roots:["al","cove"],
             clue:"A small vaulted recess in a wall",
             hint:"A small recess in a room, especially one where a bed may stand",
-            fact:"Arabic 'al-qubba' (the vault, the dome). Spanish 'alcoba' described a vaulted sleeping recess. The word entered French then English carrying the original architectural meaning." },
+            fact:"Arabic 'al-qubba' (the vault, the dome). Spanish 'alcoba' described a vaulted sleeping recess. The word entered French then English carrying the original architectural meaning." }
         ],
       },
       {
@@ -266,7 +280,7 @@ const WORLDS = [
         ],
       },,
       {
-        chunks: ["gi","raffe","ga","zelle","as","sas","sin","ge","nie"],
+        chunks: ["gi","raffe","ga","zelle","as","sas","sin"],
         traps: [],
         clue: "Animals of the desert and savanna",
         words: [
@@ -281,7 +295,14 @@ const WORLDS = [
           { word:"ASSASSIN", roots:["as","sas","sin"],
             clue:"One who kills for political or religious cause",
             hint:"A person who murders an important person for political or religious reasons",
-            fact:"Traced to a medieval Arabic term for a secretive sect; the word entered European languages through Crusader-era contact with the Middle East." },
+            fact:"Traced to a medieval Arabic term for a secretive sect; the word entered European languages through Crusader-era contact with the Middle East." }
+        ],
+      },
+      {
+        chunks: ["ge","nie"],
+        traps: [],
+        clue: "A spirit that grants wishes",
+        words: [
           { word:"GENIE", roots:["ge","nie"],
             clue:"A spirit with the power to grant wishes",
             hint:"A spirit, often depicted as granting wishes, from Middle Eastern folklore",
@@ -312,7 +333,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ja","r","jas","mine","saf","fron","a","pri","cot"],
+        chunks: ["ja","r","jas","mine","saf","fron"],
         traps: [],
         clue: "Coffee culture and everyday containers",
         words: [
@@ -327,7 +348,14 @@ const WORLDS = [
           { word:"SAFFRON", roots:["saf","fron"],
             clue:"A golden spice from a crocus flower",
             hint:"A spice derived from the dried stigmas of the crocus flower, used for colour and flavour",
-            fact:"Arabic \'za\'faran\' described this prized golden spice, traded extensively across the Mediterranean before the word settled into English." },
+            fact:"Arabic \'za\'faran\' described this prized golden spice, traded extensively across the Mediterranean before the word settled into English." }
+        ],
+      },
+      {
+        chunks: ["a","pri","cot"],
+        traps: [],
+        clue: "Coffee culture and everyday containers",
+        words: [
           { word:"APRICOT", roots:["a","pri","cot"],
             clue:"A small orange stone fruit",
             hint:"A small, soft orange fruit related to the plum",
@@ -335,7 +363,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ar","ti","choke","al","ma","nac","ca","li","ber","se","nal"],
+        chunks: ["ar","ti","choke","al","ma","nac"],
         traps: [],
         clue: "Fragrant flowers and golden spices",
         words: [
@@ -346,7 +374,14 @@ const WORLDS = [
           { word:"ALMANAC", roots:["al","ma","nac"],
             clue:"An annual calendar of dates and astronomical data",
             hint:"A yearly publication containing a calendar and other useful data",
-            fact:"Likely derived from an Arabic term for a calendar or climate record, the word entered medieval Latin and then English scholarly vocabulary." },
+            fact:"Likely derived from an Arabic term for a calendar or climate record, the word entered medieval Latin and then English scholarly vocabulary." }
+        ],
+      },
+      {
+        chunks: ["ca","li","ber","ar","se","nal"],
+        traps: [],
+        clue: "Fragrant flowers and golden spices",
+        words: [
           { word:"CALIBER", roots:["ca","li","ber"],
             clue:"The diameter of a tube or bullet",
             hint:"The internal diameter of a gun barrel, or a measure of quality",
@@ -450,7 +485,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mo","hair","ca","mel","al","ka","li","na","tron"],
+        chunks: ["mo","hair","ca","mel","al","ka","li"],
         traps: [],
         clue: "Silks named for the cities that wove them",
         words: [
@@ -465,7 +500,14 @@ const WORLDS = [
           { word:"ALKALI", roots:["al","ka","li"],
             clue:"A chemical substance that neutralises acid",
             hint:"A soluble salt capable of neutralising acids in chemistry",
-            fact:"Arabic \'al-qali\' named the ashes of a particular desert plant used in early chemistry, giving English both \'alkali\' and \'alkaline\'." },
+            fact:"Arabic \'al-qali\' named the ashes of a particular desert plant used in early chemistry, giving English both \'alkali\' and \'alkaline\'." }
+        ],
+      },
+      {
+        chunks: ["na","tron"],
+        traps: [],
+        clue: "Silks named for the cities that wove them",
+        words: [
           { word:"NATRON", roots:["na","tron"],
             clue:"A natural mineral salt used in mummification",
             hint:"A naturally occurring mineral salt historically used for preservation",
@@ -496,7 +538,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["re","al","gar","ga","zette","ca","liph","shei","kh"],
+        chunks: ["re","al","gar","ga","zette","ca","liph"],
         traps: [],
         clue: "Furniture, fabric, and the language of leisure",
         words: [
@@ -511,7 +553,14 @@ const WORLDS = [
           { word:"CALIPH", roots:["ca","liph"],
             clue:"A historical Islamic ruler",
             hint:"A Muslim civil and religious leader regarded as a successor of the Prophet Muhammad",
-            fact:"Arabic \'khalifa\' meant successor or deputy, describing the historical leaders of the early Islamic state and entering English through medieval scholarship." },
+            fact:"Arabic \'khalifa\' meant successor or deputy, describing the historical leaders of the early Islamic state and entering English through medieval scholarship." }
+        ],
+      },
+      {
+        chunks: ["shei","kh"],
+        traps: [],
+        clue: "Furniture, fabric, and the language of leisure",
+        words: [
           { word:"SHEIKH", roots:["shei","kh"],
             clue:"An Arab leader or elder of high status",
             hint:"An Arab leader, especially the head of a tribe or family",
@@ -519,7 +568,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mi","na","ret","al","ca","zar","fe","luc","a","do","be"],
+        chunks: ["mi","na","ret","al","ca","zar"],
         traps: [],
         clue: "Titles and towers of the Islamic world",
         words: [
@@ -530,7 +579,14 @@ const WORLDS = [
           { word:"ALCAZAR", roots:["al","ca","zar"],
             clue:"A Spanish fortress or palace",
             hint:"A type of Spanish fortress or palace, often built during Moorish rule",
-            fact:"Arabic \'al-qasr\' meant the castle or fortress; the word entered Spanish directly during centuries of Arab presence on the Iberian peninsula." },
+            fact:"Arabic \'al-qasr\' meant the castle or fortress; the word entered Spanish directly during centuries of Arab presence on the Iberian peninsula." }
+        ],
+      },
+      {
+        chunks: ["fe","luc","ca","a","do","be"],
+        traps: [],
+        clue: "Titles and towers of the Islamic world",
+        words: [
           { word:"FELUCCA", roots:["fe","luc","ca"],
             clue:"A traditional sailing boat of the Nile",
             hint:"A traditional wooden sailing boat used on the Nile and Mediterranean",
@@ -606,11 +662,11 @@ const WORLDS = [
     ],
     levels: [
       {
-        chunks: ["tele","micro","phon","graph","scope"],
+        chunks: ["tele","micro","phon","graph","scope","e"],
         traps: ["scope"],
         clue: "Far · Small · Voice · Write",
         words: [
-          { word:"TELEPHONE",  roots:["tele","phon"],
+          { word:"TELEPHONE",  roots:["tele","phon","e"],
             clue:"A far voice",
             hint:"A device for speaking to someone far away",
             fact:"Greek 'tēle' (far) + 'phōnē' (voice). Alexander Graham Bell's device was literally a 'far voice.'" },
@@ -618,7 +674,7 @@ const WORLDS = [
             clue:"Far writing",
             hint:"A machine that sends coded messages over a wire",
             fact:"Greek 'tēle' (far) + 'gráphō' (write). Messages written across vast distances — the Victorian internet." },
-          { word:"MICROPHONE", roots:["micro","phon"],
+          { word:"MICROPHONE", roots:["micro","phon","e"],
             clue:"A small voice made large",
             hint:"A device that captures sound and amplifies it",
             fact:"Greek 'mikrós' (small) + 'phōnē' (voice). It makes small voices large — the root is hiding in plain sight." },
@@ -629,7 +685,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["bio","geo","lo","gy","graph","photo"],
+        chunks: ["bio","geo","lo","gy","graph","photo","y"],
         traps: ["photo"],
         clue: "Life · Earth · Study · Write",
         words: [
@@ -641,11 +697,11 @@ const WORLDS = [
             clue:"The study of the earth",
             hint:"The science of rocks, minerals, and the planet's structure",
             fact:"Greek 'gê' (earth) + 'lógos' (study). James Hutton coined the modern field in 1788." },
-          { word:"BIOGRAPHY", roots:["bio","graph"],
+          { word:"BIOGRAPHY", roots:["bio","graph","y"],
             clue:"A written life",
             hint:"A book about a real person's life written by someone else",
             fact:"Greek 'bíos' (life) + 'gráphō' (write). A written life — the genre is as old as ancient Egypt." },
-          { word:"GEOGRAPHY", roots:["geo","graph"],
+          { word:"GEOGRAPHY", roots:["geo","graph","y"],
             clue:"Earth writing",
             hint:"The study of places, landscapes, and maps",
             fact:"Greek 'gê' (earth) + 'gráphō' (write). Eratosthenes drew the first map of the known world in 240 BC." },
@@ -675,56 +731,70 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["chron","o","log","ic","al","syn","chron","ize"],
-        traps: ["ic","al"],
+        chunks: ["chron","o","log","y","syn","ize"],
+        traps: [],
         clue: "Time, order, and the art of happening together",
         words: [
-          { word:"CHRONOLOGY",  roots:["chron","o","log"],
+          { word:"CHRONOLOGY", roots:["chron","o","log","y"],
             clue:"The ordering of time",
             hint:"The arrangement of events in the order in which they happened",
             fact:"Greek 'khrónos' (time) + 'lógos' (study/word). Chronos was the god of time — personified as a serpent devouring itself, because time consumes all." },
           { word:"SYNCHRONIZE", roots:["syn","chron","ize"],
             clue:"To make happen at the same time",
             hint:"To coordinate things so they happen simultaneously",
-            fact:"Greek 'syn' (together) + 'khrónos' (time). Used by watchmakers and now by computers syncing across continents — the root meaning is unchanged." },
+            fact:"Greek 'syn' (together) + 'khrónos' (time). Used by watchmakers and now by computers syncing across continents — the root meaning is unchanged." }
         ],
       },
       {
-        chunks: ["path","em","ath","sym","anti","pathy","tele","o","log","y"],
-        traps: ["em","y"],
+        chunks: ["sym","path","y","anti"],
+        traps: [],
         clue: "Feeling across distance — the science of ends",
         words: [
-          { word:"SYMPATHY",   roots:["sym","path","y"],
+          { word:"SYMPATHY", roots:["sym","path","y"],
             clue:"Feeling together with another",
             hint:"Sharing in the feelings or emotions of another person",
             fact:"Greek 'syn' (together) + 'páthos' (feeling/suffering). In ancient Greece, páthos described anything that stirred deep emotion — music, tragedy, or a great speech." },
-          { word:"ANTIPATHY",  roots:["anti","path","y"],
+          { word:"ANTIPATHY", roots:["anti","path","y"],
             clue:"Feeling against",
             hint:"A strong feeling of dislike or aversion toward something",
-            fact:"Greek 'anti' (against) + 'páthos' (feeling). The opposite of sympathy — a deep instinctive aversion that Aristotle thought revealed character." },
-          { word:"TELEOLOGY",  roots:["tele","o","log","y"],
-            clue:"The study of ends and purposes",
-            hint:"The explanation of phenomena by their purpose or goal rather than their cause",
-            fact:"Greek 'télos' (end, purpose) + 'lógos' (study). Aristotle's teleological universe held that everything moves toward its natural end — the acorn's purpose is the oak." },
+            fact:"Greek 'anti' (against) + 'páthos' (feeling). The opposite of sympathy — a deep instinctive aversion that Aristotle thought revealed character." }
         ],
       },
       {
-        chunks: ["dem","o","cra","cy","phil","os","o","phy","the","atre"],
+        chunks: ["tele","o","log","y"],
+        traps: [],
+        clue: "Feeling across distance — the science of ends",
+        words: [
+          { word:"TELEOLOGY", roots:["tele","o","log","y"],
+            clue:"The study of ends and purposes",
+            hint:"The explanation of phenomena by their purpose or goal rather than their cause",
+            fact:"Greek 'télos' (end, purpose) + 'lógos' (study). Aristotle's teleological universe held that everything moves toward its natural end — the acorn's purpose is the oak." }
+        ],
+      },
+      {
+        chunks: ["dem","o","cra","cy","phil","os","phy"],
         traps: [],
         clue: "Government, wisdom, and the stage — the gifts of Athens",
         words: [
-          { word:"DEMOCRACY",  roots:["dem","o","cra","cy"],
+          { word:"DEMOCRACY", roots:["dem","o","cra","cy"],
             clue:"The rule of the people",
             hint:"A system of government by the whole population",
             fact:"Greek 'dêmos' (people) + 'kratos' (power). First practised in Athens around 507 BC under Cleisthenes — the most radical political experiment of the ancient world." },
           { word:"PHILOSOPHY", roots:["phil","os","o","phy"],
             clue:"The love of wisdom",
             hint:"The study of the fundamental nature of knowledge, reality, and existence",
-            fact:"Greek 'phílos' (loving) + 'sophía' (wisdom). Pythagoras called himself not a 'sophos' (wise man) but merely a 'philosophos' — a lover of wisdom." },
-          { word:"THEATRE",    roots:["the","atre"],
+            fact:"Greek 'phílos' (loving) + 'sophía' (wisdom). Pythagoras called himself not a 'sophos' (wise man) but merely a 'philosophos' — a lover of wisdom." }
+        ],
+      },
+      {
+        chunks: ["the","atre"],
+        traps: [],
+        clue: "Government, wisdom, and the stage — the gifts of Athens",
+        words: [
+          { word:"THEATRE", roots:["the","atre"],
             clue:"A place for seeing",
             hint:"A building where plays and dramatic performances are given",
-            fact:"Greek 'théatron' (a place for viewing), from 'theáomai' (to behold). Greek theatres held 15,000 people with such perfect acoustics that actors needed no amplification." },
+            fact:"Greek 'théatron' (a place for viewing), from 'theáomai' (to behold). Greek theatres held 15,000 people with such perfect acoustics that actors needed no amplification." }
         ],
       },
       {
@@ -762,7 +832,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["a","stro","naut","hyp","no","sis","e","pi","dem","ic","chron","ic"],
+        chunks: ["a","stro","naut","hyp","no","sis"],
         traps: [],
         clue: "Space travellers, sleep of the mind, and spreading disease",
         words: [
@@ -770,49 +840,63 @@ const WORLDS = [
             clue:"A sailor of the stars",
             hint:"A person trained to travel in a spacecraft",
             fact:"Greek 'ástron' (star) + 'naútēs' (sailor). Coined in 1929 by science-fiction writers. It's a perfectly formed Greek compound — as if Aristotle had imagined space travel." },
-          { word:"HYPNOSIS",  roots:["hyp","no","sis"],
+          { word:"HYPNOSIS", roots:["hyp","no","sis"],
             clue:"A sleep put upon the mind",
             hint:"An artificially induced trance state in which a person follows suggestions",
-            fact:"Greek 'Hýpnos' (the god of sleep). James Braid coined 'hypnosis' in 1843 from the sleep-god's name, though he later regretted it — the subject isn't actually asleep." },
-          { word:"EPIDEMIC",  roots:["e","pi","dem","ic"],
+            fact:"Greek 'Hýpnos' (the god of sleep). James Braid coined 'hypnosis' in 1843 from the sleep-god's name, though he later regretted it — the subject isn't actually asleep." }
+        ],
+      },
+      {
+        chunks: ["e","pi","dem","ic","chron"],
+        traps: [],
+        clue: "Space travellers, sleep of the mind, and spreading disease",
+        words: [
+          { word:"EPIDEMIC", roots:["e","pi","dem","ic"],
             clue:"Something that falls upon the people",
             hint:"A widespread outbreak of disease in a community",
             fact:"Greek 'epí' (upon) + 'dêmos' (people). Hippocrates used 'epidēmios' for diseases that visited a population temporarily — contrasted with 'endemic' diseases that lived there permanently." },
-          { word:"CHRONIC",   roots:["chron","ic"],
+          { word:"CHRONIC", roots:["chron","ic"],
             clue:"Persisting through time",
             hint:"A condition or disease that persists for a long time",
-            fact:"Greek 'khrónos' (time). A chronic illness is one that has taken up with time — it refuses to leave. Hippocrates distinguished chronic from acute conditions in 400 BC." },
+            fact:"Greek 'khrónos' (time). A chronic illness is one that has taken up with time — it refuses to leave. Hippocrates distinguished chronic from acute conditions in 400 BC." }
         ],
       },
       {
-        chunks: ["poli","tics","psy","che","pho","bia","eu","phor","ia"],
+        chunks: ["poli","tics","psy","che","pho","bia"],
         traps: [],
         clue: "The city, the mind, and extremes of feeling",
         words: [
-          { word:"POLITICS",  roots:["poli","tics"],
+          { word:"POLITICS", roots:["poli","tics"],
             clue:"The affairs of the city-state",
             hint:"Activities associated with governing a country or area",
             fact:"Greek 'polis' (city-state) + '-ikos' (of, relating to). The Greeks invented both the concept and the word — citizenship, debate, and elections were born in the Athenian assembly." },
-          { word:"PSYCHE",    roots:["psy","che"],
+          { word:"PSYCHE", roots:["psy","che"],
             clue:"The soul or animating spirit",
             hint:"The human mind or soul; also the goddess of the soul in myth",
             fact:"Greek 'psykhē' (soul, butterfly). The myth of Psyche and Eros tells the soul's journey toward immortal love. The butterfly was the Greeks' symbol for the soul leaving the body at death." },
-          { word:"PHOBIA",    roots:["pho","bia"],
+          { word:"PHOBIA", roots:["pho","bia"],
             clue:"A fear — named for the god of terror",
             hint:"An extreme or irrational fear of something",
-            fact:"Greek 'Phóbos' (god of fear and panic, son of Ares). Every specific phobia in the DSM is a Greek compound: arachnophobia, claustrophobia, agoraphobia — all built from this ancient divine name." },
-          { word:"EUPHORIA",  roots:["eu","phor","ia"],
-            clue:"A good feeling — to bear well",
-            hint:"A feeling of intense happiness and well-being",
-            fact:"Greek 'eu' (good, well) + 'phérō' (I bear, I carry). To be euphoric is literally to carry goodness within you. The Greeks used it medically to describe a patient's improved comfort." },
+            fact:"Greek 'Phóbos' (god of fear and panic, son of Ares). Every specific phobia in the DSM is a Greek compound: arachnophobia, claustrophobia, agoraphobia — all built from this ancient divine name." }
         ],
       },
       {
-        chunks: ["cosm","os","micro","macro","pro","log","ue","cata","log","ue"],
+        chunks: ["eu","phor","ia"],
+        traps: [],
+        clue: "The city, the mind, and extremes of feeling",
+        words: [
+          { word:"EUPHORIA", roots:["eu","phor","ia"],
+            clue:"A good feeling — to bear well",
+            hint:"A feeling of intense happiness and well-being",
+            fact:"Greek 'eu' (good, well) + 'phérō' (I bear, I carry). To be euphoric is literally to carry goodness within you. The Greeks used it medically to describe a patient's improved comfort." }
+        ],
+      },
+      {
+        chunks: ["cosm","os","micro","pro","log","ue"],
         traps: [],
         clue: "The ordered universe and the power of words in sequence",
         words: [
-          { word:"COSMOS",    roots:["cosm","os"],
+          { word:"COSMOS", roots:["cosm","os"],
             clue:"Order, beauty, and the whole universe",
             hint:"The universe seen as a well-ordered whole; the opposite of chaos",
             fact:"Greek 'kósmos' (order, adornment). Pythagoras is credited with using it for the universe — because the universe was ordered and therefore beautiful. The opposite of 'chaos'." },
@@ -820,44 +904,51 @@ const WORLDS = [
             clue:"A small world — a world in miniature",
             hint:"A miniature version of something larger; a small community seen as a reflection of the whole world",
             fact:"Greek 'mikrós' (small) + 'kósmos' (world, order). Medieval philosophers believed humans were 'microcosms' of the universe — every organ mirrored a celestial body." },
-          { word:"PROLOGUE",  roots:["pro","log","ue"],
+          { word:"PROLOGUE", roots:["pro","log","ue"],
             clue:"The words that come before the story",
             hint:"An introduction to a literary work or play",
-            fact:"Greek 'pro' (before) + 'lógos' (word, speech). In Greek tragedy, the prologue was spoken by a single actor who set the scene before the chorus entered. Every modern preface descends from this." },
-          { word:"CATALOGUE", roots:["cata","log","ue"],
-            clue:"A complete list — arranged in order",
-            hint:"A complete list of items arranged systematically",
-            fact:"Greek 'katá' (down, according to) + 'légō' (I choose, I list). The Library of Alexandria produced the first great catalogue — a systematic list of all known books, arranged by subject." },
+            fact:"Greek 'pro' (before) + 'lógos' (word, speech). In Greek tragedy, the prologue was spoken by a single actor who set the scene before the chorus entered. Every modern preface descends from this." }
         ],
       },
       {
-        chunks: ["mono","poly","an","arch","y","theo","cra","cy","olig"],
+        chunks: ["cata","log","ue"],
+        traps: [],
+        clue: "The ordered universe and the power of words in sequence",
+        words: [
+          { word:"CATALOGUE", roots:["cata","log","ue"],
+            clue:"A complete list — arranged in order",
+            hint:"A complete list of items arranged systematically",
+            fact:"Greek 'katá' (down, according to) + 'légō' (I choose, I list). The Library of Alexandria produced the first great catalogue — a systematic list of all known books, arranged by subject." }
+        ],
+      },
+      {
+        chunks: ["mono","poly","an","arch","y","theo","cra","cy"],
         traps: [],
         clue: "One, many, and the shapes of power",
         words: [
-          { word:"MONOPOLY",  roots:["mono","poly"],
+          { word:"MONOPOLY", roots:["mono","poly"],
             clue:"One seller controlling the market",
             hint:"The exclusive possession or control of something",
             fact:"Greek 'mónos' (alone, single) + 'pōlein' (to sell). The Athenians outlawed monopolies as injurious to the polis. Ironically, the board game that bears its name has been one of the world's best-selling items since 1935." },
-          { word:"ANARCHY",   roots:["an","arch","y"],
+          { word:"ANARCHY", roots:["an","arch","y"],
             clue:"Without a ruler",
             hint:"A state of disorder due to the absence of authority or government",
             fact:"Greek 'an-' (without) + 'arkhē' (rule, origin). The Greeks feared anarchy more than tyranny — the Athenian democracy had complex checks specifically to prevent the chaos of no-government." },
           { word:"THEOCRACY", roots:["theo","cra","cy"],
             clue:"Government by divine authority",
             hint:"A system of government in which priests rule in the name of God",
-            fact:"Greek 'theos' (god) + 'kratos' (power). Josephus coined the word in 1st century AD to describe ancient Israel's governance. Today it describes governments in which religious law is civil law." },
+            fact:"Greek 'theos' (god) + 'kratos' (power). Josephus coined the word in 1st century AD to describe ancient Israel's governance. Today it describes governments in which religious law is civil law." }
+        ],
+      },
+      {
+        chunks: ["olig","arch","y","al","pha","bet","a","tom"],
+        traps: [],
+        clue: "One, many, and the shapes of power",
+        words: [
           { word:"OLIGARCHY", roots:["olig","arch","y"],
             clue:"Rule by a few powerful people",
             hint:"A small group of people having control over a country or organisation",
             fact:"Greek 'olígos' (few, small) + 'arkhē' (rule). Aristotle described oligarchy as democracy's mirror-image corruption. The word has returned to prominence in the 21st century for billionaire-controlled states." },
-        ],
-      },,
-      {
-        chunks: ["al","pha","bet","a","tom","ath","lete","sta","di","um"],
-        traps: [],
-        clue: "Symbols, particles, and the building blocks of meaning",
-        words: [
           { word:"ALPHABET", roots:["al","pha","bet"],
             clue:"The full set of letters used in a language",
             hint:"The set of letters used to write a language, in a fixed order",
@@ -865,7 +956,14 @@ const WORLDS = [
           { word:"ATOM", roots:["a","tom"],
             clue:"The smallest basic unit of matter",
             hint:"The smallest unit of a chemical element that retains its properties",
-            fact:"Greek \'atomos\' meant indivisible, describing the philosophical idea of a smallest possible particle of matter, centuries before modern physics confirmed structures within it." },
+            fact:"Greek \'atomos\' meant indivisible, describing the philosophical idea of a smallest possible particle of matter, centuries before modern physics confirmed structures within it." }
+        ],
+      },
+      {
+        chunks: ["ath","lete","sta","di","um"],
+        traps: [],
+        clue: "One, many, and the shapes of power",
+        words: [
           { word:"ATHLETE", roots:["ath","lete"],
             clue:"A person trained for physical competition",
             hint:"A person who competes in sports requiring physical strength or speed",
@@ -877,7 +975,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mar","a","thon","o","lym","pic","gym","na","si","um","ca","de","my"],
+        chunks: ["mar","a","thon","o","lym","pic"],
         traps: [],
         clue: "Athletes, stadiums, and the spirit of competition",
         words: [
@@ -888,7 +986,14 @@ const WORLDS = [
           { word:"OLYMPIC", roots:["o","lym","pic"],
             clue:"Relating to the international sporting games",
             hint:"Relating to the major international sporting competition held every four years",
-            fact:"Named for Olympia, the sacred site in Greece where the ancient games honouring the gods were originally held." },
+            fact:"Named for Olympia, the sacred site in Greece where the ancient games honouring the gods were originally held." }
+        ],
+      },
+      {
+        chunks: ["gym","na","si","um","a","ca","de","my"],
+        traps: [],
+        clue: "Athletes, stadiums, and the spirit of competition",
+        words: [
           { word:"GYMNASIUM", roots:["gym","na","si","um"],
             clue:"A building for physical exercise",
             hint:"A room or building equipped for physical exercise",
@@ -900,7 +1005,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mu","se","um","the","o","ry","en","er","gy","e","lec","tric"],
+        chunks: ["mu","se","um","the","o","ry"],
         traps: [],
         clue: "Colleges, halls of wonder, and centres of learning",
         words: [
@@ -911,7 +1016,14 @@ const WORLDS = [
           { word:"THEORY", roots:["the","o","ry"],
             clue:"A system of ideas explaining something",
             hint:"A supposition or system of ideas intended to explain something",
-            fact:"Greek \'theoria\' meant contemplation or a viewing, describing the mental act of observing and reasoning about how something works." },
+            fact:"Greek \'theoria\' meant contemplation or a viewing, describing the mental act of observing and reasoning about how something works." }
+        ],
+      },
+      {
+        chunks: ["en","er","gy","e","lec","tric"],
+        traps: [],
+        clue: "Colleges, halls of wonder, and centres of learning",
+        words: [
           { word:"ENERGY", roots:["en","er","gy"],
             clue:"The capacity to do work or cause change",
             hint:"The strength and vitality needed for sustained physical or mental activity",
@@ -946,7 +1058,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ga","lax","y","ho","ri","zon","cli","mate","e","con","o","my"],
+        chunks: ["ga","lax","y","ho","ri","zon","cli","mate"],
         traps: [],
         clue: "Energy, electricity, and the forces of nature",
         words: [
@@ -961,7 +1073,14 @@ const WORLDS = [
           { word:"CLIMATE", roots:["cli","mate"],
             clue:"The general weather conditions of a region",
             hint:"The weather conditions typical of an area over a long period",
-            fact:"Greek \'klima\' originally referred to the slope or inclination of the earth relative to the sun, linked to the varying climate zones it produces." },
+            fact:"Greek \'klima\' originally referred to the slope or inclination of the earth relative to the sun, linked to the varying climate zones it produces." }
+        ],
+      },
+      {
+        chunks: ["e","con","o","my"],
+        traps: [],
+        clue: "Energy, electricity, and the forces of nature",
+        words: [
           { word:"ECONOMY", roots:["e","con","o","my"],
             clue:"The wealth and resources of a region",
             hint:"The wealth and resources of a country, especially in terms of production and trade",
@@ -969,7 +1088,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["e","col","o","gy","stra","te","cri","sis","di","ag","no"],
+        chunks: ["e","col","o","gy","stra","te"],
         traps: [],
         clue: "Planets, comets, and the wandering sky",
         words: [
@@ -980,7 +1099,14 @@ const WORLDS = [
           { word:"STRATEGY", roots:["stra","te","gy"],
             clue:"A plan to achieve a long-term goal",
             hint:"A plan of action designed to achieve a long-term goal",
-            fact:"Greek \'strategia\' meant the office or art of a general, describing the high-level planning involved in commanding an army." },
+            fact:"Greek \'strategia\' meant the office or art of a general, describing the high-level planning involved in commanding an army." }
+        ],
+      },
+      {
+        chunks: ["cri","sis","di","ag","no"],
+        traps: [],
+        clue: "Planets, comets, and the wandering sky",
+        words: [
           { word:"CRISIS", roots:["cri","sis"],
             clue:"A time of intense difficulty or danger",
             hint:"A time of intense difficulty, danger, or decision",
@@ -992,7 +1118,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["symp","tom","the","ra","py","an","a","to","my","ske","le","ton"],
+        chunks: ["symp","tom","the","ra","py"],
         traps: [],
         clue: "Horizons, climates, and the shape of the world",
         words: [
@@ -1003,7 +1129,14 @@ const WORLDS = [
           { word:"THERAPY", roots:["the","ra","py"],
             clue:"Treatment intended to relieve a condition",
             hint:"Treatment intended to relieve or heal a disorder",
-            fact:"Greek \'therapeia\' meant healing or service, related to a verb meaning to attend to or take care of someone." },
+            fact:"Greek \'therapeia\' meant healing or service, related to a verb meaning to attend to or take care of someone." }
+        ],
+      },
+      {
+        chunks: ["an","a","to","my","ske","le","ton"],
+        traps: [],
+        clue: "Horizons, climates, and the shape of the world",
+        words: [
           { word:"ANATOMY", roots:["an","a","to","my"],
             clue:"The study of the structure of organisms",
             hint:"The branch of science concerned with the bodily structure of living things",
@@ -1015,7 +1148,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ar","te","ry","al","ler","gy","an","ti","bi","ot","ic","bac","ri","a"],
+        chunks: ["ar","te","ry","al","ler","gy"],
         traps: [],
         clue: "Households, ecosystems, and the management of resources",
         words: [
@@ -1026,11 +1159,25 @@ const WORLDS = [
           { word:"ALLERGY", roots:["al","ler","gy"],
             clue:"An immune reaction to a normally harmless substance",
             hint:"A damaging immune response to a substance that is usually harmless",
-            fact:"Built in the modern era from Greek roots meaning \'other\' and \'reaction\', describing the body\'s altered response to certain substances." },
+            fact:"Built in the modern era from Greek roots meaning \'other\' and \'reaction\', describing the body\'s altered response to certain substances." }
+        ],
+      },
+      {
+        chunks: ["an","ti","bi","ot","ic"],
+        traps: [],
+        clue: "Households, ecosystems, and the management of resources",
+        words: [
           { word:"ANTIBIOTIC", roots:["an","ti","bi","ot","ic"],
             clue:"A medicine that fights bacterial infection",
             hint:"A medicine that destroys or inhibits the growth of bacteria",
-            fact:"Built from Greek roots meaning \'against\' and \'life\', the term originally described any substance hostile to living microorganisms." },
+            fact:"Built from Greek roots meaning \'against\' and \'life\', the term originally described any substance hostile to living microorganisms." }
+        ],
+      },
+      {
+        chunks: ["bac","te","ri","a"],
+        traps: [],
+        clue: "Households, ecosystems, and the management of resources",
+        words: [
           { word:"BACTERIA", roots:["bac","te","ri","a"],
             clue:"Microscopic single-celled organisms",
             hint:"Microscopic single-celled organisms found in every habitat on earth",
@@ -1038,7 +1185,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pan","dem","ic","phe","nom","e","non","par","a","dox","nig","ma"],
+        chunks: ["pan","dem","ic","phe","nom","e","non"],
         traps: [],
         clue: "Strategy, crisis, and the art of decision",
         words: [
@@ -1049,7 +1196,14 @@ const WORLDS = [
           { word:"PHENOMENON", roots:["phe","nom","e","non"],
             clue:"A fact or event that is observed to occur",
             hint:"A fact, occurrence, or circumstance observed to exist or happen",
-            fact:"Greek \'phainomenon\' meant a thing appearing or being seen, from a verb meaning to show or bring to light." },
+            fact:"Greek \'phainomenon\' meant a thing appearing or being seen, from a verb meaning to show or bring to light." }
+        ],
+      },
+      {
+        chunks: ["par","a","dox","e","nig","ma"],
+        traps: [],
+        clue: "Strategy, crisis, and the art of decision",
+        words: [
           { word:"PARADOX", roots:["par","a","dox"],
             clue:"A statement that seems contradictory yet may be true",
             hint:"A statement that seems self-contradictory but may nonetheless be true",
@@ -1061,7 +1215,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["i","di","om","a","lect","gram","mar","syn","tax"],
+        chunks: ["i","di","om","a","lect","gram","mar"],
         traps: [],
         clue: "Diagnosis, symptoms, and the language of medicine",
         words: [
@@ -1076,7 +1230,14 @@ const WORLDS = [
           { word:"GRAMMAR", roots:["gram","mar"],
             clue:"The rules governing a language\'s structure",
             hint:"The set of structural rules governing the composition of a language",
-            fact:"Greek \'grammatike\' related to letters and writing, describing the systematic study of how a written language is correctly composed." },
+            fact:"Greek \'grammatike\' related to letters and writing, describing the systematic study of how a written language is correctly composed." }
+        ],
+      },
+      {
+        chunks: ["syn","tax"],
+        traps: [],
+        clue: "Diagnosis, symptoms, and the language of medicine",
+        words: [
           { word:"SYNTAX", roots:["syn","tax"],
             clue:"The arrangement of words in a sentence",
             hint:"The arrangement of words and phrases to create well-formed sentences",
@@ -1084,7 +1245,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["rhy","thm","mel","o","dy","sym","pho","ny","or","ches","tra"],
+        chunks: ["rhy","thm","mel","o","dy","sym","pho","ny"],
         traps: [],
         clue: "Anatomy, arteries, and the structure of the body",
         words: [
@@ -1099,7 +1260,14 @@ const WORLDS = [
           { word:"SYMPHONY", roots:["sym","pho","ny"],
             clue:"An elaborate musical composition for orchestra",
             hint:"An elaborate musical composition for a full orchestra",
-            fact:"Greek \'symphonia\' meant a sounding together, built from roots meaning \'with\' and \'sound\', describing harmonious combined voices or instruments." },
+            fact:"Greek \'symphonia\' meant a sounding together, built from roots meaning \'with\' and \'sound\', describing harmonious combined voices or instruments." }
+        ],
+      },
+      {
+        chunks: ["or","ches","tra"],
+        traps: [],
+        clue: "Anatomy, arteries, and the structure of the body",
+        words: [
           { word:"ORCHESTRA", roots:["or","ches","tra"],
             clue:"A large group of instrumental musicians",
             hint:"A large group of musicians playing together on various instruments",
@@ -1107,7 +1275,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cho","rus","dra","ma","tra","ge","dy","cha","rac","ter"],
+        chunks: ["cho","rus","dra","ma","tra","ge","dy"],
         traps: [],
         clue: "Allergies, antibiotics, and modern medical terms",
         words: [
@@ -1122,7 +1290,14 @@ const WORLDS = [
           { word:"TRAGEDY", roots:["tra","ge","dy"],
             clue:"A serious play with an unhappy ending",
             hint:"A serious play depicting a disastrous outcome, often through a character\'s flaw",
-            fact:"Greek \'tragoidia\' combined a word for goat with a word for song, possibly referring to ancient competitions where a goat was the prize." },
+            fact:"Greek \'tragoidia\' combined a word for goat with a word for song, possibly referring to ancient competitions where a goat was the prize." }
+        ],
+      },
+      {
+        chunks: ["cha","rac","ter"],
+        traps: [],
+        clue: "Allergies, antibiotics, and modern medical terms",
+        words: [
           { word:"CHARACTER", roots:["cha","rac","ter"],
             clue:"A person in a story, or a distinctive trait",
             hint:"A person portrayed in a story, or the combination of traits defining someone",
@@ -1130,7 +1305,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cha","os","a","nal","y","sis","syn","the","hy","po"],
+        chunks: ["cha","os","a","nal","y","sis"],
         traps: [],
         clue: "Bacteria, pandemics, and the unseen world",
         words: [
@@ -1141,7 +1316,14 @@ const WORLDS = [
           { word:"ANALYSIS", roots:["a","nal","y","sis"],
             clue:"A detailed examination of something\'s elements",
             hint:"A detailed examination of the elements or structure of something",
-            fact:"Greek \'analysis\' meant a loosening or breaking up, describing the act of taking something apart to understand its component pieces." },
+            fact:"Greek \'analysis\' meant a loosening or breaking up, describing the act of taking something apart to understand its component pieces." }
+        ],
+      },
+      {
+        chunks: ["syn","the","sis","hy","po"],
+        traps: [],
+        clue: "Bacteria, pandemics, and the unseen world",
+        words: [
           { word:"SYNTHESIS", roots:["syn","the","sis"],
             clue:"The combination of parts into a whole",
             hint:"The combination of separate elements to form a coherent whole",
@@ -1176,7 +1358,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pe","tro","le","um","pho","to","graph","te","scope","mi","cro"],
+        chunks: ["pe","tro","le","um","pho","to","graph"],
         traps: [],
         clue: "Idioms, dialects, and the structure of speech",
         words: [
@@ -1187,7 +1369,14 @@ const WORLDS = [
           { word:"PHOTOGRAPH", roots:["pho","to","graph"],
             clue:"An image created by light exposure",
             hint:"A picture made using a camera, in which light forms an image",
-            fact:"Built from Greek roots meaning \'light\' and \'writing\', describing the process of an image being recorded by the action of light itself." },
+            fact:"Built from Greek roots meaning \'light\' and \'writing\', describing the process of an image being recorded by the action of light itself." }
+        ],
+      },
+      {
+        chunks: ["te","le","scope","mi","cro"],
+        traps: [],
+        clue: "Idioms, dialects, and the structure of speech",
+        words: [
           { word:"TELESCOPE", roots:["te","le","scope"],
             clue:"An instrument for viewing distant objects",
             hint:"An optical instrument for viewing distant objects through lenses",
@@ -1199,7 +1388,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pe","ri","scope","ho","ro","i","con","py","ra","mid"],
+        chunks: ["pe","ri","scope","ho","ro","i","con"],
         traps: [],
         clue: "Grammar, syntax, and the rules of language",
         words: [
@@ -1214,7 +1403,14 @@ const WORLDS = [
           { word:"ICON", roots:["i","con"],
             clue:"A symbol or image representing something",
             hint:"A symbol, image, or representation that stands for something else",
-            fact:"Greek \'eikon\' simply meant image or likeness, a word that gave English both the religious icon and the modern digital symbol." },
+            fact:"Greek \'eikon\' simply meant image or likeness, a word that gave English both the religious icon and the modern digital symbol." }
+        ],
+      },
+      {
+        chunks: ["py","ra","mid"],
+        traps: [],
+        clue: "Grammar, syntax, and the rules of language",
+        words: [
           { word:"PYRAMID", roots:["py","ra","mid"],
             clue:"A structure with a square base and triangular sides",
             hint:"A monumental structure with a square base and four triangular sides meeting at a point",
@@ -1222,7 +1418,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["o","be","lisk","lab","y","rinth","dys","sey","u","to","pi","a"],
+        chunks: ["o","be","lisk","lab","y","rinth"],
         traps: [],
         clue: "Rhythm, melody, and the language of music",
         words: [
@@ -1233,7 +1429,14 @@ const WORLDS = [
           { word:"LABYRINTH", roots:["lab","y","rinth"],
             clue:"A complex network of paths or passages",
             hint:"A complicated irregular network of passages or paths",
-            fact:"Greek \'labyrinthos\' named the legendary maze built to contain a mythical monster, now used generally for any complex, winding structure." },
+            fact:"Greek \'labyrinthos\' named the legendary maze built to contain a mythical monster, now used generally for any complex, winding structure." }
+        ],
+      },
+      {
+        chunks: ["o","dys","sey","u","to","pi","a"],
+        traps: [],
+        clue: "Rhythm, melody, and the language of music",
+        words: [
           { word:"ODYSSEY", roots:["o","dys","sey"],
             clue:"A long, eventful journey",
             hint:"A long and eventful journey or experience",
@@ -1245,7 +1448,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pa","nic","cat","a","stro","phe","eu","mism","i","ro","ny"],
+        chunks: ["pa","nic","cat","a","stro","phe"],
         traps: [],
         clue: "Orchestras, choruses, and the sound of many",
         words: [
@@ -1256,7 +1459,14 @@ const WORLDS = [
           { word:"CATASTROPHE", roots:["cat","a","stro","phe"],
             clue:"A sudden and widespread disaster",
             hint:"An event causing great and often sudden damage or suffering",
-            fact:"Greek \'katastrophe\' meant an overturning, originally describing the dramatic final turning point in an ancient tragedy." },
+            fact:"Greek \'katastrophe\' meant an overturning, originally describing the dramatic final turning point in an ancient tragedy." }
+        ],
+      },
+      {
+        chunks: ["eu","phe","mism","i","ro","ny"],
+        traps: [],
+        clue: "Orchestras, choruses, and the sound of many",
+        words: [
           { word:"EUPHEMISM", roots:["eu","phe","mism"],
             clue:"A mild expression substituted for a harsh one",
             hint:"A mild or indirect word substituted for one considered harsh or blunt",
@@ -1268,7 +1478,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["sar","cas","m","a","pa","thy","em","ec","sta","sy"],
+        chunks: ["sar","cas","m","a","pa","thy"],
         traps: [],
         clue: "Drama, tragedy, and the ancient stage",
         words: [
@@ -1279,7 +1489,14 @@ const WORLDS = [
           { word:"APATHY", roots:["a","pa","thy"],
             clue:"A lack of interest or concern",
             hint:"A lack of interest, enthusiasm, or concern",
-            fact:"Built from Greek roots meaning \'without\' and \'feeling\', describing a state of emotional indifference toward something." },
+            fact:"Built from Greek roots meaning \'without\' and \'feeling\', describing a state of emotional indifference toward something." }
+        ],
+      },
+      {
+        chunks: ["em","pa","thy","ec","sta","sy"],
+        traps: [],
+        clue: "Drama, tragedy, and the ancient stage",
+        words: [
           { word:"EMPATHY", roots:["em","pa","thy"],
             clue:"The ability to understand another\'s feelings",
             hint:"The ability to understand and share the feelings of another person",
@@ -1291,7 +1508,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["nos","tal","gia","a","go","ny","fan","ta","sy"],
+        chunks: ["nos","tal","gia","a","go","ny"],
         traps: [],
         clue: "Character, chaos, and judgement",
         words: [
@@ -1302,13 +1519,20 @@ const WORLDS = [
           { word:"AGONY", roots:["a","go","ny"],
             clue:"Extreme physical or mental suffering",
             hint:"Extreme physical or mental suffering",
-            fact:"Greek \'agonia\' described the intense struggle and anxiety of a contest, related to a word for a gathering or competition." },
+            fact:"Greek \'agonia\' described the intense struggle and anxiety of a contest, related to a word for a gathering or competition." }
+        ],
+      },
+      {
+        chunks: ["fan","ta","sy"],
+        traps: [],
+        clue: "Character, chaos, and judgement",
+        words: [
           { word:"FANTASY", roots:["fan","ta","sy"],
             clue:"An imaginative or fanciful idea",
             hint:"An imaginative or fanciful mental image, often unrealistic",
             fact:"Greek \'phantasia\' meant appearance or imagination, related to a verb meaning to make visible or bring before the mind." }
         ],
-      }
+      },
     ]
   },
   {
@@ -1552,26 +1776,33 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ptar","mi","gan","pe","at","bro","ck","co","lt"],
+        chunks: ["ptar","mi","gan","pe","at","bro","ck"],
         traps: [],
         clue: "The animals and earth of Celtic lands",
         words: [
-          { word:"PTARMIGAN",roots:["ptar","mi","gan"],
+          { word:"PTARMIGAN", roots:["ptar","mi","gan"],
             clue:"The mountain bird that turns white in winter",
             hint:"A mountain bird of the grouse family that turns white in winter camouflage",
             fact:"Scottish Gaelic 'tàrmachan'. The silent 'p' was added by scholars who wrongly assumed it was Greek. It is entirely Gaelic — one of the few birds whose English name is pure Celtic." },
-          { word:"PEAT",     roots:["pe","at"],
+          { word:"PEAT", roots:["pe","at"],
             clue:"The compressed fuel of the Celtic bogs",
             hint:"Dark brown compressed organic material from bogs, used as fuel",
             fact:"Scottish Gaelic 'peit'. The vast peat bogs of Ireland and Scotland were the fuel of Celtic civilisation. Peat-preserved bodies — the Bog People — still emerge perfectly conserved after 2,000 years." },
-          { word:"BROCK",    roots:["bro","ck"],
+          { word:"BROCK", roots:["bro","ck"],
             clue:"The old Celtic name for a badger",
             hint:"An archaic or dialect word for a badger",
-            fact:"Celtic *brokkos (badger). The word lives on in place-names — Brockenhurst, Brockley, dozens of 'Brock' villages all mark ancient badger habitats. The animal outlasted the language that named it." },
-          { word:"COLT",     roots:["co","lt"],
+            fact:"Celtic *brokkos (badger). The word lives on in place-names — Brockenhurst, Brockley, dozens of 'Brock' villages all mark ancient badger habitats. The animal outlasted the language that named it." }
+        ],
+      },
+      {
+        chunks: ["co","lt"],
+        traps: [],
+        clue: "The animals and earth of Celtic lands",
+        words: [
+          { word:"COLT", roots:["co","lt"],
             clue:"A young unbroken horse",
             hint:"A young male horse, especially one under four years old",
-            fact:"From Celtic *kulto (young animal). The Celts were masterful horse breeders — Celtic cavalry terrified Roman legions. Their word for a young horse passed directly into both Old English and Norse." },
+            fact:"From Celtic *kulto (young animal). The Celts were masterful horse breeders — Celtic cavalry terrified Roman legions. Their word for a young horse passed directly into both Old English and Norse." }
         ],
       },
       {
@@ -1746,26 +1977,33 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["sooth","say","er","earl","dom","home","stead","spear","head"],
-        traps: ["er"],
+        chunks: ["sooth","say","er","earl","dom","home","stead"],
+        traps: [],
         clue: "Fate, rank, and the places people settled",
         words: [
-          { word:"SOOTHSAYER",roots:["sooth","say","er"],
+          { word:"SOOTHSAYER", roots:["sooth","say","er"],
             clue:"One who speaks the truth of what will come",
             hint:"A person who claims to be able to predict the future",
             fact:"Old English 'sōþ' (truth) + 'secgan' (to say). 'Sooth' survives only in 'soothsayer' — but it was once the everyday word for truth." },
-          { word:"EARLDOM",   roots:["earl","dom"],
+          { word:"EARLDOM", roots:["earl","dom"],
             clue:"The territory and dignity ruled by an earl",
             hint:"The rank, domain, or dignity of an earl",
             fact:"Old English 'eorl' (nobleman, warrior) + 'dōm' (judgement, domain). '-Dom' as a suffix gives us kingdom, freedom, wisdom — one of Old English's most productive suffixes." },
           { word:"HOMESTEAD", roots:["home","stead"],
             clue:"The standing-place of the home",
             hint:"A house, especially a farmhouse, with surrounding buildings",
-            fact:"Old English 'hām' (home, village) + 'stede' (place, site). 'Stead' in the sense of place survives in 'instead', 'bedstead', and hundreds of English place-names." },
+            fact:"Old English 'hām' (home, village) + 'stede' (place, site). 'Stead' in the sense of place survives in 'instead', 'bedstead', and hundreds of English place-names." }
+        ],
+      },
+      {
+        chunks: ["spear","head"],
+        traps: [],
+        clue: "Fate, rank, and the places people settled",
+        words: [
           { word:"SPEARHEAD", roots:["spear","head"],
             clue:"The sharpened front of the weapon — and the charge",
             hint:"The leading part of a military or other operation",
-            fact:"Old English 'spere' + 'hēafod' (head). The literal weapon-tip became a metaphor for military vanguard. The Bayeux Tapestry shows spearheads everywhere." },
+            fact:"Old English 'spere' + 'hēafod' (head). The literal weapon-tip became a metaphor for military vanguard. The Bayeux Tapestry shows spearheads everywhere." }
         ],
       },
       {
@@ -2030,26 +2268,33 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["spring","time","hay","mak","ing","over","grown","field","work"],
+        chunks: ["spring","time","hay","mak","ing","over","grown"],
         traps: [],
         clue: "The rhythm of the farming year",
         words: [
-          { word:"SPRINGTIME",  roots:["spring","time"],
+          { word:"SPRINGTIME", roots:["spring","time"],
             clue:"The season of new growth and waking",
             hint:"The season of spring; the period of growth and renewal",
             fact:"Old English 'springan' (to spring, to leap up) + 'tīma' (time, season). Spring was named for the leaping up of plants. The word 'spring' meaning the season only emerged from the phrase 'spring of the leaf'." },
-          { word:"HAYMAKING",   roots:["hay","mak","ing"],
+          { word:"HAYMAKING", roots:["hay","mak","ing"],
             clue:"The cutting and drying of grass for winter",
             hint:"The process of cutting and drying grass to make hay",
             fact:"Old English 'hēg' (hay) + 'macian' (to make). Haymaking was one of the most important events of the Anglo-Saxon year — without stored hay, livestock died in winter. The whole community worked together." },
-          { word:"OVERGROWN",   roots:["over","grown"],
+          { word:"OVERGROWN", roots:["over","grown"],
             clue:"What happens to a field left untended",
             hint:"Covered with plants that have grown in an uncontrolled way",
-            fact:"Old English 'ofer' (over, beyond) + 'grōwan' (to grow). Anglo-Saxon poetry used it as a metaphor for civilisation's fragility — a tended field going wild described the collapse of order itself." },
-          { word:"FIELDWORK",   roots:["field","work"],
+            fact:"Old English 'ofer' (over, beyond) + 'grōwan' (to grow). Anglo-Saxon poetry used it as a metaphor for civilisation's fragility — a tended field going wild described the collapse of order itself." }
+        ],
+      },
+      {
+        chunks: ["field","work"],
+        traps: [],
+        clue: "The rhythm of the farming year",
+        words: [
+          { word:"FIELDWORK", roots:["field","work"],
             clue:"The labour of the open land",
             hint:"Practical work conducted in the natural environment; farm labour",
-            fact:"Old English 'feld' (open land, plain) + 'weorc' (work). The 'field' was the unfenced open land outside settlements where strips were farmed communally. Fieldwork was the foundation of Anglo-Saxon existence." },
+            fact:"Old English 'feld' (open land, plain) + 'weorc' (work). The 'field' was the unfenced open land outside settlements where strips were farmed communally. Fieldwork was the foundation of Anglo-Saxon existence." }
         ],
       },
       {
@@ -2087,26 +2332,33 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["over","land","forth","right","night","fall","way","far","ing"],
+        chunks: ["over","land","forth","right","night","fall"],
         traps: [],
         clue: "Movement through the Anglo-Saxon world",
         words: [
-          { word:"OVERLAND",    roots:["over","land"],
+          { word:"OVERLAND", roots:["over","land"],
             clue:"Across the surface of the earth",
             hint:"Passing over land rather than sea",
             fact:"Old English 'ofer' (over, across) + 'land'. The overland route was the alternative to seafaring — slower, safer from storms but exposed to other dangers. Anglo-Saxon traders and pilgrims used both." },
-          { word:"FORTHRIGHT",  roots:["forth","right"],
+          { word:"FORTHRIGHT", roots:["forth","right"],
             clue:"Going straight ahead without hesitation",
             hint:"Direct and outspoken; proceeding in a straight course",
             fact:"Old English 'forþ' (forward, onward) + 'riht' (right, straight, just). The compound captures the Anglo-Saxon ideal of directness — to be 'forthrightly' honest was a virtue, not a flaw to be softened." },
-          { word:"NIGHTFALL",   roots:["night","fall"],
+          { word:"NIGHTFALL", roots:["night","fall"],
             clue:"The moment when darkness descends",
             hint:"The onset of darkness at the end of the day",
-            fact:"Old English 'niht' (night) + 'feallan' (to fall). Anglo-Saxon time was marked by nightfall as much as sunrise. The day was measured from sunset to sunset in early Germanic tradition — night came first." },
-          { word:"WAYFARING",   roots:["way","far","ing"],
+            fact:"Old English 'niht' (night) + 'feallan' (to fall). Anglo-Saxon time was marked by nightfall as much as sunrise. The day was measured from sunset to sunset in early Germanic tradition — night came first." }
+        ],
+      },
+      {
+        chunks: ["way","far","ing"],
+        traps: [],
+        clue: "Movement through the Anglo-Saxon world",
+        words: [
+          { word:"WAYFARING", roots:["way","far","ing"],
             clue:"The life of the traveller on the road",
             hint:"Travelling on foot",
-            fact:"Old English 'weg' (way, road) + 'faran' (to travel). 'The Wanderer' and 'The Seafarer' — two of the greatest Old English poems — are both about wayfaring. Exile and travel were the defining experiences of the age." },
+            fact:"Old English 'weg' (way, road) + 'faran' (to travel). 'The Wanderer' and 'The Seafarer' — two of the greatest Old English poems — are both about wayfaring. Exile and travel were the defining experiences of the age." }
         ],
       },
       {
@@ -2706,49 +2958,63 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["parl","ia","ment","just","ice","bail","iff","ver","dict"],
-        traps: ["ia","iff"],
+        chunks: ["parl","ia","ment","just","ice","bail","iff"],
+        traps: [],
         clue: "The Norman machinery of law and governance",
         words: [
           { word:"PARLIAMENT", roots:["parl","ia","ment"],
             clue:"The highest legislature, consisting of the sovereign, the House of Lords, and the House of Commons",
             hint:"Where UK politicians gather to debate",
             fact:"Rooted in the French verb 'parler' (to speak). It literally began as a 'speaking event'." },
-          { word:"JUSTICE",   roots:["just","ice"],
+          { word:"JUSTICE", roots:["just","ice"],
             clue:"The administration of the law or authority in maintaining fairness",
             hint:"Blindfolded lady holding scales",
             fact:"Brought to England by the Normans in 1066, replacing the Old English concept of 'riht'." },
-          { word:"BAILIFF",   roots:["bail","iff"],
+          { word:"BAILIFF", roots:["bail","iff"],
             clue:"An officer who carries and delivers the court's orders",
             hint:"A court officer who keeps order and executes warrants",
-            fact:"Old French 'baillif', from 'baillir' (to bear, to deliver). Norman bailiffs administered estates — they 'delivered' the lord's orders." },
-          { word:"VERDICT",   roots:["ver","dict"],
-            clue:"The true saying of the jury",
-            hint:"A decision made by a jury in a law court",
-            fact:"Anglo-French 'verdit', from Latin 'vere dictum' (truly said). A jury's verdict was literally their 'true word' — the most solemn speech act in the Norman legal system." },
+            fact:"Old French 'baillif', from 'baillir' (to bear, to deliver). Norman bailiffs administered estates — they 'delivered' the lord's orders." }
         ],
       },
       {
-        chunks: ["beau","ty","cour","tesy","gal","ant","ry","chap","er","on"],
-        traps: ["ty","er"],
+        chunks: ["ver","dict"],
+        traps: [],
+        clue: "The Norman machinery of law and governance",
+        words: [
+          { word:"VERDICT", roots:["ver","dict"],
+            clue:"The true saying of the jury",
+            hint:"A decision made by a jury in a law court",
+            fact:"Anglo-French 'verdit', from Latin 'vere dictum' (truly said). A jury's verdict was literally their 'true word' — the most solemn speech act in the Norman legal system." }
+        ],
+      },
+      {
+        chunks: ["beau","ty","cour","tesy","gall","ant","ry"],
+        traps: [],
         clue: "Fine manners, physical loveliness, and the art of escort",
         words: [
-          { word:"BEAUTY",    roots:["beau","ty"],
+          { word:"BEAUTY", roots:["beau","ty"],
             clue:"The good-looking one — beau in French",
             hint:"A combination of qualities that gives great pleasure to the senses",
             fact:"Old French 'beauté', from 'beau/bel' (beautiful, fine). The same root gives us 'beau', 'belle', and 'belladonna' — the deadly nightshade women used to widen their pupils." },
-          { word:"COURTESY",  roots:["cour","tesy"],
+          { word:"COURTESY", roots:["cour","tesy"],
             clue:"The behaviour learned at the court",
             hint:"Polite behaviour that shows respect and consideration for others",
             fact:"Old French 'cortoisie', from 'cort' (court). Good manners were literally what you learned at the royal court — rudeness was to behave as if you had never been there." },
-          { word:"GALLANTRY", roots:["gal","ant","ry"],
+          { word:"GALLANTRY", roots:["gall","ant","ry"],
             clue:"Brave and splendid conduct",
             hint:"Courageous behaviour, especially in battle; also charm toward women",
-            fact:"Old French 'galant' (stylish, brave), possibly from 'galer' (to make merry). The word pulled double duty: it meant battlefield courage and ballroom charm simultaneously." },
-          { word:"CHAPERON",  roots:["chap","er","on"],
+            fact:"Old French 'galant' (stylish, brave), possibly from 'galer' (to make merry). The word pulled double duty: it meant battlefield courage and ballroom charm simultaneously." }
+        ],
+      },
+      {
+        chunks: ["chap","er","on"],
+        traps: [],
+        clue: "Fine manners, physical loveliness, and the art of escort",
+        words: [
+          { word:"CHAPERON", roots:["chap","er","on"],
             clue:"A little hood that protects",
             hint:"An older person who accompanies a young unmarried woman in public",
-            fact:"Old French 'chaperon' (hood, cape). A hood protects its wearer — so the person accompanying a young woman at court was her social 'hood', shielding her reputation." },
+            fact:"Old French 'chaperon' (hood, cape). A hood protects its wearer — so the person accompanying a young woman at court was her social 'hood', shielding her reputation." }
         ],
       },
       {
@@ -2821,7 +3087,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["gar","ri","son","as","sault","re","treat","con","quer"],
+        chunks: ["gar","ri","son","as","sault","re","treat"],
         traps: [],
         clue: "Stationed troops, sudden attacks, and falling back",
         words: [
@@ -2836,7 +3102,14 @@ const WORLDS = [
           { word:"RETREAT", roots:["re","treat"],
             clue:"To draw back from the fight",
             hint:"The withdrawal of an army from an advanced position",
-            fact:"Old French \'retrait\'. The Norman feigned retreat at Hastings lured the Saxon shieldwall out of position and won the battle." },
+            fact:"Old French \'retrait\'. The Norman feigned retreat at Hastings lured the Saxon shieldwall out of position and won the battle." }
+        ],
+      },
+      {
+        chunks: ["con","quer"],
+        traps: [],
+        clue: "Stationed troops, sudden attacks, and falling back",
+        words: [
           { word:"CONQUER", roots:["con","quer"],
             clue:"To gain by force",
             hint:"To overcome and take control of a place or people by military force",
@@ -2913,7 +3186,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pen","al","ty","fel","on","y","sur","vey","quar","ter"],
+        chunks: ["pen","al","ty","fel","on","y","sur","vey"],
         traps: [],
         clue: "Penalties, felonies, and the full weight of Norman law",
         words: [
@@ -2928,7 +3201,14 @@ const WORLDS = [
           { word:"SURVEY", roots:["sur","vey"],
             clue:"To look over everything — to take in all",
             hint:"To examine and record the features of an area; a general view",
-            fact:"Old French \'surveoir\' (to overlook). The Domesday Book was the greatest survey in English history — William\'s instrument of control." },
+            fact:"Old French \'surveoir\' (to overlook). The Domesday Book was the greatest survey in English history — William\'s instrument of control." }
+        ],
+      },
+      {
+        chunks: ["quar","ter"],
+        traps: [],
+        clue: "Penalties, felonies, and the full weight of Norman law",
+        words: [
           { word:"QUARTER", roots:["quar","ter"],
             clue:"One of four equal parts — also a district",
             hint:"One of four equal parts; a district of a town",
@@ -2959,7 +3239,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ap","pe","tite","pas","try","su","gar","cr","eam"],
+        chunks: ["ap","pe","tite","pas","try","su","gar"],
         traps: [],
         clue: "Baked goods, sweetness, and the hunger for more",
         words: [
@@ -2974,7 +3254,14 @@ const WORLDS = [
           { word:"SUGAR", roots:["su","gar"],
             clue:"The sweet substance of the Norman table",
             hint:"A sweet crystalline substance obtained from various plants",
-            fact:"Old French \'sucre\', via Medieval Latin and Arabic \'sukkar\'. Sugar was an extraordinary luxury in Norman England — used as a spice and a medicine." },
+            fact:"Old French \'sucre\', via Medieval Latin and Arabic \'sukkar\'. Sugar was an extraordinary luxury in Norman England — used as a spice and a medicine." }
+        ],
+      },
+      {
+        chunks: ["cr","eam"],
+        traps: [],
+        clue: "Baked goods, sweetness, and the hunger for more",
+        words: [
           { word:"CREAM", roots:["cr","eam"],
             clue:"The richest part of the milk",
             hint:"The thick white or pale yellow fatty liquid that rises to the top of milk",
@@ -3051,7 +3338,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cas","tle","tow","er","dun","geon","mir","a","cle"],
+        chunks: ["cas","tle","tow","er","dun","geon"],
         traps: [],
         clue: "Fortified strongholds, tall structures, and a place of wonder",
         words: [
@@ -3066,7 +3353,14 @@ const WORLDS = [
           { word:"DUNGEON", roots:["dun","geon"],
             clue:"The lord\'s tower — then the pit beneath it",
             hint:"A strong underground prison cell",
-            fact:"Old French \'donjon\' (the main castle tower, the keep). The donjon was originally the lord\'s own tower. Over centuries the word descended to mean the dark cell beneath it." },
+            fact:"Old French \'donjon\' (the main castle tower, the keep). The donjon was originally the lord\'s own tower. Over centuries the word descended to mean the dark cell beneath it." }
+        ],
+      },
+      {
+        chunks: ["mir","a","cle"],
+        traps: [],
+        clue: "Fortified strongholds, tall structures, and a place of wonder",
+        words: [
           { word:"MIRACLE", roots:["mir","a","cle"],
             clue:"A wonderful act beyond natural explanation",
             hint:"An extraordinary and welcome event attributed to divine agency",
@@ -3097,7 +3391,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pal","ace","cor","ri","dor","col","umn","cur","tain"],
+        chunks: ["pal","ace","cor","ri","dor","col","umn"],
         traps: [],
         clue: "Grand residences, connecting passageways, and draped fabric",
         words: [
@@ -3112,7 +3406,14 @@ const WORLDS = [
           { word:"COLUMN", roots:["col","umn"],
             clue:"The upright pillar that supports and adorns",
             hint:"An upright pillar, typically cylindrical, supporting an arch",
-            fact:"Old French \'colonne\'. Norman Romanesque architecture made the column central — Durham Cathedral\'s columns are the finest surviving example." },
+            fact:"Old French \'colonne\'. Norman Romanesque architecture made the column central — Durham Cathedral\'s columns are the finest surviving example." }
+        ],
+      },
+      {
+        chunks: ["cur","tain"],
+        traps: [],
+        clue: "Grand residences, connecting passageways, and draped fabric",
+        words: [
           { word:"CURTAIN", roots:["cur","tain"],
             clue:"The hanging that divides space and hides",
             hint:"A piece of material suspended at the top to form a screen",
@@ -3235,7 +3536,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cru","el","pr","oud","gen","er","ous","ten","der"],
+        chunks: ["cru","el","pr","oud","gen","er","ous"],
         traps: [],
         clue: "Harsh, self-satisfied, giving, and gentle in nature",
         words: [
@@ -3250,7 +3551,14 @@ const WORLDS = [
           { word:"GENEROUS", roots:["gen","er","ous"],
             clue:"Of noble spirit — giving freely",
             hint:"Showing a readiness to give more than is expected",
-            fact:"Old French \'généreux\', from Latin \'generosus\' (of noble birth). Generosity was first aristocratic — a noble was expected to give lavishly." },
+            fact:"Old French \'généreux\', from Latin \'generosus\' (of noble birth). Generosity was first aristocratic — a noble was expected to give lavishly." }
+        ],
+      },
+      {
+        chunks: ["ten","der"],
+        traps: [],
+        clue: "Harsh, self-satisfied, giving, and gentle in nature",
+        words: [
           { word:"TENDER", roots:["ten","der"],
             clue:"Soft, gentle, easy to wound",
             hint:"Gentle and kind; showing gentleness and concern",
@@ -3304,7 +3612,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pur","chase","re","nt","rev","en","ue","ac","count"],
+        chunks: ["pur","chase","re","nt","rev","en","ue"],
         traps: [],
         clue: "Buying, paying to occupy, and money earned",
         words: [
@@ -3319,7 +3627,14 @@ const WORLDS = [
           { word:"REVENUE", roots:["rev","en","ue"],
             clue:"The income of the state",
             hint:"Income, especially of an organisation",
-            fact:"Old French \'revenue\' (return). Revenue was what the land \'returned\' to its owner. The Domesday Book was essentially a revenue survey." },
+            fact:"Old French \'revenue\' (return). Revenue was what the land \'returned\' to its owner. The Domesday Book was essentially a revenue survey." }
+        ],
+      },
+      {
+        chunks: ["ac","count"],
+        traps: [],
+        clue: "Buying, paying to occupy, and money earned",
+        words: [
           { word:"ACCOUNT", roots:["ac","count"],
             clue:"The telling of a story — or the reckoning of money",
             hint:"A report or description; a record of financial transactions",
@@ -3350,7 +3665,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["med","i","cine","sur","geon","pa","tient","rem","edy"],
+        chunks: ["med","i","cine","sur","geon","pa","tient"],
         traps: [],
         clue: "Healing substances, operations, and the Norman healing arts",
         words: [
@@ -3365,7 +3680,14 @@ const WORLDS = [
           { word:"PATIENT", roots:["pa","tient"],
             clue:"The suffering one — who endures",
             hint:"A person receiving medical treatment",
-            fact:"Old French \'pacient\', from Latin \'patiens\' (suffering, enduring). The patient is defined by their endurance — they bear their condition through treatment." },
+            fact:"Old French \'pacient\', from Latin \'patiens\' (suffering, enduring). The patient is defined by their endurance — they bear their condition through treatment." }
+        ],
+      },
+      {
+        chunks: ["rem","edy"],
+        traps: [],
+        clue: "Healing substances, operations, and the Norman healing arts",
+        words: [
           { word:"REMEDY", roots:["rem","edy"],
             clue:"What heals — a going back to health",
             hint:"A medicine or treatment for a disease or injury",
@@ -3419,7 +3741,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pow","er","treat","y","al","li","ance","thr","one"],
+        chunks: ["pow","er","treat","y","al","li","ance"],
         traps: [],
         clue: "Authority, formal agreements, and partnership between rulers",
         words: [
@@ -3434,7 +3756,14 @@ const WORLDS = [
           { word:"ALLIANCE", roots:["al","li","ance"],
             clue:"The binding together of parties in common cause",
             hint:"A union or association formed for mutual benefit",
-            fact:"Old French \'aliance\'. The Normans were masters of alliance-building — William\'s conquest was itself a coalition." },
+            fact:"Old French \'aliance\'. The Normans were masters of alliance-building — William\'s conquest was itself a coalition." }
+        ],
+      },
+      {
+        chunks: ["thr","one"],
+        traps: [],
+        clue: "Authority, formal agreements, and partnership between rulers",
+        words: [
           { word:"THRONE", roots:["thr","one"],
             clue:"The seat of sovereign power",
             hint:"A ceremonial chair for a sovereign or bishop",
@@ -3442,7 +3771,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["for","est","cha","se","fal","con","ven","i","son"],
+        chunks: ["for","est","cha","se","fal","con"],
         traps: [],
         clue: "Wooded hunting grounds, birds of prey, and the pursuit",
         words: [
@@ -3457,7 +3786,14 @@ const WORLDS = [
           { word:"FALCON", roots:["fal","con"],
             clue:"The hunting bird of the noble",
             hint:"A fast-flying bird of prey trained to hunt",
-            fact:"Old French \'faucon\'. Falconry was the defining aristocratic sport — the type of falcon you were permitted to own was determined by your rank." },
+            fact:"Old French \'faucon\'. Falconry was the defining aristocratic sport — the type of falcon you were permitted to own was determined by your rank." }
+        ],
+      },
+      {
+        chunks: ["ven","i","son"],
+        traps: [],
+        clue: "Wooded hunting grounds, birds of prey, and the pursuit",
+        words: [
           { word:"VENISON", roots:["ven","i","son"],
             clue:"The flesh of the deer — royal meat",
             hint:"Meat from a deer",
@@ -3488,7 +3824,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["vi","o","let","tur","quoise","i","vo","ry","am","ber"],
+        chunks: ["vi","o","let","tur","quoise","i","vo","ry"],
         traps: [],
         clue: "Hues borrowed from flowers, gemstones, and fossilised resin",
         words: [
@@ -3503,7 +3839,14 @@ const WORLDS = [
           { word:"IVORY", roots:["i","vo","ry"],
             clue:"The white of elephant tusks",
             hint:"A hard creamy-white substance composing elephant tusks",
-            fact:"Old French \'ivoire\'. Ivory was a luxury material in Norman England — used for chess pieces and reliquaries. The Lewis Chessmen are carved in ivory." },
+            fact:"Old French \'ivoire\'. Ivory was a luxury material in Norman England — used for chess pieces and reliquaries. The Lewis Chessmen are carved in ivory." }
+        ],
+      },
+      {
+        chunks: ["am","ber"],
+        traps: [],
+        clue: "Hues borrowed from flowers, gemstones, and fossilised resin",
+        words: [
           { word:"AMBER", roots:["am","ber"],
             clue:"The golden-yellow of fossilised resin",
             hint:"A hard translucent fossilised resin, typically yellowish",
@@ -3560,7 +3903,7 @@ const WORLDS = [
         ],
       },,
       {
-        chunks: ["ma","jes","ty","prin","ce","cess","em","per","or"],
+        chunks: ["ma","jes","ty","prin","ce"],
         traps: [],
         clue: "Regal dignity and the royal family",
         words: [
@@ -3571,7 +3914,14 @@ const WORLDS = [
           { word:"PRINCE", roots:["prin","ce"],
             clue:"A male member of a royal family",
             hint:"A male member of a royal family, especially a son of the sovereign",
-            fact:"Old French \'prince\' descended from a Latin word meaning first or foremost, describing one who ranks at the head of a royal house." },
+            fact:"Old French \'prince\' descended from a Latin word meaning first or foremost, describing one who ranks at the head of a royal house." }
+        ],
+      },
+      {
+        chunks: ["prin","cess","em","per","or"],
+        traps: [],
+        clue: "Female royalty and the ruler of an empire",
+        words: [
           { word:"PRINCESS", roots:["prin","cess"],
             clue:"A female member of a royal family",
             hint:"A female member of a royal family",
@@ -3583,7 +3933,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["em","pire","re","gion","pro","vince","ca","pi","tal"],
+        chunks: ["em","pire","re","gion","pro","vince"],
         traps: [],
         clue: "Vast dominions, defined territories, and administrative divisions",
         words: [
@@ -3598,7 +3948,14 @@ const WORLDS = [
           { word:"PROVINCE", roots:["pro","vince"],
             clue:"An administrative division of a country",
             hint:"A principal administrative division of certain countries or empires",
-            fact:"Old French \'province\' descended from a Latin term for a territory placed under Roman authority, adapted for administrative regions generally." },
+            fact:"Old French \'province\' descended from a Latin term for a territory placed under Roman authority, adapted for administrative regions generally." }
+        ],
+      },
+      {
+        chunks: ["ca","pi","tal"],
+        traps: [],
+        clue: "Vast dominions, defined territories, and administrative divisions",
+        words: [
           { word:"CAPITAL", roots:["ca","pi","tal"],
             clue:"The most important city of a region",
             hint:"The city or town functioning as the seat of government",
@@ -3606,7 +3963,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ci","ti","zen","may","or","coun","cil","se","nate"],
+        chunks: ["ci","ti","zen","may","or","coun","cil"],
         traps: [],
         clue: "Seats of government, legal subjects, and elected town leaders",
         words: [
@@ -3621,7 +3978,14 @@ const WORLDS = [
           { word:"COUNCIL", roots:["coun","cil"],
             clue:"A group that advises or governs",
             hint:"A body of people formally constituted to advise or administer",
-            fact:"Old French \'concile\' descended from a Latin word meaning an assembly called together, describing a formal gathering for governance or decision." },
+            fact:"Old French \'concile\' descended from a Latin word meaning an assembly called together, describing a formal gathering for governance or decision." }
+        ],
+      },
+      {
+        chunks: ["se","nate"],
+        traps: [],
+        clue: "Seats of government, legal subjects, and elected town leaders",
+        words: [
           { word:"SENATE", roots:["se","nate"],
             clue:"A governing or legislative assembly",
             hint:"A legislative or governing body, especially the upper house of a parliament",
@@ -3629,7 +3993,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["del","e","gate","am","bas","sa","dor","em","sy","mer","cy"],
+        chunks: ["del","e","gate","am","bas","sa","dor"],
         traps: [],
         clue: "Advisory bodies, legislative assemblies, and appointed representatives",
         words: [
@@ -3640,7 +4004,14 @@ const WORLDS = [
           { word:"AMBASSADOR", roots:["am","bas","sa","dor"],
             clue:"An official representative sent abroad",
             hint:"A diplomat sent by a state as its official representative abroad",
-            fact:"Old French \'ambassadeur\' likely traces to a Celtic root meaning servant, describing a trusted envoy sent to represent a ruler in another land." },
+            fact:"Old French \'ambassadeur\' likely traces to a Celtic root meaning servant, describing a trusted envoy sent to represent a ruler in another land." }
+        ],
+      },
+      {
+        chunks: ["em","bas","sy","mer","cy"],
+        traps: [],
+        clue: "Advisory bodies, legislative assemblies, and appointed representatives",
+        words: [
           { word:"EMBASSY", roots:["em","bas","sy"],
             clue:"The official residence of an ambassador",
             hint:"The official residence or offices of an ambassador",
@@ -3675,7 +4046,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["con","sult","per","mit","pro","hi","bit","re","quire"],
+        chunks: ["con","sult","per","mit","pro","hi","bit"],
         traps: [],
         clue: "Mercy, pardon, and excuse",
         words: [
@@ -3690,7 +4061,14 @@ const WORLDS = [
           { word:"PROHIBIT", roots:["pro","hi","bit"],
             clue:"To formally forbid something",
             hint:"To formally forbid something, especially by law or authority",
-            fact:"Old French and Latin roots meaning to hold before or restrain combine to describe an authority preventing an action from taking place." },
+            fact:"Old French and Latin roots meaning to hold before or restrain combine to describe an authority preventing an action from taking place." }
+        ],
+      },
+      {
+        chunks: ["re","quire"],
+        traps: [],
+        clue: "Mercy, pardon, and excuse",
+        words: [
           { word:"REQUIRE", roots:["re","quire"],
             clue:"To need or demand something",
             hint:"To need something, or to instruct someone to do something",
@@ -3721,7 +4099,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pre","pare","pro","ceed","a","chieve","ac","com","plish"],
+        chunks: ["pre","pare","pro","ceed","a","chieve"],
         traps: [],
         clue: "Permission and prohibition",
         words: [
@@ -3736,7 +4114,14 @@ const WORLDS = [
           { word:"ACHIEVE", roots:["a","chieve"],
             clue:"To successfully complete a goal",
             hint:"To successfully bring about or complete a goal through effort",
-            fact:"Old French \'achever\' descended from a phrase meaning to come to a head or end, describing the successful completion of a difficult task." },
+            fact:"Old French \'achever\' descended from a phrase meaning to come to a head or end, describing the successful completion of a difficult task." }
+        ],
+      },
+      {
+        chunks: ["ac","com","plish"],
+        traps: [],
+        clue: "Permission and prohibition",
+        words: [
           { word:"ACCOMPLISH", roots:["ac","com","plish"],
             clue:"To successfully complete something",
             hint:"To successfully complete or achieve something",
@@ -3767,7 +4152,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ad","mire","de","sire","plea","sure","mi","se","ry"],
+        chunks: ["ad","mire","de","sire","plea","sure"],
         traps: [],
         clue: "Suggestions and proposals",
         words: [
@@ -3782,7 +4167,14 @@ const WORLDS = [
           { word:"PLEASURE", roots:["plea","sure"],
             clue:"A feeling of happy satisfaction",
             hint:"A feeling of happy satisfaction or enjoyment",
-            fact:"Old French \'plaisir\' descended from a Latin word meaning to please, the noun form describing the resulting feeling of enjoyment." },
+            fact:"Old French \'plaisir\' descended from a Latin word meaning to please, the noun form describing the resulting feeling of enjoyment." }
+        ],
+      },
+      {
+        chunks: ["mi","se","ry"],
+        traps: [],
+        clue: "Suggestions and proposals",
+        words: [
           { word:"MISERY", roots:["mi","se","ry"],
             clue:"Great unhappiness or discomfort",
             hint:"A state of great unhappiness or physical discomfort",
@@ -3813,7 +4205,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["va","ri","e","ty","qua","li","moun","tain","val","ley"],
+        chunks: ["va","ri","e","ty","qua","li"],
         traps: [],
         clue: "Achieving and accomplishing",
         words: [
@@ -3824,7 +4216,14 @@ const WORLDS = [
           { word:"QUALITY", roots:["qua","li","ty"],
             clue:"The standard of something as measured against others",
             hint:"The standard of something as measured against other similar things",
-            fact:"Old French \'qualite\' descended from a Latin word meaning \'of what kind\', describing the particular nature or character of a thing." },
+            fact:"Old French \'qualite\' descended from a Latin word meaning \'of what kind\', describing the particular nature or character of a thing." }
+        ],
+      },
+      {
+        chunks: ["moun","tain","val","ley"],
+        traps: [],
+        clue: "Achieving and accomplishing",
+        words: [
           { word:"MOUNTAIN", roots:["moun","tain"],
             clue:"A large natural elevation of the earth\'s surface",
             hint:"A large natural elevation of the earth\'s surface, rising abruptly from the surrounding level",
@@ -3925,7 +4324,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["choc","o","late","ca","cao","chil","li","to","mat"],
+        chunks: ["choc","o","late","ca","cao","chil","li"],
         traps: [],
         clue: "From Aztec kitchens to the world — sweet treats, spicy pods, and a red fruit",
         words: [
@@ -3940,7 +4339,14 @@ const WORLDS = [
           { word:"CHILLI", roots:["chil","li"],
             clue:"The fiery fruit of the New World",
             hint:"A hot-tasting pod of a capsicum plant used as spice",
-            fact:"Nahuatl \'chilli\', via Spanish \'chile\'. When Spanish explorers brought chilli to Europe, it spread via trade routes to India, China, and Africa — permanently transforming global cuisine in less than a century." },
+            fact:"Nahuatl \'chilli\', via Spanish \'chile\'. When Spanish explorers brought chilli to Europe, it spread via trade routes to India, China, and Africa — permanently transforming global cuisine in less than a century." }
+        ],
+      },
+      {
+        chunks: ["to","mat","o"],
+        traps: [],
+        clue: "From Aztec kitchens to the world — sweet treats, spicy pods, and a red fruit",
+        words: [
           { word:"TOMATO", roots:["to","mat","o"],
             clue:"The golden apple of the Aztec garden",
             hint:"A red or yellow fleshy fruit eaten as a vegetable",
@@ -3948,7 +4354,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["gua","ca","mole","coy","ote","jag","uar","po","tat","o"],
+        chunks: ["gua","ca","mole","coy","ote","jag","uar"],
         traps: [],
         clue: "A dip, a wild canine, a big cat — the New World through Spanish eyes",
         words: [
@@ -3963,7 +4369,14 @@ const WORLDS = [
           { word:"JAGUAR", roots:["jag","uar"],
             clue:"The great spotted cat of the jungle",
             hint:"A large cat of the Americas with a spotted coat",
-            fact:"Tupi-Guaraní \'yaguara\' (beast that kills in a single bound), via Spanish. The jaguar was the apex predator and divine symbol of Aztec military power. The word reached English through Portuguese and Spanish explorers." },
+            fact:"Tupi-Guaraní \'yaguara\' (beast that kills in a single bound), via Spanish. The jaguar was the apex predator and divine symbol of Aztec military power. The word reached English through Portuguese and Spanish explorers." }
+        ],
+      },
+      {
+        chunks: ["po","tat","o"],
+        traps: [],
+        clue: "A dip, a wild canine, a big cat — the New World through Spanish eyes",
+        words: [
           { word:"POTATO", roots:["po","tat","o"],
             clue:"The gift of the Andes to the world",
             hint:"A starchy vegetable that grows underground as a tuber",
@@ -4005,7 +4418,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["me","sa","ha","cien","da","pueb","lo","si","er","ra"],
+        chunks: ["me","sa","ha","cien","da","pueb","lo"],
         traps: [],
         clue: "A flat-topped hill, a large estate, a settlement, and a mountain range",
         words: [
@@ -4020,7 +4433,14 @@ const WORLDS = [
           { word:"PUEBLO", roots:["pueb","lo"],
             clue:"The village of the desert people",
             hint:"A small settlement, especially in the American Southwest",
-            fact:"Spanish \'pueblo\' (people, village), from Latin \'populus\'. The Pueblo peoples built multi-storey stone villages that still stand. Their culture predated Spanish arrival by over a thousand years." },
+            fact:"Spanish \'pueblo\' (people, village), from Latin \'populus\'. The Pueblo peoples built multi-storey stone villages that still stand. Their culture predated Spanish arrival by over a thousand years." }
+        ],
+      },
+      {
+        chunks: ["si","er","ra"],
+        traps: [],
+        clue: "A flat-topped hill, a large estate, a settlement, and a mountain range",
+        words: [
           { word:"SIERRA", roots:["si","er","ra"],
             clue:"A saw-toothed mountain range",
             hint:"A long jagged mountain chain, especially in Spain or Latin America",
@@ -4130,7 +4550,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["gui","tar","a","ficion","do","sal","sa","som","brer","o"],
+        chunks: ["gui","tar","a","ficion","do","sal","sa"],
         traps: [],
         clue: "A strummed instrument, a devoted fan, a dance style, and a wide-brimmed hat",
         words: [
@@ -4145,7 +4565,14 @@ const WORLDS = [
           { word:"SALSA", roots:["sal","sa"],
             clue:"The sauce — and the music that makes you move",
             hint:"A spicy tomato-based sauce; also a type of Latin dance music",
-            fact:"Spanish \'salsa\' (sauce), from Latin \'salsa\' (salted). \'Salsa\' entered English both as a culinary term and as a musical genre — the dance music that emerged from Cuban and Puerto Rican culture in New York City." },
+            fact:"Spanish \'salsa\' (sauce), from Latin \'salsa\' (salted). \'Salsa\' entered English both as a culinary term and as a musical genre — the dance music that emerged from Cuban and Puerto Rican culture in New York City." }
+        ],
+      },
+      {
+        chunks: ["som","brer","o"],
+        traps: [],
+        clue: "A strummed instrument, a devoted fan, a dance style, and a wide-brimmed hat",
+        words: [
           { word:"SOMBRERO", roots:["som","brer","o"],
             clue:"The broad-brimmed hat that makes shade",
             hint:"A broad-brimmed felt or straw hat worn in Mexico and the Southwest",
@@ -4153,7 +4580,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["guer","ril","la","ar","ma","da","em","bar","go"],
+        chunks: ["guer","ril","la","ar","ma","da"],
         traps: [],
         clue: "Irregular warfare, a fleet of warships, and a trade restriction",
         words: [
@@ -4164,7 +4591,14 @@ const WORLDS = [
           { word:"ARMADA", roots:["ar","ma","da"],
             clue:"The armed fleet — a navy of power",
             hint:"A fleet of warships",
-            fact:"Spanish \'armada\' (armed force), from Latin \'armata\'. The Spanish Armada of 1588 — Philip II\'s fleet sent to invade England — burned the word into the English consciousness. The failed invasion is one of the defining moments of English national identity." },
+            fact:"Spanish \'armada\' (armed force), from Latin \'armata\'. The Spanish Armada of 1588 — Philip II\'s fleet sent to invade England — burned the word into the English consciousness. The failed invasion is one of the defining moments of English national identity." }
+        ],
+      },
+      {
+        chunks: ["em","bar","go"],
+        traps: [],
+        clue: "Irregular warfare, a fleet of warships, and a trade restriction",
+        words: [
           { word:"EMBARGO", roots:["em","bar","go"],
             clue:"The bar placed on trade — a legal blockade",
             hint:"An official ban on trade or commercial activity",
@@ -4187,7 +4621,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["al","li","ga","tor","i","gua","na","ar","ma","dil","lo"],
+        chunks: ["al","li","ga","tor","i","gua","na"],
         traps: [],
         clue: "A broad-snouted reptile, a spiny lizard, and a small armoured mammal",
         words: [
@@ -4198,7 +4632,14 @@ const WORLDS = [
           { word:"IGUANA", roots:["i","gua","na"],
             clue:"The great lizard of the Caribbean islands",
             hint:"A large tree-climbing lizard native to tropical America",
-            fact:"Arawak \'iwana\', via Spanish \'iguana\'. Spanish colonists kept the indigenous name. It was a crucial food source for early settlers — the early Caribbean colonists called it \'the chicken of the trees\'." },
+            fact:"Arawak \'iwana\', via Spanish \'iguana\'. Spanish colonists kept the indigenous name. It was a crucial food source for early settlers — the early Caribbean colonists called it \'the chicken of the trees\'." }
+        ],
+      },
+      {
+        chunks: ["ar","ma","dil","lo"],
+        traps: [],
+        clue: "A broad-snouted reptile, a spiny lizard, and a small armoured mammal",
+        words: [
           { word:"ARMADILLO", roots:["ar","ma","dil","lo"],
             clue:"The little armoured one of the Americas",
             hint:"A small mammal native to the Americas, with a bony protective shell",
@@ -4221,7 +4662,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cafe","te","ria","tor","til","la","ta","ma","le","qui"],
+        chunks: ["cafe","te","ria","tor","til","la"],
         traps: [],
         clue: "A flatbread, a wrapped corn dish, and a distilled agave spirit",
         words: [
@@ -4232,7 +4673,14 @@ const WORLDS = [
           { word:"TORTILLA", roots:["tor","til","la"],
             clue:"The little round cake of corn",
             hint:"A thin flat bread made from corn or wheat flour",
-            fact:"Spanish \'tortilla\' (little cake), diminutive of \'torta\' (cake). The tortilla is one of the oldest foods in the Americas — made from the same maize the Aztecs grew. The Spanish diminutive \'-illa\' turned a staple into a little cake." },
+            fact:"Spanish \'tortilla\' (little cake), diminutive of \'torta\' (cake). The tortilla is one of the oldest foods in the Americas — made from the same maize the Aztecs grew. The Spanish diminutive \'-illa\' turned a staple into a little cake." }
+        ],
+      },
+      {
+        chunks: ["ta","ma","le","te","qui","la"],
+        traps: [],
+        clue: "A flatbread, a wrapped corn dish, and a distilled agave spirit",
+        words: [
           { word:"TAMALE", roots:["ta","ma","le"],
             clue:"The steamed corn parcel of Mesoamerica",
             hint:"A Mexican dish of seasoned meat wrapped in cornmeal dough and steamed",
@@ -4244,7 +4692,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["contra","band","vi","gi","lan","te","des","per","a","do"],
+        chunks: ["contra","band","vi","gi","lan","te"],
         traps: [],
         clue: "Smuggled goods, a self-appointed enforcer, and a reckless outlaw",
         words: [
@@ -4255,7 +4703,14 @@ const WORLDS = [
           { word:"VIGILANTE", roots:["vi","gi","lan","te"],
             clue:"The watchman who takes justice into his own hands",
             hint:"A person who enforces law without legal authority",
-            fact:"Spanish \'vigilante\' (watchman), from Latin \'vigilans\' (watchful). The vigilante committees of the American West — unofficial groups enforcing order when official law was absent — gave the word its modern meaning of extralegal justice." },
+            fact:"Spanish \'vigilante\' (watchman), from Latin \'vigilans\' (watchful). The vigilante committees of the American West — unofficial groups enforcing order when official law was absent — gave the word its modern meaning of extralegal justice." }
+        ],
+      },
+      {
+        chunks: ["des","per","a","do"],
+        traps: [],
+        clue: "Smuggled goods, a self-appointed enforcer, and a reckless outlaw",
+        words: [
           { word:"DESPERADO", roots:["des","per","a","do"],
             clue:"A reckless criminal of the frontier",
             hint:"A desperate or reckless person, especially an outlaw",
@@ -4278,7 +4733,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ma","che","te","bur","ri","to","na","cho","pla","ti","num"],
+        chunks: ["ma","che","te","bur","ri","to","na","cho"],
         traps: [],
         clue: "Blades, bundled bread, and precious metal",
         words: [
@@ -4293,7 +4748,14 @@ const WORLDS = [
           { word:"NACHO", roots:["na","cho"],
             clue:"A crisp tortilla chip topped with cheese",
             hint:"A snack of crisp fried tortilla chips, typically topped with melted cheese",
-            fact:"Named after Ignacio \'Nacho\' Anaya, a Mexican restaurant worker credited with inventing this popular snack in the 1940s for a group of hungry customers." },
+            fact:"Named after Ignacio \'Nacho\' Anaya, a Mexican restaurant worker credited with inventing this popular snack in the 1940s for a group of hungry customers." }
+        ],
+      },
+      {
+        chunks: ["pla","ti","num"],
+        traps: [],
+        clue: "Blades, bundled bread, and precious metal",
+        words: [
           { word:"PLATINUM", roots:["pla","ti","num"],
             clue:"A dense, precious silvery-white metal",
             hint:"A dense, precious, silvery-white metallic element",
@@ -4301,7 +4763,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ve","ran","da","re","ne","gade","ste","dore","pi","ca","resque"],
+        chunks: ["ve","ran","da","re","ne","gade"],
         traps: [],
         clue: "Covered porches, those who abandon their cause, and dockworkers",
         words: [
@@ -4312,7 +4774,14 @@ const WORLDS = [
           { word:"RENEGADE", roots:["re","ne","gade"],
             clue:"A person who deserts one cause for another",
             hint:"A person who deserts and betrays an organisation, country, or set of beliefs",
-            fact:"Spanish \'renegado\' descended from a Latin word meaning to deny again, originally describing someone who had abandoned their original faith or allegiance." },
+            fact:"Spanish \'renegado\' descended from a Latin word meaning to deny again, originally describing someone who had abandoned their original faith or allegiance." }
+        ],
+      },
+      {
+        chunks: ["ste","ve","dore","pi","ca","resque"],
+        traps: [],
+        clue: "Covered porches, those who abandon their cause, and dockworkers",
+        words: [
           { word:"STEVEDORE", roots:["ste","ve","dore"],
             clue:"A worker who loads and unloads ships",
             hint:"A worker employed to load and unload cargo from ships",
@@ -4387,7 +4856,7 @@ const WORLDS = [
     ],
     levels: [
       {
-        chunks: ["sham","poo","bun","ga","low","pa","ja","ma","jun","gle"],
+        chunks: ["sham","poo","bun","ga","low","pa","ja","ma"],
         traps: [],
         clue: "Everyday words from the subcontinent",
         words: [
@@ -4402,7 +4871,14 @@ const WORLDS = [
           { word:"PAJAMA", roots:["pa","ja","ma"],
             clue:"Loose garments worn for sleeping",
             hint:"A loose two-piece garment worn for sleeping",
-            fact:"Urdu and Persian \'pae-jama\' combined words for leg and garment, describing loose trousers later adopted into English sleepwear." },
+            fact:"Urdu and Persian \'pae-jama\' combined words for leg and garment, describing loose trousers later adopted into English sleepwear." }
+        ],
+      },
+      {
+        chunks: ["jun","gle"],
+        traps: [],
+        clue: "Everyday words from the subcontinent",
+        words: [
           { word:"JUNGLE", roots:["jun","gle"],
             clue:"Dense tropical forest with thick vegetation",
             hint:"A dense tropical forest with thick, tangled vegetation",
@@ -4410,7 +4886,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["lo","ot","a","va","tar","kar","ma","gu","ru"],
+        chunks: ["lo","ot","a","va","tar","kar","ma"],
         traps: [],
         clue: "Dense wilderness, seized riches, and a digital self",
         words: [
@@ -4425,7 +4901,14 @@ const WORLDS = [
           { word:"KARMA", roots:["kar","ma"],
             clue:"The principle of cause and effect through actions",
             hint:"The sum of a person\'s actions, believed to determine their future",
-            fact:"Sanskrit \'karma\' meant action or deed, describing the belief that one\'s actions shape one\'s future circumstances." },
+            fact:"Sanskrit \'karma\' meant action or deed, describing the belief that one\'s actions shape one\'s future circumstances." }
+        ],
+      },
+      {
+        chunks: ["gu","ru"],
+        traps: [],
+        clue: "Dense wilderness, seized riches, and a digital self",
+        words: [
           { word:"GURU", roots:["gu","ru"],
             clue:"A respected teacher or expert",
             hint:"A spiritual teacher, or an influential expert in a particular field",
@@ -4433,7 +4916,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["man","tra","nir","va","na","yo","ga","chut","ney"],
+        chunks: ["man","tra","nir","va","na","yo","ga"],
         traps: [],
         clue: "Fate's balance, sacred teachers, and inner peace",
         words: [
@@ -4448,7 +4931,14 @@ const WORLDS = [
           { word:"YOGA", roots:["yo","ga"],
             clue:"A discipline of physical and spiritual practice",
             hint:"A discipline involving physical postures, breathing, and meditation",
-            fact:"Sanskrit \'yoga\' meant union or yoke, describing the joining of body, breath, and mind into a single disciplined practice." },
+            fact:"Sanskrit \'yoga\' meant union or yoke, describing the joining of body, breath, and mind into a single disciplined practice." }
+        ],
+      },
+      {
+        chunks: ["chut","ney"],
+        traps: [],
+        clue: "Fate's balance, sacred teachers, and inner peace",
+        words: [
           { word:"CHUTNEY", roots:["chut","ney"],
             clue:"A spicy condiment made from fruit or vegetables",
             hint:"A spicy condiment made from fruits, vegetables, and spices",
@@ -4456,7 +4946,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cur","ry","ban","da","na","thu","g","pun","dit"],
+        chunks: ["cur","ry","ban","da","na","thu","g"],
         traps: [],
         clue: "Spiced dishes and cloth worn on the head",
         words: [
@@ -4471,7 +4961,14 @@ const WORLDS = [
           { word:"THUG", roots:["thu","g"],
             clue:"A violent or aggressive person",
             hint:"A violent person, especially one involved in crime",
-            fact:"Hindi \'thag\' described a member of an organised group of robbers, the word later broadening to describe any violent criminal." },
+            fact:"Hindi \'thag\' described a member of an organised group of robbers, the word later broadening to describe any violent criminal." }
+        ],
+      },
+      {
+        chunks: ["pun","dit"],
+        traps: [],
+        clue: "Spiced dishes and cloth worn on the head",
+        words: [
           { word:"PUNDIT", roots:["pun","dit"],
             clue:"An expert who offers opinions publicly",
             hint:"A person regarded as an authority on a subject, or a self-appointed expert",
@@ -4479,7 +4976,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["cash","mere","kha","ki","ve","ran","da","dun","ga","rees"],
+        chunks: ["cash","mere","kha","ki","ve","ran","da"],
         traps: [],
         clue: "Violent rogues, self-styled experts, and prized wool",
         words: [
@@ -4494,7 +4991,14 @@ const WORLDS = [
           { word:"VERANDA", roots:["ve","ran","da"],
             clue:"A covered porch attached to a house",
             hint:"A roofed platform along the outside of a house, at ground level",
-            fact:"Hindi \'varanda\' likely descended from a Portuguese term for a railing, describing an open covered porch common in South Asian architecture." },
+            fact:"Hindi \'varanda\' likely descended from a Portuguese term for a railing, describing an open covered porch common in South Asian architecture." }
+        ],
+      },
+      {
+        chunks: ["dun","ga","rees"],
+        traps: [],
+        clue: "Violent rogues, self-styled experts, and prized wool",
+        words: [
           { word:"DUNGAREES", roots:["dun","ga","rees"],
             clue:"Sturdy work trousers with a bib",
             hint:"Trousers with a bib attached, held up by straps over the shoulders",
@@ -4525,7 +5029,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ca","ta","ma","ran","pa","ri","ah","ha","ra","ja"],
+        chunks: ["ca","ta","ma","ran","pa","ri","ah"],
         traps: [],
         clue: "Jodhpurs, pukka, and the cheetah\'s speed",
         words: [
@@ -4536,7 +5040,14 @@ const WORLDS = [
           { word:"PARIAH", roots:["pa","ri","ah"],
             clue:"An outcast rejected by society",
             hint:"A person despised or rejected by society",
-            fact:"Tamil \'paraiyar\' named a particular community, the term later broadening in English to describe any social outcast." },
+            fact:"Tamil \'paraiyar\' named a particular community, the term later broadening in English to describe any social outcast." }
+        ],
+      },
+      {
+        chunks: ["ma","ha","ra","ja"],
+        traps: [],
+        clue: "Jodhpurs, pukka, and the cheetah\'s speed",
+        words: [
           { word:"MAHARAJA", roots:["ma","ha","ra","ja"],
             clue:"A great king or prince",
             hint:"A title used by certain Indian princes, meaning great king",
@@ -4617,7 +5128,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ban","gle","gym","kha","na","po","lo","chin","tz"],
+        chunks: ["ban","gle","gym","kha","na","po","lo"],
         traps: [],
         clue: "Swamis, ashrams, and the chakra",
         words: [
@@ -4632,7 +5143,14 @@ const WORLDS = [
           { word:"POLO", roots:["po","lo"],
             clue:"A team sport played on horseback",
             hint:"A game played on horseback using long-handled mallets to hit a ball",
-            fact:"Balti \'polo\' meant ball, the sport itself originating in Central and South Asia before British officers carried both game and name to England." },
+            fact:"Balti \'polo\' meant ball, the sport itself originating in Central and South Asia before British officers carried both game and name to England." }
+        ],
+      },
+      {
+        chunks: ["chin","tz"],
+        traps: [],
+        clue: "Swamis, ashrams, and the chakra",
+        words: [
           { word:"CHINTZ", roots:["chin","tz"],
             clue:"Brightly patterned printed cotton fabric",
             hint:"A brightly patterned printed cotton fabric",
@@ -4640,7 +5158,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["seer","suck","er","con","gee","tod","dy","ban","yan"],
+        chunks: ["seer","suck","er","con","gee","tod","dy"],
         traps: [],
         clue: "Punch, lacquer, and a simple cot",
         words: [
@@ -4655,7 +5173,14 @@ const WORLDS = [
           { word:"TODDY", roots:["tod","dy"],
             clue:"A fermented drink made from palm sap",
             hint:"An alcoholic drink made from the fermented sap of a palm tree",
-            fact:"Hindi \'tari\' named the sap of a particular palm, the fermented drink and its name both carried into English through colonial contact." },
+            fact:"Hindi \'tari\' named the sap of a particular palm, the fermented drink and its name both carried into English through colonial contact." }
+        ],
+      },
+      {
+        chunks: ["ban","yan"],
+        traps: [],
+        clue: "Punch, lacquer, and a simple cot",
+        words: [
           { word:"BANYAN", roots:["ban","yan"],
             clue:"A large fig tree with spreading roots",
             hint:"A large tree whose branches send down roots that become new trunks",
@@ -4663,7 +5188,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["pa","lan","quin","mul","li","ga","taw","ny","ked","ge","ree","sa","mo"],
+        chunks: ["pa","lan","quin","mul","li","ga","taw","ny"],
         traps: [],
         clue: "Dinghies, tanks, and jute rope",
         words: [
@@ -4674,7 +5199,14 @@ const WORLDS = [
           { word:"MULLIGATAWNY", roots:["mul","li","ga","taw","ny"],
             clue:"A spiced soup of South Asian origin",
             hint:"A spicy soup typically containing meat and vegetables",
-            fact:"Tamil \'milagu-tannir\' meant pepper water, describing a spiced broth that British colonists adapted into a substantial soup." },
+            fact:"Tamil \'milagu-tannir\' meant pepper water, describing a spiced broth that British colonists adapted into a substantial soup." }
+        ],
+      },
+      {
+        chunks: ["ked","ge","ree","sa","mo"],
+        traps: [],
+        clue: "Dinghies, tanks, and jute rope",
+        words: [
           { word:"KEDGEREE", roots:["ked","ge","ree"],
             clue:"A dish of rice, fish, and egg",
             hint:"A dish of cooked fish, rice, and hard-boiled eggs, typically eaten at breakfast",
@@ -4686,7 +5218,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["bas","ma","ti","cum","mer","bund","in","di","go","gin","ger"],
+        chunks: ["bas","ma","ti","cum","mer","bund"],
         traps: [],
         clue: "Bangles and the gymkhana grounds",
         words: [
@@ -4697,7 +5229,14 @@ const WORLDS = [
           { word:"CUMMERBUND", roots:["cum","mer","bund"],
             clue:"A wide sash worn around the waist",
             hint:"A wide fabric sash worn around the waist, especially with formal dress",
-            fact:"Hindi and Persian \'kamar-band\' combined words for waist and band, the garment later adopted into Western formal evening wear." },
+            fact:"Hindi and Persian \'kamar-band\' combined words for waist and band, the garment later adopted into Western formal evening wear." }
+        ],
+      },
+      {
+        chunks: ["in","di","go","gin","ger"],
+        traps: [],
+        clue: "Bangles and the gymkhana grounds",
+        words: [
           { word:"INDIGO", roots:["in","di","go"],
             clue:"A deep blue dye and its colour",
             hint:"A rich, deep blue dye, or the plant from which it is derived",
@@ -4709,7 +5248,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["ma","sa","la","cha","i","bin","di","stu","pa"],
+        chunks: ["ma","sa","la","cha","i","bin","di"],
         traps: [],
         clue: "Polo, chintz, and seersucker cloth",
         words: [
@@ -4724,7 +5263,14 @@ const WORLDS = [
           { word:"BINDI", roots:["bin","di"],
             clue:"A decorative mark worn on the forehead",
             hint:"A decorative mark worn on the forehead, especially by Hindu women",
-            fact:"Sanskrit \'bindu\' meant a drop or point, describing this small forehead marking carrying cultural and religious significance." },
+            fact:"Sanskrit \'bindu\' meant a drop or point, describing this small forehead marking carrying cultural and religious significance." }
+        ],
+      },
+      {
+        chunks: ["stu","pa"],
+        traps: [],
+        clue: "Polo, chintz, and seersucker cloth",
+        words: [
           { word:"STUPA", roots:["stu","pa"],
             clue:"A dome-shaped Buddhist shrine",
             hint:"A dome-shaped Buddhist monument containing sacred relics",
@@ -4755,7 +5301,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["a","sa","na","tan","tra","kur","ta","si","tar"],
+        chunks: ["a","sa","na","tan","tra","kur","ta"],
         traps: [],
         clue: "Palanquins and mulligatawny soup",
         words: [
@@ -4770,13 +5316,20 @@ const WORLDS = [
           { word:"KURTA", roots:["kur","ta"],
             clue:"A loose collarless shirt",
             hint:"A loose collarless shirt, often worn with traditional South Asian dress",
-            fact:"Hindi and Urdu \'kurta\' named this traditional loose-fitting garment, its name and style both adopted into English fashion vocabulary." },
+            fact:"Hindi and Urdu \'kurta\' named this traditional loose-fitting garment, its name and style both adopted into English fashion vocabulary." }
+        ],
+      },
+      {
+        chunks: ["si","tar"],
+        traps: [],
+        clue: "Palanquins and mulligatawny soup",
+        words: [
           { word:"SITAR", roots:["si","tar"],
             clue:"A stringed instrument of South Asian music",
             hint:"A long-necked stringed instrument used in Indian classical music",
             fact:"Persian \'sehtar\' meant three strings, describing an ancestor of this now-famous South Asian instrument with its distinctive resonant sound." }
         ],
-      }
+      },
     ]
   },
   {
@@ -5366,7 +5919,7 @@ const WORLDS = [
         ],
       },
       {
-        chunks: ["mis","take","lu","ll","blun","der","fel","low","ship"],
+        chunks: ["mis","take","lu","ll","blun","der"],
         traps: [],
         clue: "Lasting Norse words in modern speech",
         words: [
@@ -5381,7 +5934,14 @@ const WORLDS = [
           { word:"BLUNDER", roots:["blun","der"],
             clue:"A stupid or careless mistake",
             hint:"A stupid or careless mistake",
-            fact:"Possibly Old Norse \'blunda\' (to shut the eyes, to doze). To blunder was originally to stumble around blindly, as if half-asleep — the modern sense of a careless error grew naturally from that image of fumbling in the dark." },
+            fact:"Possibly Old Norse \'blunda\' (to shut the eyes, to doze). To blunder was originally to stumble around blindly, as if half-asleep — the modern sense of a careless error grew naturally from that image of fumbling in the dark." }
+        ],
+      },
+      {
+        chunks: ["fel","low","ship"],
+        traps: [],
+        clue: "Lasting Norse words in modern speech",
+        words: [
           { word:"FELLOWSHIP", roots:["fel","low","ship"],
             clue:"A bond of shared stake and company",
             hint:"Friendly association, especially among people who share interests",
