@@ -7688,6 +7688,18 @@ function EtymRoot() {
     return { solved, total };
   };
 
+  // Find the level to resume at: the first level containing a word the
+  // player hasn't solved yet in this world. Falls back to level 0 if the
+  // player hasn't started, or the last level if everything is complete.
+  const resumeLevelIndex = (w) => {
+    const solvedSet = new Set(unlockedWords[w.id] || []);
+    for (let i = 0; i < w.levels.length; i++) {
+      const allSolvedInLevel = w.levels[i].words.every(word => solvedSet.has(word.word));
+      if (!allSolvedInLevel) return i;
+    }
+    return Math.max(0, w.levels.length - 1); // fully complete — land on the last level
+  };
+
   // Pick a random incomplete world (excludes the one currently being played, if possible)
   const pickRandomWorld = (excludeId) => {
     const candidates = WORLDS.filter(w => !completedWorlds.includes(w.id) && w.id !== excludeId);
@@ -7698,17 +7710,23 @@ function EtymRoot() {
     return pool[Math.floor(Math.random() * pool.length)];
   };
 
-  const startGame = (wIdx = 0, lIdx = 0) => {
+  const startGame = (wIdx = 0, forcedLevelIdx = null) => {
+    const selectedWorld = WORLDS[wIdx];
+    // Resume where the player left off unless a specific level was requested
+    // (e.g. replaying a world from scratch, or the +1 "next world" button).
+    const resumeIdx = forcedLevelIdx !== null ? forcedLevelIdx : resumeLevelIndex(selectedWorld);
     setWorldIdx(wIdx);
-    setLevelIdx(lIdx);
+    setLevelIdx(resumeIdx);
     // A fresh manual selection from the menu starts a new leap run
     setLeapCount(0);
     setLeapTarget(4 + Math.floor(Math.random()*3));
-    // Deliberate selection from the home menu ALWAYS shows the title screen,
-    // regardless of whether it has been seen before via a wormhole leap.
-    const selectedWorld = WORLDS[wIdx];
+    // Show the title screen only the first time this world is ever entered —
+    // whether that first visit came from the home menu or an earlier wormhole
+    // leap. Once seen, returning to a world (including to resume progress)
+    // skips straight into gameplay at the resume point.
     const hasIntro = !!(selectedWorld?.intro || selectedWorld?.historicalSummary);
-    if (hasIntro && lIdx === 0) {
+    const alreadySeen = seenIntros.includes(selectedWorld.id);
+    if (hasIntro && !alreadySeen) {
       setSeenIntros(prev => prev.includes(selectedWorld.id) ? prev : [...prev, selectedWorld.id]);
       setScreen("worldIntro");
     } else {
@@ -7857,7 +7875,7 @@ function EtymRoot() {
           </div>
         </div>
         <div style={{display:"flex",flexDirection:"column",gap:"10px",width:"100%",maxWidth:"280px"}}>
-          {nextWorld&&<button onClick={()=>startGame(worldIdx+1,0)} style={{background:nextWorld.color,border:"none",borderRadius:"14px",padding:"16px",color:"#fff",fontSize:"16px",fontWeight:"700",cursor:"pointer"}}>{nextWorld.emoji} Start {nextWorld.name}</button>}
+          {nextWorld&&<button onClick={()=>startGame(worldIdx+1)} style={{background:nextWorld.color,border:"none",borderRadius:"14px",padding:"16px",color:"#fff",fontSize:"16px",fontWeight:"700",cursor:"pointer"}}>{nextWorld.emoji} Start {nextWorld.name}</button>}
           <button onClick={()=>setScreen("tree")} style={{background:"transparent",border:`1px solid ${world.accentColor}50`,borderRadius:"14px",padding:"14px",color:world.accentColor,fontSize:"14px",fontWeight:"600",cursor:"pointer"}}>🌳 View Language Tree</button>
           <button onClick={()=>setScreen("home")} style={{background:"transparent",border:"none",color:"rgba(255,255,255,0.4)",fontSize:"13px",cursor:"pointer",padding:"8px"}}>Back to Home</button>
         </div>
@@ -7919,7 +7937,7 @@ function EtymRoot() {
             const unlocked=true;
             const {solved,total}=worldProgress(w);
             const pct=total>0?Math.round((solved/total)*100):0;
-            return <button key={w.id} onClick={()=>unlocked&&startGame(i,0)} style={{background:done?`${w.color}22`:unlocked?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${done?w.color+"60":unlocked?"rgba(255,255,255,0.12)":"rgba(255,255,255,0.04)"}`,borderRadius:"16px",padding:"16px 18px",cursor:unlocked?"pointer":"default",display:"flex",alignItems:"center",gap:"14px",width:"100%",textAlign:"left"}}>
+            return <button key={w.id} onClick={()=>unlocked&&startGame(i)} style={{background:done?`${w.color}22`:unlocked?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${done?w.color+"60":unlocked?"rgba(255,255,255,0.12)":"rgba(255,255,255,0.04)"}`,borderRadius:"16px",padding:"16px 18px",cursor:unlocked?"pointer":"default",display:"flex",alignItems:"center",gap:"14px",width:"100%",textAlign:"left"}}>
               <div style={{width:"44px",height:"44px",borderRadius:"12px",background:`${w.color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"22px",flexShrink:0}}>{unlocked?w.emoji:"🔒"}</div>
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"4px"}}>
