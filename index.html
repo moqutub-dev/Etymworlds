@@ -56,6 +56,7 @@ const WORLDS = [
     introImageUrl: "images/Arab%20title.PNG",
     introAudio: "audio/arabic.mp3",
     bgImageUrl: "images/Arab.PNG",
+    bgImages: ["images/Arab.PNG", "images/Arab2.PNG", "images/Arab3.PNG", "images/Arab4.PNG"],
     intro: {
       title: "The Silk Road",
       description: "During the Middle Ages, the Islamic Golden Age preserved and vastly expanded upon classical science and mathematics. Arab scholars introduced vital concepts in chemistry, commerce, and mathematics to Christendom, permanently enriching the English vocabulary.",
@@ -574,6 +575,7 @@ const WORLDS = [
     introImageUrl: "images/Greco-Roman%20title.PNG",
     introAudio: "audio/greek.mp3",
     bgImageUrl: "images/Greco-Roman.PNG",
+    bgImages: ["images/Greco-Roman.PNG", "images/Greco-Roman2.PNG", "images/Greco-Roman3.PNG", "images/Greco-Roman4.PNG", "images/Greco-Roman5.PNG", "images/Greco-Roman6.PNG"],
     intro: {
       title: "The Aegean Scholars",
       description: "The Greco-Roman world laid the foundation for Western civilization. When the Romans established the settlement of Londinium in 43 AD, they brought Latin. Later, Greek became the ultimate language of science, philosophy, and academia across Europe.",
@@ -1327,6 +1329,22 @@ const WORLDS = [
       description: "Before the Romans or Anglo-Saxons, the Celtic people dominated the British Isles and Western Europe. Though largely pushed to the fringes, their ancient tongues survive today in Irish, Welsh, Scottish Gaelic, and Breton.",
       fact: "Did you know? In 60 AD, the fierce Celtic queen Boudicca led a massive uprising against the Roman Empire, burning Londinium to the ground before she was finally defeated.",
     },
+    milestones: [
+      {
+        afterLevel: 5,
+        percent: 33,
+        title: "A Third Through the Isles",
+        trivia: "Celtic languages are among the oldest in the British Isles, spoken here long before Latin, Old English, or Norse ever arrived. Though Celtic contributed far fewer words to modern English than these later invaders, the words it did leave behind — landscape terms, folklore, and everyday slang — are still spoken daily without most people realising their ancient origin.",
+        imageKey: "milestone_celtic_1",
+      },
+      {
+        afterLevel: 11,
+        percent: 66,
+        title: "Two Thirds to the Standing Stones",
+        trivia: "Many Celtic-origin words entered English not through conquest but through everyday contact between neighbouring communities across Britain and Ireland over many centuries. Words for landscape features, folklore, and casual speech travelled quietly between languages long before anyone wrote down where they came from.",
+        imageKey: "milestone_celtic_2",
+      },
+    ],
     levels: [
       {
         chunks: ["ban","shee","slo","gan","whis","key"],
@@ -6303,6 +6321,194 @@ const MilestoneIllustration = ({ imageKey, accentColor, color }) => {
     </div>
   );
 
+
+  // ── Arabic icon: astrolabe ───────────────────────────────────────────────
+  if (imageKey === "milestone_arabic_1" || imageKey === "milestone_arabic_2" || imageKey === "milestone_arabic_3") return (
+    <div style={style}>
+      <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}>
+        <defs>
+          <radialGradient id="arIconGlow" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor={accentColor} stopOpacity="0.18"/>
+            <stop offset="100%" stopColor={accentColor} stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="380" height="140" fill={`${color}12`}/>
+        <circle cx="190" cy="70" r="55" fill="url(#arIconGlow)"/>
+        {/* Astrolabe body — concentric rings */}
+        <circle cx="190" cy="70" r="42" fill="none" stroke={accentColor} strokeWidth="2" opacity="0.85"/>
+        <circle cx="190" cy="70" r="32" fill="none" stroke={accentColor} strokeWidth="1.3" opacity="0.6"/>
+        <circle cx="190" cy="70" r="20" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.5"/>
+        {/* Rotating rule (alidade) */}
+        <line x1="150" y1="70" x2="230" y2="70" stroke={accentColor} strokeWidth="1.5" opacity="0.7" transform="rotate(-28,190,70)"/>
+        <circle cx="190" cy="70" r="3" fill={accentColor} opacity="0.9"/>
+        {/* Degree markings */}
+        {Array.from({length:24}).map((_,i)=>{
+          const ang = (i/24)*360;
+          const rad = ang*Math.PI/180;
+          const x1 = 190+Math.cos(rad)*42, y1=70+Math.sin(rad)*42;
+          const x2 = 190+Math.cos(rad)*38, y2=70+Math.sin(rad)*38;
+          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={accentColor} strokeWidth="0.8" opacity="0.4"/>;
+        })}
+        {/* Suspension ring at top */}
+        <circle cx="190" cy="24" r="5" fill="none" stroke={accentColor} strokeWidth="1.5" opacity="0.7"/>
+        <line x1="190" y1="29" x2="190" y2="34" stroke={accentColor} strokeWidth="1.5" opacity="0.7"/>
+        {/* Star points suggesting celestial mapping */}
+        {[[70,35],[310,40],[90,110],[300,105],[55,75]].map(([x,y],i)=>(
+          <circle key={i} cx={x} cy={y} r="1.3" fill={accentColor} opacity="0.5"/>
+        ))}
+      </svg>
+    </div>
+  );
+
+  // ── Greek icon: papyrus scroll ───────────────────────────────────────────
+  if (imageKey === "milestone_greek_1" || imageKey === "milestone_greek_2" || imageKey === "milestone_greek_3") return (
+    <div style={style}>
+      <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}>
+        <defs>
+          <linearGradient id="grScroll" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#f0e2c0"/>
+            <stop offset="100%" stopColor="#dcc99a"/>
+          </linearGradient>
+          <radialGradient id="grIconGlow" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor={accentColor} stopOpacity="0.15"/>
+            <stop offset="100%" stopColor={accentColor} stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="380" height="140" fill={`${color}12`}/>
+        <ellipse cx="190" cy="70" rx="140" ry="55" fill="url(#grIconGlow)"/>
+        {/* Scroll body */}
+        <rect x="110" y="42" width="160" height="56" rx="2" fill="url(#grScroll)"/>
+        {/* Left roller */}
+        <rect x="98" y="36" width="14" height="68" rx="7" fill="#8a6a3a" opacity="0.9"/>
+        <ellipse cx="105" cy="36" rx="7" ry="4" fill="#a88a5a"/>
+        <ellipse cx="105" cy="104" rx="7" ry="4" fill="#a88a5a"/>
+        {/* Right roller */}
+        <rect x="268" y="36" width="14" height="68" rx="7" fill="#8a6a3a" opacity="0.9"/>
+        <ellipse cx="275" cy="36" rx="7" ry="4" fill="#a88a5a"/>
+        <ellipse cx="275" cy="104" rx="7" ry="4" fill="#a88a5a"/>
+        {/* Greek text lines on the scroll */}
+        {[52,60,68,76,84].map((y,i)=>(
+          <line key={i} x1={122} y1={y} x2={122+120-(i%2)*10} y2={y} stroke="#5a4020" strokeWidth="1" opacity="0.55"/>
+        ))}
+        {/* A few Greek-style glyph marks */}
+        <text x="190" y="66" textAnchor="middle" fill="#5a4020" fontSize="9" opacity="0.35" fontFamily="Georgia,serif">ΛΟΓΟΣ</text>
+      </svg>
+    </div>
+  );
+
+
+  // ── Sanskrit icon: lotus / temple bell ───────────────────────────────────
+  if (imageKey === "milestone_sanskrit_1" || imageKey === "milestone_sanskrit_2" || imageKey === "milestone_sanskrit_3") return (
+    <div style={style}>
+      <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}>
+        <defs>
+          <radialGradient id="skIconGlow" cx="50%" cy="55%" r="60%">
+            <stop offset="0%" stopColor={accentColor} stopOpacity="0.2"/>
+            <stop offset="100%" stopColor={accentColor} stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="380" height="140" fill={`${color}12`}/>
+        <ellipse cx="190" cy="80" rx="120" ry="50" fill="url(#skIconGlow)"/>
+        {/* Lotus — layered petals */}
+        <g transform="translate(190,80)">
+          {Array.from({length:8}).map((_,i)=>{
+            const ang = (i/8)*360;
+            return (
+              <ellipse key={i} cx="0" cy="0" rx="9" ry="26"
+                fill={accentColor} opacity="0.35"
+                transform={`rotate(${ang}) translate(0,-14)`}/>
+            );
+          })}
+          {Array.from({length:6}).map((_,i)=>{
+            const ang = (i/6)*360 + 30;
+            return (
+              <ellipse key={i} cx="0" cy="0" rx="6" ry="17"
+                fill={accentColor} opacity="0.55"
+                transform={`rotate(${ang}) translate(0,-8)`}/>
+            );
+          })}
+          <circle cx="0" cy="0" r="7" fill={accentColor} opacity="0.85"/>
+        </g>
+        {/* Base / water suggestion */}
+        <path d="M60 118 Q190 130 320 118" stroke={accentColor} strokeWidth="1" fill="none" opacity="0.25"/>
+        <path d="M80 126 Q190 136 300 126" stroke={accentColor} strokeWidth="0.8" fill="none" opacity="0.18"/>
+      </svg>
+    </div>
+  );
+
+  // ── Norse icon: axe ───────────────────────────────────────────────────────
+  if (imageKey === "milestone_norse_1" || imageKey === "milestone_norse_2" || imageKey === "milestone_norse_3") return (
+    <div style={style}>
+      <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}>
+        <defs>
+          <linearGradient id="nsBlade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#c8d4e0"/>
+            <stop offset="100%" stopColor="#8898a8"/>
+          </linearGradient>
+          <radialGradient id="nsIconGlow" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor={accentColor} stopOpacity="0.18"/>
+            <stop offset="100%" stopColor={accentColor} stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="380" height="140" fill={`${color}12`}/>
+        <ellipse cx="190" cy="70" rx="120" ry="55" fill="url(#nsIconGlow)"/>
+        {/* Axe, angled */}
+        <g transform="translate(190,72) rotate(-18)">
+          {/* Handle */}
+          <rect x="-6" y="-46" width="12" height="92" rx="4" fill="#5a3a1a"/>
+          <rect x="-4" y="-44" width="3" height="88" fill="#7a5230" opacity="0.6"/>
+          {/* Axe head — blade */}
+          <path d="M6 -40 Q52 -40 58 -18 Q52 4 6 4 Z" fill="url(#nsBlade)" stroke="#5a6878" strokeWidth="1.5"/>
+          {/* Head socket */}
+          <rect x="-2" y="-38" width="14" height="34" rx="3" fill="#6a7888"/>
+          {/* Blade edge highlight */}
+          <path d="M56 -18 Q52 -30 20 -36" stroke="#e8eef4" strokeWidth="1" fill="none" opacity="0.5"/>
+        </g>
+        {/* Rune-like marks flanking */}
+        <text x="70" y="60" fill={accentColor} fontSize="16" opacity="0.4" fontFamily="Georgia,serif">ᚦ</text>
+        <text x="300" y="90" fill={accentColor} fontSize="16" opacity="0.4" fontFamily="Georgia,serif">ᚱ</text>
+      </svg>
+    </div>
+  );
+
+  // ── Celtic icon: bronze axe head ──────────────────────────────────────────
+  if (imageKey === "milestone_celtic_1" || imageKey === "milestone_celtic_2") return (
+    <div style={style}>
+      <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg" style={{width:"100%",height:"100%"}}>
+        <defs>
+          <linearGradient id="ctBronze" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#c8a870"/>
+            <stop offset="100%" stopColor="#8a6a3a"/>
+          </linearGradient>
+          <radialGradient id="ctIconGlow" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor={accentColor} stopOpacity="0.2"/>
+            <stop offset="100%" stopColor={accentColor} stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="380" height="140" fill={`${color}12`}/>
+        <ellipse cx="190" cy="70" rx="120" ry="55" fill="url(#ctIconGlow)"/>
+        {/* Celtic bronze axe head, socketed style */}
+        <g transform="translate(190,70) rotate(8)">
+          <path d="M-14 -50 L14 -50 L20 -10 Q30 10 10 26 L-10 26 Q-30 10 -20 -10 Z"
+            fill="url(#ctBronze)" stroke="#5a4020" strokeWidth="1.5"/>
+          {/* Socket rings */}
+          <ellipse cx="0" cy="-42" rx="12" ry="5" fill="none" stroke="#5a4020" strokeWidth="1" opacity="0.6"/>
+          <ellipse cx="0" cy="-32" rx="13" ry="5" fill="none" stroke="#5a4020" strokeWidth="1" opacity="0.5"/>
+          {/* Blade edge */}
+          <path d="M-10 26 Q0 34 10 26" fill="none" stroke="#e8d8b0" strokeWidth="1.2" opacity="0.6"/>
+        </g>
+        {/* Celtic knotwork suggestion — interlocking loops */}
+        <g opacity="0.3" stroke={accentColor} strokeWidth="1.3" fill="none">
+          <circle cx="90" cy="55" r="14"/>
+          <circle cx="108" cy="55" r="14"/>
+          <circle cx="270" cy="95" r="12"/>
+          <circle cx="286" cy="95" r="12"/>
+        </g>
+      </svg>
+    </div>
+  );
+
+
   // Fallback for unknown keys
   return (
     <div style={{...style, display:"flex", alignItems:"center", justifyContent:"center",
@@ -6321,11 +6527,14 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
       padding: "20px",
       background: world.bgGradient,
       fontFamily: "Georgia,serif",
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
     }}>
       {/* Dark overlay */}
       <div style={{
-        position: "absolute", inset: 0,
+        position: "fixed", inset: 0,
         backgroundColor: "rgba(0,0,0,0.55)",
+        zIndex: 1,
       }}/>
 
       <div style={{
@@ -6338,6 +6547,7 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
         boxShadow: `0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px ${world.accentColor}20`,
         display: "flex", flexDirection: "column", alignItems: "center",
         textAlign: "center",
+        margin: "auto",
       }}>
 
         {/* Progress badge */}
@@ -7179,6 +7389,24 @@ function EtymRoot() {
   const world = WORLDS[worldIdx];
   const level = world?.levels[levelIdx];
 
+  // Pick a background image based on progress through the world, for worlds
+  // that provide a bgImages array (multiple images shown across the levels).
+  // Falls back to the single bgImageUrl for worlds with only one image.
+  const currentBgImage = useMemo(() => {
+    if (!world) return null;
+    if (!world.bgImages || world.bgImages.length <= 1) return world.bgImageUrl;
+    const totalWords = world.levels.reduce((sum, lvl) => sum + lvl.words.length, 0);
+    const wordsBeforeCurrentLevel = world.levels
+      .slice(0, levelIdx)
+      .reduce((sum, lvl) => sum + lvl.words.length, 0);
+    const progressFraction = totalWords > 0 ? wordsBeforeCurrentLevel / totalWords : 0;
+    const imageIndex = Math.min(
+      world.bgImages.length - 1,
+      Math.floor(progressFraction * world.bgImages.length)
+    );
+    return world.bgImages[imageIndex];
+  }, [world, levelIdx]);
+
   const completedRoots = useMemo(() => {
     if (!level) return [];
     const usedInSolved      = new Set();
@@ -7720,8 +7948,8 @@ function EtymRoot() {
       display:"flex", flexDirection:"column",
       overflow:"hidden", fontFamily:"Georgia,serif",
       position:"relative", userSelect:"none",
-      backgroundImage: world.bgImageUrl
-        ? `url(${world.bgImageUrl})`
+      backgroundImage: currentBgImage
+        ? `url(${currentBgImage})`
         : world.bgGradient,
       backgroundSize: "cover",
       backgroundPosition: "center top",
