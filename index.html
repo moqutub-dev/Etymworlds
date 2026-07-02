@@ -6686,29 +6686,6 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
 const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGlowShown, onClose }) => {
   const [selectedWorldId, setSelectedWorldId] = useState(null);
 
-  // Each world mapped to a historical territory with a real, simplified region
-  // path (traced against an actual Europe/Africa/Asia projection, not literal
-  // borders — reasonably accurate outlines rather than abstract blobs) and a
-  // dedicated color per your naming.
-  const REGION_PATHS = {
-    // Norse — Scandinavia, yellow
-    norse:         { path:"M292 40 L318 34 L336 50 L332 78 L316 96 L300 92 L286 68 Z", color:"#E8C547", label:"Scandinavia" },
-    // Anglo-Saxon — Jutland / Denmark & N. Germany, red
-    anglo_saxon:   { path:"M270 96 L296 90 L306 108 L298 128 L276 130 L262 114 Z", color:"#C0392B", label:"Anglo-Saxon Homeland" },
-    // Celtic — Ireland & Wales / Britain's western fringe, green
-    celtic:        { path:"M148 108 L166 100 L178 112 L176 132 L160 144 L144 132 L140 118 Z", color:"#2E8B57", label:"Celtic Lands" },
-    // Norman French — France, crimson
-    norman_french: { path:"M182 148 L214 138 L238 150 L240 178 L214 198 L184 190 L172 168 Z", color:"#9C1C3C", label:"Norman France" },
-    // Greek — Greece / Aegean, teal
-    greek:         { path:"M296 176 L316 168 L330 182 L326 202 L308 210 L294 196 Z", color:"#1F9E93", label:"Greek Lands" },
-    // Spanish — Iberia, gold
-    spanish:       { path:"M130 190 L162 182 L178 198 L172 224 L142 232 L122 214 Z", color:"#D4A017", label:"Iberia" },
-    // Arabic — Abbasid Caliphate, blue
-    arabic:        { path:"M336 196 L378 182 L414 196 L422 232 L398 260 L358 254 L336 226 Z", color:"#2563A8", label:"Abbasid Caliphate" },
-    // Sanskrit — British colonial India, orange
-    sanskrit:      { path:"M440 232 L478 220 L508 244 L502 288 L468 306 L438 282 L432 254 Z", color:"#D2691E", label:"Colonial India" },
-  };
-
   const worldProgress = (w) => {
     const total  = w.levels.reduce((sum, lvl) => sum + lvl.words.length, 0);
     const solved = (unlockedWords[w.id] || []).length;
@@ -6717,7 +6694,7 @@ const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGl
 
   const totalWordsAll = Object.values(unlockedWords).flat().length;
 
-  // ── Detail view: shown after tapping a region ──────────────────────────────
+  // ── Detail view: shown after tapping a crest ────────────────────────────────
   if (selectedWorldId) {
     const w = WORLDS.find(x => x.id === selectedWorldId);
     const { solved, total, pct } = worldProgress(w);
@@ -6726,7 +6703,7 @@ const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGl
     return (
       <div style={{position:"fixed",inset:0,background:`linear-gradient(180deg,#0a1a0a,${w.color}22 60%,#0d2410)`,zIndex:100,display:"flex",flexDirection:"column",alignItems:"center",fontFamily:"Georgia,serif",overflowY:"auto"}}>
         <div style={{width:"100%",maxWidth:"420px",padding:"20px 20px 40px"}}>
-          <button onClick={() => setSelectedWorldId(null)} style={{background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.15)",color:"#fff",borderRadius:"10px",padding:"7px 14px",fontSize:"13px",cursor:"pointer",marginBottom:"20px"}}>← Map</button>
+          <button onClick={() => setSelectedWorldId(null)} style={{background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.15)",color:"#fff",borderRadius:"10px",padding:"7px 14px",fontSize:"13px",cursor:"pointer",marginBottom:"20px"}}>← Crests</button>
 
           <div style={{textAlign:"center",marginBottom:"24px"}}>
             <div style={{width:"88px",height:"88px",borderRadius:"50%",margin:"0 auto 14px",background:`${w.accentColor}25`,border:`2px solid ${w.accentColor}80`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"40px",boxShadow:done?`0 0 30px ${w.accentColor}70`:"none"}}>{w.emoji}</div>
@@ -6754,93 +6731,70 @@ const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGl
     );
   }
 
-  // ── Overview: the world map ─────────────────────────────────────────────────
+  // ── Overview: a row of heraldic crests, one per world ───────────────────────
+  // Each crest fills with colour from the bottom up as progress is made,
+  // like an emblem being illuminated — simple, sturdy geometry that reads
+  // clearly at small sizes, with none of the fragility of a hand-traced map.
+  const CREST_W = 88, CREST_H = 104;
+  const crestPath = `M4 4 H${CREST_W-4} V${CREST_H*0.55}
+    C${CREST_W-4} ${CREST_H*0.82} ${CREST_W*0.7} ${CREST_H-6} ${CREST_W/2} ${CREST_H-2}
+    C${CREST_W*0.3} ${CREST_H-6} 4 ${CREST_H*0.82} 4 ${CREST_H*0.55} Z`;
+
   return (
-    <div style={{position:"fixed",inset:0,background:"linear-gradient(180deg,#0a1420,#0d1c28)",zIndex:100,display:"flex",flexDirection:"column",alignItems:"center",fontFamily:"Georgia,serif",overflowY:"auto"}}>
-      <div style={{padding:"24px 20px 4px",textAlign:"center",flexShrink:0}}>
-        <div style={{color:"#7ec4e8",fontSize:"11px",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"6px"}}>Your Collection</div>
-        <div style={{color:"#fff",fontSize:"24px",fontWeight:"700"}}>Etymology Atlas</div>
+    <div style={{position:"fixed",inset:0,background:"linear-gradient(180deg,#12141c,#191b26)",zIndex:100,display:"flex",flexDirection:"column",alignItems:"center",fontFamily:"Georgia,serif",overflowY:"auto"}}>
+      <div style={{padding:"24px 20px 6px",textAlign:"center",flexShrink:0}}>
+        <div style={{color:"#c9a15a",fontSize:"11px",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"6px"}}>Your Collection</div>
+        <div style={{color:"#fff",fontSize:"24px",fontWeight:"700"}}>Etymology Crests</div>
         <div style={{color:"rgba(255,255,255,0.4)",fontSize:"12px",marginTop:"4px"}}>
           {totalWordsAll} words uncovered across {completedWorlds.length} of {WORLDS.length} languages
         </div>
       </div>
 
-      <div style={{position:"relative",width:"min(440px,96vw)",aspectRatio:"1.15",margin:"16px 0 10px"}}>
-        <svg viewBox="0 0 560 330" style={{width:"100%",height:"100%",display:"block"}}>
-          <defs>
-            <radialGradient id="atlasGlow" cx="45%" cy="45%" r="75%">
-              <stop offset="0%" stopColor="#16324a" stopOpacity="1"/>
-              <stop offset="100%" stopColor="#0a1420" stopOpacity="0"/>
-            </radialGradient>
-            <filter id="regionShadow" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0" dy="0" stdDeviation="3" floodOpacity="0.5"/>
-            </filter>
-          </defs>
-          <rect x="0" y="0" width="560" height="330" fill="url(#atlasGlow)"/>
-
-          {/* Simplified Europe / North Africa / Western Asia coastline — a real,
-              recognisable silhouette, not an abstract shape. Traced as a single
-              landmass outline at reduced detail. */}
-          <path
-            d="M60 60
-               L100 40 L150 32 L190 44 L210 34 L250 30 L290 20 L330 26 L340 40
-               L360 36 L400 44 L430 40 L460 50 L500 60 L530 80 L548 110
-               L540 150 L520 170 L530 200 L520 240 L500 270 L470 290
-               L440 300 L410 296 L390 280 L370 288 L350 300 L320 296
-               L300 280 L270 288 L240 296 L210 290 L190 270 L170 276
-               L140 268 L120 240 L100 220 L80 200 L60 170 L50 130 L54 90 Z"
-            fill="#152e42" stroke="#26506e" strokeWidth="1.5" opacity="0.9"
-          />
-          {/* Subtle inner texture lines suggesting terrain, kept minimal */}
-          <path d="M120 90 Q200 70 280 90 Q360 70 460 100" stroke="#1e3f58" strokeWidth="1" fill="none" opacity="0.5"/>
-          <path d="M100 180 Q220 160 340 190 Q430 170 500 200" stroke="#1e3f58" strokeWidth="1" fill="none" opacity="0.4"/>
-
-          {/* Region fills — shaded proportionally to progress. Each region draws
-              its full historical outline at low opacity always (so the map
-              reads as complete geography), then overlays an increasingly
-              opaque, increasingly saturated fill as words are unlocked. */}
-          {Object.entries(REGION_PATHS).map(([id, r]) => {
-            const w = WORLDS.find(x => x.id === id);
-            if (!w) return null;
-            const { pct } = worldProgress(w);
-            const done = completedWorlds.includes(id);
-            const started = pct > 0;
-            return (
-              <g key={id} onClick={() => setSelectedWorldId(id)} style={{cursor:"pointer"}}>
-                {/* Faint outline always visible, showing the region exists on the map */}
-                <path d={r.path} fill={r.color} opacity="0.08" stroke={r.color} strokeWidth="0.8" strokeOpacity="0.35"/>
-                {/* Progressive fill — opacity and saturation grow with pct solved */}
-                {started && (
-                  <path d={r.path} fill={r.color} opacity={0.25 + pct * 0.55}
-                    stroke={r.color} strokeWidth={done ? 1.6 : 1} strokeOpacity={0.8}
-                    filter={done ? "url(#regionShadow)" : "none"}
-                    style={{transition:"opacity 0.5s ease"}}/>
-                )}
-              </g>
-            );
-          })}
-        </svg>
-      </div>
-
-      {/* World list below the map — compact rows, tap to open detail view */}
-      <div style={{padding:"8px 20px 30px",width:"100%",maxWidth:"420px"}}>
+      <div style={{
+        display:"grid", gridTemplateColumns:"repeat(2, 1fr)", gap:"18px 14px",
+        padding:"22px 24px 10px", width:"100%", maxWidth:"400px",
+      }}>
         {WORLDS.map(w => {
           const { solved, total, pct } = worldProgress(w);
-          const region = REGION_PATHS[w.id];
-          const swatch = region ? region.color : w.accentColor;
           const done = completedWorlds.includes(w.id);
           const started = solved > 0;
+          const fillId = `crestFill-${w.id}`;
+          const clipId = `crestClip-${w.id}`;
+          const fillY = CREST_H - (CREST_H * pct); // fill rises from the bottom
+
           return (
-            <button key={w.id} onClick={() => setSelectedWorldId(w.id)} style={{width:"100%",display:"flex",alignItems:"center",gap:"12px",background:started?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.02)",border:`1px solid ${started?swatch+"50":"#ffffff12"}`,borderRadius:"12px",padding:"11px 14px",marginBottom:"8px",cursor:"pointer",textAlign:"left"}}>
-              <span style={{width:"14px",height:"14px",borderRadius:"4px",background:swatch,opacity:started?1:0.3,flexShrink:0}}/>
-              <span style={{fontSize:"18px",opacity:started?1:0.4}}>{w.emoji}</span>
-              <div style={{flex:1,minWidth:0}}>
-                <div style={{color:started?"#fff":"#666",fontSize:"13px",fontWeight:"700",marginBottom:"4px"}}>{w.name}</div>
-                <div style={{width:"100%",height:"4px",borderRadius:"2px",background:"rgba(255,255,255,0.08)",overflow:"hidden"}}>
-                  <div style={{width:`${pct*100}%`,height:"100%",background:swatch,borderRadius:"2px",transition:"width 0.4s ease"}}/>
-                </div>
-              </div>
-              <div style={{color:started?swatch:"#555",fontSize:"11px",fontWeight:"600",flexShrink:0}}>{done?"✓":`${solved}/${total}`}</div>
+            <button key={w.id} onClick={() => setSelectedWorldId(w.id)} style={{
+              background:"none", border:"none", padding:0, cursor:"pointer",
+              display:"flex", flexDirection:"column", alignItems:"center", gap:"8px",
+            }}>
+              <svg viewBox={`0 0 ${CREST_W} ${CREST_H}`} width="100" height="118" style={{overflow:"visible"}}>
+                <defs>
+                  <clipPath id={clipId}>
+                    <path d={crestPath}/>
+                  </clipPath>
+                </defs>
+                {/* Base crest — always visible outline, unfilled portion dim */}
+                <path d={crestPath} fill="rgba(255,255,255,0.04)" stroke={started ? w.accentColor : "rgba(255,255,255,0.18)"} strokeWidth={done ? 2.4 : 1.4}/>
+                {/* Progressive colour fill, rising from the base of the shield */}
+                {started && (
+                  <g clipPath={`url(#${clipId})`}>
+                    <rect x="0" y={fillY} width={CREST_W} height={CREST_H} fill={w.accentColor}
+                      opacity={done ? 0.85 : 0.55 + pct * 0.25}
+                      style={{transition:"y 0.5s ease, height 0.5s ease"}}/>
+                    {/* A soft highlight line at the fill's leading edge */}
+                    <rect x="0" y={fillY} width={CREST_W} height="2" fill="#fff" opacity="0.35"/>
+                  </g>
+                )}
+                {/* Mastered crests get a bright rim */}
+                {done && <path d={crestPath} fill="none" stroke={w.accentColor} strokeWidth="1.2" opacity="0.9"/>}
+                {/* World emoji as the crest's central charge */}
+                <text x={CREST_W/2} y={CREST_H*0.5} textAnchor="middle" fontSize="26" opacity={started ? 1 : 0.4}>{w.emoji}</text>
+                {done && (
+                  <text x={CREST_W/2} y={CREST_H-14} textAnchor="middle" fontSize="9" fill="#fff" opacity="0.85">✓</text>
+                )}
+              </svg>
+              <div style={{color:started?"#fff":"#777",fontSize:"11px",fontWeight:"700",textAlign:"center",lineHeight:1.2}}>{w.name.replace("The ","")}</div>
+              <div style={{color:started?w.accentColor:"#555",fontSize:"10px",fontWeight:"600"}}>{done?"Mastered":`${solved}/${total}`}</div>
             </button>
           );
         })}
@@ -7996,7 +7950,7 @@ function EtymRoot() {
     const nextWorld = WORLDS[worldIdx + 1];
     return (
       <div style={{minHeight:"100svh",background:world.bgGradient,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",fontFamily:"Georgia,serif",padding:"30px 20px",textAlign:"center"}}>
-        <div style={{fontSize:"60px",marginBottom:"16px"}}>🗺️</div>
+        <div style={{fontSize:"60px",marginBottom:"16px"}}>🛡️</div>
         <div style={{color:world.accentColor,fontSize:"12px",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"8px"}}>World Complete</div>
         <div style={{color:"#fff",fontSize:"28px",fontWeight:"700",marginBottom:"8px"}}>{world.name}</div>
         <div style={{color:"rgba(255,255,255,0.6)",fontSize:"14px",marginBottom:"28px"}}>A new branch grew on your Language Tree!</div>
@@ -8008,7 +7962,7 @@ function EtymRoot() {
         </div>
         <div style={{display:"flex",flexDirection:"column",gap:"10px",width:"100%",maxWidth:"280px"}}>
           {nextWorld&&<button onClick={()=>startGame(worldIdx+1)} style={{background:nextWorld.color,border:"none",borderRadius:"14px",padding:"16px",color:"#fff",fontSize:"16px",fontWeight:"700",cursor:"pointer"}}>{nextWorld.emoji} Start {nextWorld.name}</button>}
-          <button onClick={()=>setScreen("tree")} style={{background:"transparent",border:`1px solid ${world.accentColor}50`,borderRadius:"14px",padding:"14px",color:world.accentColor,fontSize:"14px",fontWeight:"600",cursor:"pointer"}}>🗺️ View Atlas</button>
+          <button onClick={()=>setScreen("tree")} style={{background:"transparent",border:`1px solid ${world.accentColor}50`,borderRadius:"14px",padding:"14px",color:world.accentColor,fontSize:"14px",fontWeight:"600",cursor:"pointer"}}>🛡️ View Crests</button>
           <button onClick={()=>setScreen("home")} style={{background:"transparent",border:"none",color:"rgba(255,255,255,0.4)",fontSize:"13px",cursor:"pointer",padding:"8px"}}>Back to Home</button>
         </div>
       </div>
@@ -8019,7 +7973,7 @@ function EtymRoot() {
     return (
       <div style={{minHeight:"100svh",background:"linear-gradient(180deg,#0a0f1a 0%,#0d180e 60%,#0a1208 100%)",display:"flex",flexDirection:"column",alignItems:"center",fontFamily:"Georgia,serif",padding:"0 20px 40px",overflowY:"auto"}}>
         <div style={{paddingTop:"50px",textAlign:"center",marginBottom:"8px"}}>
-          <div style={{fontSize:"52px",marginBottom:"12px"}}>🗺️</div>
+          <div style={{fontSize:"52px",marginBottom:"12px"}}>🛡️</div>
           <div style={{color:"#8de87a",fontSize:"11px",letterSpacing:"4px",textTransform:"uppercase",marginBottom:"6px"}}>Etymology Quest</div>
           <div style={{color:"#fff",fontSize:"32px",fontWeight:"700",lineHeight:1.2,marginBottom:"6px"}}>EtymRoot</div>
           <div style={{color:"rgba(255,255,255,0.45)",fontSize:"13px",lineHeight:1.6,maxWidth:"260px",margin:"0 auto 22px"}}>
@@ -8085,7 +8039,7 @@ function EtymRoot() {
             </button>;
           })}
         </div>
-        <button onClick={()=>setScreen("tree")} style={{background:"transparent",border:"1px solid #8de87a40",borderRadius:"14px",padding:"14px 28px",color:"#8de87a",fontSize:"14px",fontWeight:"600",cursor:"pointer"}}>🗺️ Etymology Atlas {completedWorlds.length>0&&`(${Object.values(unlockedWords).flat().length} words)`}</button>
+        <button onClick={()=>setScreen("tree")} style={{background:"transparent",border:"1px solid #8de87a40",borderRadius:"14px",padding:"14px 28px",color:"#8de87a",fontSize:"14px",fontWeight:"600",cursor:"pointer"}}>🛡️ Etymology Crests {completedWorlds.length>0&&`(${Object.values(unlockedWords).flat().length} words)`}</button>
       </div>
     );
   }
@@ -8120,7 +8074,7 @@ function EtymRoot() {
           <div style={{color:world.accentColor,fontSize:"10px",letterSpacing:"2px",textTransform:"uppercase"}}>{world.emoji} {world.name.split(" ").slice(-1)[0]}</div>
           <div style={{color:"rgba(255,255,255,0.5)",fontSize:"11px"}}>Level {levelIdx+1} / {world.levels.length}</div>
         </div>
-        <button onClick={()=>setScreen("tree")} style={{background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.12)",color:"#fff",borderRadius:"10px",padding:"6px 12px",fontSize:"13px",cursor:"pointer"}}>🗺️</button>
+        <button onClick={()=>setScreen("tree")} style={{background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.12)",color:"#fff",borderRadius:"10px",padding:"6px 12px",fontSize:"13px",cursor:"pointer"}}>🛡️</button>
       </div>
 
       {/* ── Status bar: Leaves · Timer · Words ── */}
@@ -8199,7 +8153,7 @@ function EtymRoot() {
           </div>
           <div style={{marginTop:"12px",display:"flex",justifyContent:"center",flexShrink:0}}>
             <button onClick={handleNext} style={{background:world.color,border:"none",borderRadius:"12px",padding:"12px 32px",color:"#fff",fontSize:"14px",fontWeight:"700",cursor:"pointer",boxShadow:`0 4px 18px ${world.color}60`}}>
-              {levelIdx>=world.levels.length-1?"Complete World 🌳":"Next Level →"}
+              {levelIdx>=world.levels.length-1?"Complete World 🛡️":"Next Level →"}
             </button>
           </div>
         </div>
