@@ -6684,14 +6684,6 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
 
 // ─── Language Tree ─────────────────────────────────────────────────────────────
 const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGlowShown, onClose }) => {
-  // Clear the sparkle a couple seconds after the tree opens, so it plays once
-  // per milestone rather than lingering indefinitely.
-  useEffect(() => {
-    if (!milestoneGlowWorld) return;
-    const t = setTimeout(() => onGlowShown && onGlowShown(), 2400);
-    return () => clearTimeout(t);
-  }, [milestoneGlowWorld, onGlowShown]);
-
   // Branch geometry: 6 branches radiating from the trunk top, evenly fanned
   // Angles run from upper-left to upper-right across the canopy
   const BRANCHES = [
@@ -6786,27 +6778,6 @@ const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGl
                   fill={col} fontSize="6.5" opacity="0.6"
                 >+{words.length-7} more</text>
               )}
-              {/* Milestone sparkle — a brief burst of light on the branch that just
-                  hit a milestone, playing once when the tree screen opens */}
-              {milestoneGlowWorld === world.id && (
-                <g style={{pointerEvents:"none"}}>
-                  <circle cx={tip.x} cy={tip.y} r="4" fill={world.accentColor}
-                    style={{animation:"treeSparklePulse 2s ease-out 1"}}/>
-                  {Array.from({length:6}).map((_,si) => {
-                    const sparkAngle = (si / 6) * 360;
-                    const sparkFar = polar(tip.x, tip.y, sparkAngle, 26);
-                    return (
-                      <circle key={si} cx={tip.x} cy={tip.y} r="2" fill={world.accentColor}
-                        style={{
-                          animation:"treeSparkleFly 1.1s ease-out 0.15s 1 forwards",
-                          transformOrigin:`${tip.x}px ${tip.y}px`,
-                          "--sparkDx":`${sparkFar.x - tip.x}px`,
-                          "--sparkDy":`${sparkFar.y - tip.y}px`,
-                        }}/>
-                    );
-                  })}
-                </g>
-              )}
             </g>
           );
         })}
@@ -6836,18 +6807,6 @@ const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGl
         })}
       </div>
       <button onClick={onClose} style={{position:"fixed",top:"16px",right:"16px",background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",borderRadius:"50%",width:"40px",height:"40px",fontSize:"18px",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
-      <style>{`
-        @keyframes treeSparklePulse {
-          0%   { r:4;  opacity:0; }
-          15%  { opacity:0.55; }
-          100% { r:30; opacity:0; }
-        }
-        @keyframes treeSparkleFly {
-          0%   { transform:translate(0,0); opacity:0; }
-          15%  { opacity:0.9; }
-          100% { transform:translate(var(--sparkDx),var(--sparkDy)); opacity:0; }
-        }
-      `}</style>
     </div>
   );
 };
