@@ -6683,7 +6683,15 @@ const MilestoneScreen = ({ milestone, world, onContinue }) => {
 };
 
 // ─── Language Tree ─────────────────────────────────────────────────────────────
-const LanguageTree = ({ completedWorlds, unlockedWords, onClose }) => {
+const LanguageTree = ({ completedWorlds, unlockedWords, milestoneGlowWorld, onGlowShown, onClose }) => {
+  // Clear the sparkle a couple seconds after the tree opens, so it plays once
+  // per milestone rather than lingering indefinitely.
+  useEffect(() => {
+    if (!milestoneGlowWorld) return;
+    const t = setTimeout(() => onGlowShown && onGlowShown(), 2400);
+    return () => clearTimeout(t);
+  }, [milestoneGlowWorld, onGlowShown]);
+
   // Branch geometry: 6 branches radiating from the trunk top, evenly fanned
   // Angles run from upper-left to upper-right across the canopy
   const BRANCHES = [
@@ -6721,30 +6729,40 @@ const LanguageTree = ({ completedWorlds, unlockedWords, onClose }) => {
         {BRANCHES.map(b => {
           const world = WORLDS.find(w => w.id === b.id);
           if (!world) return null;
-          const done  = completedWorlds.includes(world.id);
-          const col   = done ? world.accentColor : "#2a2a2a";
-          const words = unlockedWords[world.id] || [];
-          const tip   = polar(TRUNK_TOP.x, TRUNK_TOP.y, b.angle, b.length);
+          const done   = completedWorlds.includes(world.id);
+          const words  = unlockedWords[world.id] || [];
+          const total  = world.levels.reduce((sum, lvl) => sum + lvl.words.length, 0);
+          const pct    = total > 0 ? Math.min(1, words.length / total) : 0;
+          // A branch is "growing" the moment any word has been solved, not just
+          // on full completion — length and thickness scale continuously with
+          // progress, and lock in fully once the world is mastered.
+          const started = words.length > 0;
+          const growLen  = b.length * (0.35 + pct * 0.65); // starts at 35% length, grows to 100%
+          const col      = started ? world.accentColor : "#2a2a2a";
+          const strokeW  = started ? (5 + pct * 4) : 6;    // 5→9 as it fills in
+          const opac     = started ? (0.55 + pct * 0.4) : 0.4;
+          const tip   = polar(TRUNK_TOP.x, TRUNK_TOP.y, b.angle, growLen);
           // Control point for a gentle curve outward
-          const ctrl  = polar(TRUNK_TOP.x, TRUNK_TOP.y, b.angle, b.length * 0.55);
+          const ctrl  = polar(TRUNK_TOP.x, TRUNK_TOP.y, b.angle, growLen * 0.55);
           const ctrlOffset = polar(ctrl.x, ctrl.y, b.angle + (b.leafSide * 18), 10);
 
           return (
             <g key={world.id}>
-              {/* Branch limb */}
+              {/* Branch limb — length and thickness grow continuously with progress */}
               <path
                 d={`M${TRUNK_TOP.x} ${TRUNK_TOP.y} Q${ctrlOffset.x} ${ctrlOffset.y} ${tip.x} ${tip.y}`}
-                stroke={col} strokeWidth={done ? 9 : 6} fill="none" strokeLinecap="round"
-                opacity={done ? 0.95 : 0.4}
+                stroke={col} strokeWidth={strokeW} fill="none" strokeLinecap="round"
+                opacity={opac}
+                style={{transition:"d 0.4s ease, stroke-width 0.4s ease, opacity 0.4s ease"}}
               />
               {/* World emoji badge at branch tip */}
-              <circle cx={tip.x} cy={tip.y} r={done ? 16 : 12} fill={col} opacity={done ? 0.28 : 0.12}/>
-              <text x={tip.x} y={tip.y+5} textAnchor="middle" fontSize={done ? 16 : 12} opacity={done ? 1 : 0.4}>
+              <circle cx={tip.x} cy={tip.y} r={done ? 16 : started ? 14 : 12} fill={col} opacity={done ? 0.28 : started ? 0.2 : 0.12}/>
+              <text x={tip.x} y={tip.y+5} textAnchor="middle" fontSize={done ? 16 : started ? 14 : 12} opacity={done ? 1 : started ? 0.85 : 0.4}>
                 {world.emoji}
               </text>
 
-              {/* Leaf-words sprouting along the branch, fanning outward from the tip */}
-              {done && words.slice(0, 7).map((wd, wi) => {
+              {/* Leaf-words sprouting along the branch as they're solved, fanning outward from the tip */}
+              {started && words.slice(0, 7).map((wd, wi) => {
                 const leafDist  = 24 + wi * 17;
                 const leafAngle = b.angle + b.leafSide * (14 + wi * 9);
                 const leafPos   = polar(tip.x, tip.y, leafAngle, leafDist);
@@ -6760,13 +6778,34 @@ const LanguageTree = ({ completedWorlds, unlockedWords, onClose }) => {
                   </g>
                 );
               })}
-              {done && words.length > 7 && (
+              {started && words.length > 7 && (
                 <text
                   x={polar(tip.x, tip.y, b.angle + b.leafSide*(14+7*9), 24+7*17).x + (b.leafSide*5)}
                   y={polar(tip.x, tip.y, b.angle + b.leafSide*(14+7*9), 24+7*17).y + 2.5}
                   textAnchor={b.leafSide > 0 ? "start" : "end"}
                   fill={col} fontSize="6.5" opacity="0.6"
                 >+{words.length-7} more</text>
+              )}
+              {/* Milestone sparkle — a brief burst of light on the branch that just
+                  hit a milestone, playing once when the tree screen opens */}
+              {milestoneGlowWorld === world.id && (
+                <g style={{pointerEvents:"none"}}>
+                  <circle cx={tip.x} cy={tip.y} r="4" fill={world.accentColor} opacity="0">
+                    <animate attributeName="r" values="4;30;4" dur="2s" repeatCount="1" fill="freeze"/>
+                    <animate attributeName="opacity" values="0;0.55;0" dur="2s" repeatCount="1" fill="freeze"/>
+                  </circle>
+                  {Array.from({length:6}).map((_,si) => {
+                    const sparkAngle = (si / 6) * 360;
+                    const sparkFar = polar(tip.x, tip.y, sparkAngle, 26);
+                    return (
+                      <circle key={si} cx={tip.x} cy={tip.y} r="2" fill={world.accentColor} opacity="0">
+                        <animate attributeName="cx" values={`${tip.x};${sparkFar.x}`} dur="1.1s" begin="0.15s" repeatCount="1" fill="freeze"/>
+                        <animate attributeName="cy" values={`${tip.y};${sparkFar.y}`} dur="1.1s" begin="0.15s" repeatCount="1" fill="freeze"/>
+                        <animate attributeName="opacity" values="0;0.9;0" dur="1.3s" begin="0.15s" repeatCount="1" fill="freeze"/>
+                      </circle>
+                    );
+                  })}
+                </g>
               )}
             </g>
           );
@@ -6782,13 +6821,15 @@ const LanguageTree = ({ completedWorlds, unlockedWords, onClose }) => {
         {WORLDS.map(w=>{
           const done=completedWorlds.includes(w.id);
           const words=unlockedWords[w.id]||[];
-          return <div key={w.id} style={{background:done?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${done?w.accentColor+"50":"#ffffff15"}`,borderRadius:"12px",padding:"14px 16px",marginBottom:"10px"}}>
-            <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:done&&words.length?"10px":0}}>
+          const started=words.length>0;
+          const total=w.levels.reduce((sum,lvl)=>sum+lvl.words.length,0);
+          return <div key={w.id} style={{background:started?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.02)",border:`1px solid ${started?w.accentColor+"50":"#ffffff15"}`,borderRadius:"12px",padding:"14px 16px",marginBottom:"10px"}}>
+            <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:started&&words.length?"10px":0}}>
               <span style={{fontSize:"20px"}}>{w.emoji}</span>
-              <div><div style={{color:done?w.accentColor:"#555",fontSize:"13px",fontWeight:"700"}}>{w.name}</div><div style={{color:"#666",fontSize:"11px"}}>{done?`${words.length} words unlocked`:"Not yet explored"}</div></div>
+              <div><div style={{color:started?w.accentColor:"#555",fontSize:"13px",fontWeight:"700"}}>{w.name}</div><div style={{color:"#666",fontSize:"11px"}}>{done?`${words.length} words unlocked · Mastered`:started?`${words.length}/${total} words unlocked`:"Not yet explored"}</div></div>
               {done&&<span style={{marginLeft:"auto",color:w.accentColor,fontSize:"18px"}}>✓</span>}
             </div>
-            {done&&words.length>0&&<div style={{display:"flex",flexWrap:"wrap",gap:"6px"}}>
+            {started&&words.length>0&&<div style={{display:"flex",flexWrap:"wrap",gap:"6px"}}>
               {words.map((wd,i)=><span key={i} style={{background:`${w.accentColor}20`,border:`1px solid ${w.accentColor}50`,color:w.accentColor,borderRadius:"20px",padding:"3px 10px",fontSize:"11px",fontWeight:"600"}}>{wd}</span>)}
             </div>}
           </div>;
@@ -7428,6 +7469,7 @@ function EtymRoot() {
   const [timerActive,     setTimerActive]     = useState(false);
   const [chunks,          setChunks]          = useState([]);
   const [activeMilestone, setActiveMilestone] = useState(null);  // milestone to show, or null
+  const [milestoneGlowWorld, setMilestoneGlowWorld] = useState(null); // world id whose branch should sparkle next time the tree is viewed
 
   // ── Quantum Leap state ────────────────────────────────────────────────────
   const [leapTarget,  setLeapTarget]  = useState(() => 4 + Math.floor(Math.random()*3)); // 2-4
@@ -7619,6 +7661,7 @@ function EtymRoot() {
       const hitMilestone = milestones.find(m => m.afterLevel === levelIdx + 1);
       if (hitMilestone) {
         setActiveMilestone(hitMilestone);
+        setMilestoneGlowWorld(world.id);
       } else {
         setShowFact(true);
       }
@@ -7809,7 +7852,7 @@ function EtymRoot() {
   const timerColor = timeLeft > 30 ? "#8de87a" : timeLeft > 15 ? "#f5c030" : "#e87a6d";
   const circ       = 2 * Math.PI * 20;
 
-  if (screen === "tree") return <LanguageTree completedWorlds={completedWorlds} unlockedWords={unlockedWords} onClose={() => setScreen("home")}/>;
+  if (screen === "tree") return <LanguageTree completedWorlds={completedWorlds} unlockedWords={unlockedWords} milestoneGlowWorld={milestoneGlowWorld} onGlowShown={() => setMilestoneGlowWorld(null)} onClose={() => setScreen("home")}/>;
 
   if (activeMilestone) {
     return (
